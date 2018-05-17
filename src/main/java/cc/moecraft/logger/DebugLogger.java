@@ -1,5 +1,6 @@
 package cc.moecraft.logger;
 
+import java.lang.annotation.Annotation;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -13,17 +14,17 @@ import static cc.moecraft.logger.AnsiColor.*;
  */
 public class DebugLogger
 {
-    private String pre;
+    private String prefix;
     private boolean debug;
 
     /**
      * 一个萌萌的Logger
-     * @param pre 前缀
+     * @param prefix 前缀
      * @param debug Debug消息是否开启
      */
-    public DebugLogger(String pre, boolean debug)
+    public DebugLogger(String prefix, boolean debug)
     {
-        this.pre = pre;
+        this.prefix = prefix;
         this.debug = debug;
     }
 
@@ -42,12 +43,12 @@ public class DebugLogger
      */
     public void log(String s)
     {
-        System.out.println(String.format("%s[%s%s%s] [%s%s%s] %s%s%s", WHITE, PURPLE, getCurrentTime(), WHITE, BLUE, pre, WHITE, RESET, s, RESET));
+        System.out.println(String.format("%s[%s%s%s] [%s%s%s] %s%s%s", WHITE, PURPLE, getCurrentTime(), WHITE, BLUE, prefix, WHITE, RESET, s, RESET));
     }
 
     public String getCurrentTime()
     {
-        return new SimpleDateFormat("yy-MM-dd HH.mm.ss").format(Calendar.getInstance().getTime());
+        return new SimpleDateFormat("yy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());
     }
 
     /**
@@ -60,7 +61,7 @@ public class DebugLogger
         {
             StackTraceElement stackTrace = Thread.currentThread().getStackTrace()[2];
 
-            log(String.format("%s[%sDEBUG%s(%s%s.%s.%s%s)] %s%s", WHITE, RED, WHITE, YELLOW, stackTrace.getClassName(), stackTrace.getMethodName(), stackTrace.getLineNumber(), WHITE, CYAN, s));
+            log(String.format("%s[%sDEBUG%s(%s%s.%s.%s%s)] %s%s", WHITE, CYAN, WHITE, YELLOW, stackTrace.getClassName(), stackTrace.getMethodName(), stackTrace.getLineNumber(), WHITE, CYAN, s));
         }
     }
 
@@ -70,12 +71,9 @@ public class DebugLogger
      */
     public void error(String s)
     {
-        if (debug)
-        {
-            StackTraceElement stackTrace = Thread.currentThread().getStackTrace()[2];
+        StackTraceElement stackTrace = Thread.currentThread().getStackTrace()[2];
 
-            log(String.format("%s[%sERROR%s(%s%s.%s.%s%s)] %s%s", WHITE, RED, WHITE, YELLOW, stackTrace.getClassName(), stackTrace.getMethodName(), stackTrace.getLineNumber(), WHITE, RED, s));
-        }
+        log(String.format("%s[%sERROR%s(%s%s.%s.%s%s)] %s%s", WHITE, RED, WHITE, YELLOW, stackTrace.getClassName(), stackTrace.getMethodName(), stackTrace.getLineNumber(), WHITE, RED, s));
     }
 }
 

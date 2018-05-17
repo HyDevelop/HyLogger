@@ -17,6 +17,8 @@ public class LoggerTest
 
     public static void main(String[] args)
     {
-        logger.debug(AnsiColor.RED.getBright() + AnsiColor.BLUE.getBackground() + AnsiFormat.HIGH_INTENSITY + " Hi ");
+        logger.log("一条测试Log消息");
+        logger.debug("一条测试Debug消息");
+        logger.error("一条测试Error消息");
     }
 }
