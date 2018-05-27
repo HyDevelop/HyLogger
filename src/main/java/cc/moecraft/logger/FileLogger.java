@@ -22,6 +22,7 @@ public class FileLogger
     public PrintWriter fileWriter;
     public File file;
     public DebugLogger logger;
+    private long lastLogTime = System.currentTimeMillis();
 
     public FileLogger(File file, DebugLogger logger) throws IOException
     {
@@ -42,6 +43,11 @@ public class FileLogger
     public void log(String message)
     {
         fileWriter.write(replaceAllColors(message) + "\n");
+        if (System.currentTimeMillis() - lastLogTime > 5000)
+        {
+            lastLogTime = System.currentTimeMillis();
+            fileWriter.flush();
+        }
     }
 
     public String replaceAllColors(String original)
