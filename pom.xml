@@ -6,13 +6,30 @@
 
     <groupId>cc.moecraft</groupId>
     <artifactId>HyLogger</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.5.0</version>
 
     <properties>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
+
     <dependencies>
+        <dependency>
+            <groupId>com.github.hykilpikonna</groupId>
+            <artifactId>HyConfigLib</artifactId>
+            <version>-1eb4f7896a-1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.14.8</version>
+        </dependency>
     </dependencies>
 </project>

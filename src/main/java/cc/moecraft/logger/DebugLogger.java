@@ -1,6 +1,9 @@
 package cc.moecraft.logger;
 
-import java.lang.annotation.Annotation;
+import lombok.Data;
+
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -12,8 +15,10 @@ import static cc.moecraft.logger.AnsiColor.*;
  * Github: https://github.com/hykilpikonna
  * Meow!
  */
+@Data
 public class DebugLogger
 {
+    private static FileLogger fileLogger;
     private String prefix;
     private boolean debug;
 
@@ -24,8 +29,31 @@ public class DebugLogger
      */
     public DebugLogger(String prefix, boolean debug)
     {
+        this(prefix, debug, null, null);
+    }
+
+    /**
+     * 一个萌萌的Logger
+     * @param prefix 前缀
+     * @param debug Debug消息是否开启
+     */
+    public DebugLogger(String prefix, boolean debug, String filePath, String fileName)
+    {
         this.prefix = prefix;
         this.debug = debug;
+        if (fileName == null) return;
+        if (filePath == null || filePath.isEmpty()) filePath = "./";
+        if (!(filePath.endsWith("/") || filePath.endsWith("\\"))) filePath += File.separator;
+        try
+        {
+            fileLogger = new FileLogger(new File(filePath + fileName + "@" + getCurrentTime().replace(":", "-").replace(" ", "-") + ".log"), this);
+        }
+        catch (IOException e)
+        {
+            fileLogger = null;
+            log("FileLogger启动失败, 不会写入文件");
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -43,7 +71,9 @@ public class DebugLogger
      */
     public void log(String s)
     {
-        System.out.println(String.format("%s[%s%s%s] [%s%s%s] %s%s%s", WHITE, PURPLE, getCurrentTime(), WHITE, BLUE, prefix, WHITE, RESET, s, RESET));
+        String message = String.format("%s[%s%s%s] [%s%s%s] %s%s%s", WHITE, PURPLE, getCurrentTime(), WHITE, BLUE, prefix, WHITE, RESET, s, RESET);
+        if (fileLogger != null) fileLogger.log(message);
+        System.out.println(message);
     }
 
     public String getCurrentTime()
