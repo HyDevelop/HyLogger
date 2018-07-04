@@ -13,12 +13,12 @@ import java.io.IOException;
  */
 public class FileColoredEnv extends FileEnv
 {
-    public FileColoredEnv(File file) throws IOException
+    public FileColoredEnv(File file)
     {
         super(file);
     }
 
-    public FileColoredEnv(String filePath, String fileName) throws IOException
+    public FileColoredEnv(String filePath, String fileName)
     {
         super(filePath, fileName);
     }
