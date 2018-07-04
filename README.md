@@ -93,10 +93,12 @@ LoggerInstanceManager lim = new LoggerInstanceManager(new ConsoleColoredEnv(), n
 
 ##### 可用的日志环境:
 
-* ConsoleEnv - 无颜色的控制台环境
-* ConsoleColoredEnv - 带颜色的控制台环境 (使用Jansi类库, 控制台不支持颜色的话也不会乱码)
-* FileEnv - 无颜色的文件环境
-* FileColoredEnv - 带颜色的文件环境 (大部分编辑器不支持, 所以像我一样的RGB厨以外不推荐使用ww)
+```java
+ConsoleEnv        // 无颜色的控制台环境
+ConsoleColoredEnv // 带颜色的控制台环境 (使用Jansi类库, 控制台不支持颜色的话也不会乱码)
+FileEnv           // 无颜色的文件环境
+FileColoredEnv    // 带颜色的文件环境 (大部分编辑器不支持, 所以像我一样的RGB厨以外不推荐使用ww)
+```
 
 #### 2. 创建/获取实例:
 
