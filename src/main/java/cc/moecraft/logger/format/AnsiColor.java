@@ -1,7 +1,7 @@
-package cc.moecraft.logger;
+package cc.moecraft.logger.format;
 
-import static cc.moecraft.logger.AnsiConsants.PREFIX;
-import static cc.moecraft.logger.AnsiConsants.SUFFIX;
+import static cc.moecraft.logger.format.AnsiConstants.PREFIX;
+import static cc.moecraft.logger.format.AnsiConstants.SUFFIX;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/04 创建!
