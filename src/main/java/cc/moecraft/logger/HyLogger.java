@@ -52,4 +52,18 @@ public class HyLogger
     {
         for (LogEnvironment environment : instanceManager.getEnvironments()) environment.warning(prefix, message);
     }
+
+    public void logRAINBOW(String message)
+    {
+        StringBuilder newMessage = new StringBuilder();
+
+        Random random = new Random();
+
+        for (char c : message.toCharArray())
+        {
+            newMessage.append(AnsiConstants.colors.get(random.nextInt(AnsiConstants.colors.size()))).append(c);
+        }
+
+        log(newMessage.toString());
+    }
 }
