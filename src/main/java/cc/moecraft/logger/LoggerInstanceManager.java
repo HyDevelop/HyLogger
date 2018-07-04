@@ -31,4 +31,13 @@ public class LoggerInstanceManager
         this.environments.addAll(Arrays.asList(environments));
         return this;
     }
+
+    public HyLogger getLoggerInstance(String prefix, boolean debug)
+    {
+        if (cachedInstance.containsKey(prefix)) return cachedInstance.get(prefix);
+
+        HyLogger logger = new HyLogger(this, prefix, debug);
+        cachedInstance.put(prefix, logger);
+        return logger;
+    }
 }
