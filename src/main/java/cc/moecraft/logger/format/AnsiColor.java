@@ -29,6 +29,7 @@ public enum AnsiColor
     AnsiColor(int code)
     {
         this.code = code;
+        AnsiConstants.colors.add(this);
     }
 
     @Override

@@ -14,4 +14,7 @@ public class AnsiConstants
 {
     public static final String PREFIX = System.getProperty("os.name").toLowerCase().contains("win") ? "\033[0;" : "\u001B[";
     public static final String SUFFIX = "m";
+
+    public static final ArrayList<AnsiColor> colors = new ArrayList<>();
+    public static final ArrayList<AnsiFormat> formats = new ArrayList<>();
 }
