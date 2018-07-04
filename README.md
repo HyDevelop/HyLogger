@@ -124,5 +124,5 @@ logger.logRAINBOW("一条彩虹消息wwwwww"); // TODO: 随机颜色改为定向
 <br>
 
 <a name="license"></a>
-开源条款: (MIT License)[/LICENSE]
+开源条款: [MIT License](/LICENSE)
 --------
