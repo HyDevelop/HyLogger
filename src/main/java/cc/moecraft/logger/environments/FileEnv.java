@@ -1,5 +1,6 @@
 package cc.moecraft.logger.environments;
 
+import cc.moecraft.logger.exceptions.FailedToCreateFileLoggerException;
 import cc.moecraft.logger.format.AnsiColor;
 import cc.moecraft.logger.HyLogger;
 import cc.moecraft.yaml.utils.FileUtils;
@@ -7,6 +8,7 @@ import lombok.Getter;
 import org.fusesource.jansi.AnsiConsole;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -31,12 +33,19 @@ public class FileEnv extends LogEnvironment
 
     long lastLogTime = System.currentTimeMillis();
 
-    public FileEnv(File file) throws IOException
+    public FileEnv(File file)
     {
         this.file = file;
         if (!file.exists()) FileUtils.createFile(file);
 
-        this.fileWriter = new PrintWriter(file);
+        try
+        {
+            this.fileWriter = new PrintWriter(file);
+        }
+        catch (FileNotFoundException e)
+        {
+            throw new FailedToCreateFileLoggerException(e);
+        }
 
         Runtime.getRuntime().addShutdownHook(new Thread(() ->
         {
@@ -46,14 +55,14 @@ public class FileEnv extends LogEnvironment
         }));
     }
 
-    public FileEnv(String filePath, String fileName) throws IOException
+    public FileEnv(String filePath, String fileName)
     {
         this(getFile(filePath, fileName));
     }
 
-    private static File getFile(String filePath, String fileName) throws IOException
+    private static File getFile(String filePath, String fileName)
     {
-        if (fileName == null) throw new IOException();
+        if (fileName == null) throw new FailedToCreateFileLoggerException(new NullPointerException());
         if (filePath == null || filePath.isEmpty()) filePath = "./";
         if (!(filePath.endsWith("/") || filePath.endsWith("\\"))) filePath += File.separator;
         return new File(filePath + fileName + "@" + getCurrentTime().replace(":", "-").replace(" ", "-") + ".log");
