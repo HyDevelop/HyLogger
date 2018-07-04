@@ -9,6 +9,14 @@
 
 <br>
 
+<a name="introduction"></a>
+介绍:
+--------
+
+
+
+<br>
+
 <a name="maven"></a>
 Maven 导入:
 --------
@@ -120,6 +128,46 @@ logger.error("一条Error消息");
 logger.warning("一条Warning消息");
 logger.logRAINBOW("一条彩虹消息wwwwww"); // TODO: 随机颜色改为定向渐变ww
 ```
+
+#### 4. 添加颜色和格式:
+
+颜色其实就是一个Enum啦...<br>
+直接用字符串的+就行了_(:з」∠)_
+<br>
+注意: 必须有支持颜色的环境才有效 (废话!
+
+```java
+AnsiColor.RESET  // 同时重置颜色和格式
+AnsiFormat.RESET // 同样是同时重置颜色和格式
+
+AnsiColor.BLACK  // 黑色
+AnsiColor.RED    // 红色
+AnsiColor.GREEN  // 原谅色 <3
+AnsiColor.YELLOW // 黄色
+AnsiColor.BLUE   // 蓝色
+AnsiColor.PURPLE // 紫色
+AnsiColor.CYAN   // 青色
+AnsiColor.WHITE  // 白色
+
+AnsiFormat.HIGH_INTENSITY // 加♂粗
+AnsiFormat.LOW_INTENSITY  // 变细...?
+AnsiFormat.ITALIC         // 斜体
+AnsiFormat.UNDERLINE      // 下划线
+AnsiFormat.BLINK          // 闪! (意义不明
+AnsiFormat.RAPID_BLINK    // 更快的闪 (应该大部分后台都不支持这两个闪...
+AnsiFormat.REVERSE_VIDEO  // 反色
+AnsiFormat.INVISIBLE_TEXT // 隐身 (意义不明 #2
+
+// 不用看了真的没有中划线和魔法随机ww
+```
+
+##### 例子:
+
+```java
+logger.log(AnsiColor.GREEN + "" + AnsiFormat.HIGH_INTENSITY + "当然是选择原谅她!");
+```
+
+#### 5. 定向渐变, 用RGB码获取ANSI码: TODO
 
 <br>
 
