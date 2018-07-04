@@ -6,3 +6,4 @@ HyLogger\.iml
 *.class
 log.log
 *.log
+target/*
