@@ -1,19 +1,51 @@
 <h1 align="center">
-    <a href="#!">
-        <img src="https://i.imgur.com/4dkZaN1.png" height="200">
-    </a>
-    <h4 align="center">
-    妈妈快看, 那个人的日志会变色!!
-    </h4>
+  <a href="#!">
+    <img src="https://i.imgur.com/4dkZaN1.png" height="200">
+  </a>
 </h1>
+<h4 align="center">
+  妈妈快看, 那个人的日志会变色!!
+</h4>
+<h5 align="center">
+  <a href="#maven">Maven导入</a>&nbsp;&nbsp;
+  <a href="#introduction">介绍</a>&nbsp;&nbsp;
+  <a href="#development">开发</a>&nbsp;&nbsp;
+  <a href="#license">开源条款</a>
+</h5>
+
+<br>
+<br>
+<br>
 
 <br>
 
 <a name="introduction"></a>
-介绍:
+介绍 (v2.5.19):
 --------
 
+这是一个支持颜色和文件输出的日志工具, 理论上颜色输出支持所有支持ANSI ESC Code的控制台.
 
+#### 已实现功能:
+
+* 同时向多个环境实例输出日志
+* 控制台环境
+* 带颜色的控制台环境 (如果控制台不支持颜色也不会乱码)
+* 文件输出环境
+* 带颜色的文件输出环境 (不推荐, 因为文件编辑器不支持颜色的话会乱码)
+* 四个日志级别 (Log, Debug, Error, Warning)
+* 日志显示时间
+* Debug和Error级别日志显示当前执行的类路径和行数
+* 可以有多个实例
+* 每个实例可以用同样的环境同时有不同的前缀
+
+#### 待实现(TODO)的功能:
+
+* 用RGB获取ANSI颜色代码
+* 定向单行渐变 (影响一行, 或一串字)
+* 多点单行渐变
+* 定向二维渐变 (影响一个字符串数组, 输出字符画的时候特别有用)
+* 多点二维渐变 (带渐变角度)
+* 无视原有颜色的全局渐变
 
 <br>
 
