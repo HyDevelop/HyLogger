@@ -1,7 +1,13 @@
-HyLogger
+<p align="center">
+    <a href="#!">
+        <img src="https://i.imgur.com/4dkZaN1.png" height="200">
+    </a>
+    <h4 align="center">
+    妈妈快看, 那个日志会变色!!
+    </h4>
+</p>
 
-太懒了以后再写Markdown吧<br>
-毕竟好像写了也没有人看...?
+<br>
 
 Maven Import:
 
