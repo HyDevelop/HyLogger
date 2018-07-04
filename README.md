@@ -3,7 +3,7 @@
         <img src="https://i.imgur.com/4dkZaN1.png" height="200">
     </a>
     <h4 align="center">
-    妈妈快看, 那个日志会变色!!
+    妈妈快看, 那个人的日志会变色!!
     </h4>
 </h1>
 
