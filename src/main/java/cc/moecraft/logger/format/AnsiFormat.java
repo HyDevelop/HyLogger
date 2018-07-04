@@ -29,6 +29,7 @@ public enum AnsiFormat
     AnsiFormat(String code) 
     {
         this.code = code;
+        AnsiConstants.formats.add(this);
     }
 
     @Override
