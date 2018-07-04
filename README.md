@@ -85,13 +85,13 @@ dependencies {
 LoggerInstanceManager lim = new LoggerInstanceManager(日志环境 ...);
 ```
 
-##### 例子: 如果需要一边在后台输出带颜色的一边在文件里输出不带颜色的, 写成这样:
+例子: 如果需要一边在后台输出带颜色的一边在文件里输出不带颜色的, 写成这样:
 
 ```java
 LoggerInstanceManager lim = new LoggerInstanceManager(new ConsoleColoredEnv(), new FileEnv("logs", "log"));
 ```
 
-##### 可用的日志环境:
+可用的日志环境:
 
 ```java
 ConsoleEnv        // 无颜色的控制台环境
@@ -109,13 +109,13 @@ FileColoredEnv    // 带颜色的文件环境 (大部分编辑器不支持, 所�
 HyLogger logger = lim.getLoggerInstance(前缀, 是否输出Debug);
 ```
 
-##### 例子: 如果前缀是Main, 然后不输出Debug: (这个很容易懂吧...
+例子: 如果前缀是Main, 然后不输出Debug: (这个很容易懂吧...
 
 ```java
 HyLogger logger = lim.getLoggerInstance("Main", false);
 ```
 
-##### 例子#2: 如果前缀是线程号...:
+例子#2: 如果前缀是线程号...:
 
 ```java
 HyLogger logger = lim.getLoggerInstance("线程#" + Thread.currentThread().getId(), false);
@@ -163,7 +163,7 @@ AnsiFormat.INVISIBLE_TEXT // 隐身 (意义不明 #2
 // 不用看了真的没有中划线和魔法随机ww
 ```
 
-##### 例子:
+例子:
 
 ```java
 logger.log(AnsiColor.GREEN + "" + AnsiFormat.HIGH_INTENSITY + "当然是选择原谅她!");
