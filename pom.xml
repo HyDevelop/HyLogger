@@ -26,6 +26,7 @@
             <artifactId>HyConfigLib</artifactId>
             <version>-1eb4f7896a-1</version>
         </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
