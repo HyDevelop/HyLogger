@@ -1,9 +1,9 @@
-import cc.moecraft.logger.AnsiColor;
-import cc.moecraft.logger.AnsiFormat;
-import cc.moecraft.logger.DebugLogger;
-import com.sun.org.apache.xerces.internal.dom.AttrNSImpl;
+import cc.moecraft.logger.HyLogger;
+import cc.moecraft.logger.LoggerInstanceManager;
+import cc.moecraft.logger.environments.ConsoleColoredEnv;
+import cc.moecraft.logger.environments.FileEnv;
 
-import java.io.File;
+import java.io.IOException;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/04 创建!
@@ -15,15 +15,18 @@ import java.io.File;
  */
 public class LoggerTest
 {
-    private static DebugLogger logger = new DebugLogger("LoggerTest", true, "logs", "log");
+    private static LoggerInstanceManager loggerInstanceManager;
 
-    public static void main(String[] args) throws InterruptedException
+    public static void main(String[] args) throws InterruptedException, IOException
     {
+        loggerInstanceManager = new LoggerInstanceManager(new ConsoleColoredEnv(), new FileEnv("logs", "log"));
+
+        HyLogger logger = loggerInstanceManager.getLoggerInstance("LoggerTest", true);
+
         logger.log("一条测试Log消息");
         logger.debug("一条测试Debug消息");
         logger.error("一条测试Error消息");
-        Thread.sleep(200);
-        int i = 1 / 0;
-        logger.error("执行到了报错后的");
+        logger.warning("一条测试Warning消息");
+        logger.logRAINBOW("一条测试彩虹消息wwwwww");
     }
 }
