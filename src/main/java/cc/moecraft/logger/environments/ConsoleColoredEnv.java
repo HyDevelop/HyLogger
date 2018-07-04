@@ -12,6 +12,11 @@ import org.fusesource.jansi.AnsiConsole;
  */
 public class ConsoleColoredEnv extends LogEnvironment
 {
+    public ConsoleColoredEnv()
+    {
+        System.getProperties().setProperty("jansi.passthrough", "true");
+    }
+
     @Override
     public void logRaw(String message)
     {
