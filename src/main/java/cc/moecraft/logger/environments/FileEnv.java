@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import static cc.moecraft.logger.utils.AnsiUtils.removeFormat;
 import static cc.moecraft.logger.utils.TimeUtils.getCurrentTime;
 
 /**
@@ -61,16 +62,11 @@ public class FileEnv extends LogEnvironment
     @Override
     public void logRaw(String message)
     {
-        fileWriter.write(replaceAllColors(message) + "\n");
+        fileWriter.write(removeFormat(message) + "\n");
         if (System.currentTimeMillis() - lastLogTime > 5000)
         {
             lastLogTime = System.currentTimeMillis();
             fileWriter.flush();
         }
-    }
-
-    public String replaceAllColors(String original)
-    {
-        return original.replaceAll("\u001B\\[[;\\d]*m", "");
     }
 }
