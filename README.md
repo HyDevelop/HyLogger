@@ -16,7 +16,7 @@
 <br>
 
 <a name="introduction"></a>
-介绍 (v2.5.19):
+介绍 (v2.5.20):
 --------
 
 这是一个支持颜色和文件输出的日志工具, 理论上颜色输出支持所有支持ANSI ESC Code的控制台.
@@ -66,7 +66,7 @@ Maven 导入:
 <dependency>
     <groupId>com.github.hydevelop</groupId>
     <artifactId>HyLogger</artifactId>
-    <version>2.5.19</version>
+    <version>2.5.20</version>
 </dependency>
 ```
 
@@ -93,13 +93,13 @@ allprojects {
 
 ```gradle
 dependencies {
-    implementation 'com.github.hydevelop:HyLogger:2.5.19'
+    implementation 'com.github.hydevelop:HyLogger:2.5.20'
 }
 ```
 
 <!-- 每次更新都要手动改这些版本号好烦的_(:з」∠)_... -->
 
-#### [其他导入(SBT / Leiningen)](https://jitpack.io/#hydevelop/HyLogger/2.5.19)
+#### [其他导入(SBT / Leiningen)](https://jitpack.io/#hydevelop/HyLogger/2.5.20)
 
 <br>
 
