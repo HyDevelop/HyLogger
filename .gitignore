@@ -1,9 +1,4 @@
-
-\.idea/
-
-HyLogger\.iml
-
-*.class
-log.log
-*.log
+.idea/*
 target/*
+HyLogger.iml
+*.log
