@@ -23,12 +23,12 @@ public abstract class LogEnvironment
 
     public static String replaceVariables(String format, String prefix, String message)
     {
-        StackTraceElement stackTrace = Thread.currentThread().getStackTrace()[2];
+        StackTraceElement stackTrace = Thread.currentThread().getStackTrace()[5];
 
         String stClass = stackTrace.getClassName();
         String stMethod = stackTrace.getMethodName();
         String stLine = stackTrace.getLineNumber() + "";
-        String stFull = stClass + "." + stMethod + "." + stLine;
+        String stFull = stClass + "." + stMethod + ":" + stLine;
 
         return format
                 .replace("{time}",      getCurrentTime())
