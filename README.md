@@ -173,7 +173,20 @@ logger.fancy.logGradient("一条从橙色渐变到粉色的Log消息\n",
 #### 4. 更改输出格式:
 
 ```java
+lim.setFormat(日志级别, 新的格式); // 给某个日志级别设置输出格式
 ```
+
+格式里可用的变量:
+
+| 变量占位符   | 用处              | 例子 |
+| :------------: | :------------: | :------------: |
+| {time}           | 当前时间        | 18-07-06 22:05:41 |
+| {prefix}         | 日志前缀        | Thread-1 |
+| {message}    | 输出内容        | 竜神の剣を喰らえ! |
+| {st.class}       | 发日志的类     | cc.moecraft.Test |
+| {st.method}  | 发日志的方法 | main |
+| {st.line}         | 发日志的行数 | 31 |
+| {st.full}          | 上面三个一起 | cc.moecraft.Test.main:31 |
 
 #### 5. 添加颜色和ANSI格式预设:
 
