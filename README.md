@@ -163,10 +163,19 @@ logger.log("一条Log消息"); // 这些是不同输出级别的日志
 logger.debug("一条Debug消息"); // Debug日志只有开了debug开关才会输出
 logger.error("一条Error消息");
 logger.warning("一条Warning消息");
-logger.logRAINBOW("一条彩虹消息wwwwww"); // TODO: 随机颜色改为定向渐变ww
+
+// 这个渐变详细教程在下面
+logger.fancy.logGradient("一条从橙色渐变到粉色的Log消息\n",
+        new Color(255, 140, 0),
+        new Color(255, 0, 128)); 
 ```
 
-#### 4. 添加颜色和格式:
+#### 4. 更改输出格式:
+
+```java
+```
+
+#### 5. 添加颜色和ANSI格式预设:
 
 ```java
 // 颜色其实就是一个Enum啦...
@@ -204,7 +213,37 @@ AnsiFormat.INVISIBLE_TEXT // 隐身 (意义不明 #2
 logger.log(AnsiColor.GREEN + "" + AnsiFormat.HIGH_INTENSITY + "当然是选择原谅她!");
 ```
 
-#### 5. 定向渐变, 用RGB码获取ANSI码: TODO
+#### 6. 添加自定义RGB颜色:
+
+```java
+// 注意: RGB颜色不是所有后台都支持
+//       大部分有独立主题配置的后台都不支持
+//       比如IntelliJ IDEA自带的那个就不支持
+
+AnsiRGB.toAnsi(红, 绿, 蓝); // 用RGB获取ANSI颜色码
+
+new AnsiRGB(颜色对象).toAnsi(); // 用java.awt.Color颜色对象获取ANSI颜色码
+```
+
+例子:
+
+```java
+logger.log(AnsiRGB.toAnsi(45, 194, 80) + "当然是选择原谅她!");
+```
+
+#### 7. Logger.fancy 特效日志:
+
+```java
+// 1. 线性渐变:
+
+logger.fancy.logGradient(消息, 从什么颜色开始渐变, 渐变到什么颜色); 
+
+// 注意: 必须要支持RGB颜色的后台才支持定向渐变
+```
+
+#### 8. 测试过的兼容和不兼容的后台程序:
+
+TODO
 
 <br>
 
