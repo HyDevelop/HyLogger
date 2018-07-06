@@ -38,5 +38,10 @@ public class AnsiConstants
         formats = new ArrayList<>();
         colorsPlaceholderIndex = new HashMap<>();
         formatsPlaceholderIndex = new HashMap<>();
+
+        // 必须要先加载上才行
+        Object temp;
+        temp = AnsiColor.RESET;
+        temp = AnsiFormat.RESET;
     }
 }
