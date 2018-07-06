@@ -25,6 +25,31 @@ public class TwoPointGradient
     }
 
     /**
+     * 按数量分割为非自然渐变, 获取一个代表所有渐变色的数组
+     * @param amount 数量
+     * @return 渐变
+     */
+    public AnsiRGB[] getColors(int amount)
+    {
+        AnsiRGB[] colors = new AnsiRGB[amount];
+
+        for (int i = 0; i < amount; i++)
+        {
+            float ratio = (float) i / (float) amount;
+
+            int resultR = getColorWithRatio(color1.getRed(), color2.getRed(), ratio);
+            int resultG = getColorWithRatio(color1.getGreen(), color2.getGreen(), ratio);
+            int resultB = getColorWithRatio(color1.getBlue(), color2.getBlue(), ratio);
+
+            AnsiRGB result = new AnsiRGB(resultR, resultG, resultB);
+
+            colors[i] = result;
+        }
+
+        return colors;
+    }
+
+    /**
      * 按比例计算颜色
      * @param color1 颜色值1
      * @param color2 颜色值2
