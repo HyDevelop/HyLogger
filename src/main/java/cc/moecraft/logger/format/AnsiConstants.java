@@ -25,4 +25,18 @@ public class AnsiConstants
     public static final Map<String, AnsiColor> colorsPlaceholderIndex;
     public static final ArrayList<AnsiFormat> formats;
     public static final Map<String, AnsiFormat> formatsPlaceholderIndex;
+
+    static
+    {
+        PREFIX = System.getProperty("os.name").toLowerCase().contains("win") ? "\033[" : "\u001B[";
+
+        SUFFIX = "m";
+        FORMAT_PREFIX = "&";
+        RGB_FORMAT = PREFIX + "38;2;%s;%s;%sm";
+
+        colors = new ArrayList<>();
+        formats = new ArrayList<>();
+        colorsPlaceholderIndex = new HashMap<>();
+        formatsPlaceholderIndex = new HashMap<>();
+    }
 }
