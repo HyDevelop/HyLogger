@@ -48,4 +48,16 @@ public class AnsiRGB extends Color
     {
         super(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha());
     }
+
+    /**
+     * 用RGB获取一个ANSI码
+     * @param r 红
+     * @param g 绿
+     * @param b 蓝
+     * @return ANSI颜色码
+     */
+    public static String toAnsi(int r, int g, int b)
+    {
+        return String.format(AnsiConstants.RGB_FORMAT, r, g, b);
+    }
 }
