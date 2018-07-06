@@ -39,7 +39,7 @@ public class HyLogger
         this.fancy = new FancyLogger(this);
     }
 
-    public void log(LogLevel level, String message)
+    private void log(LogLevel level, String message)
     {
         if (level == DEBUG && !debug) return;
         for (LogEnvironment environment : instanceManager.getEnvironments())
