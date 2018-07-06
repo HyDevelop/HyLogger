@@ -23,4 +23,16 @@ public class TwoPointGradient
     {
         this(new AnsiRGB(color1), new AnsiRGB(color2));
     }
+
+    /**
+     * 按比例计算颜色
+     * @param color1 颜色值1
+     * @param color2 颜色值2
+     * @param ratio 比例
+     * @return 计算后的颜色
+     */
+    public static int getColorWithRatio(int color1, int color2, float ratio)
+    {
+        return (int) (color2 * ratio + color1 * (1 - ratio));
+    }
 }
