@@ -7,6 +7,8 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static cc.moecraft.logger.LogLevel.*;
+
 /**
  * 此类由 Hykilpikonna 在 2018/07/02 创建!
  * Created by Hykilpikonna on 2018/07/02!
@@ -35,6 +37,13 @@ public class HyLogger
         this.debug = debug;
 
         this.fancy = new FancyLogger(this);
+    }
+
+    public void log(LogLevel level, String message)
+    {
+        if (level == DEBUG && !debug) return;
+        for (LogEnvironment environment : instanceManager.getEnvironments())
+            environment.log(instanceManager.getFormat().get(level), prefix, message);
     }
 
     public void log(String message)
