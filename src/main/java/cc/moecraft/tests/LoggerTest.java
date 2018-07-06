@@ -23,7 +23,7 @@ public class LoggerTest
 
     public static void main(String[] args)
     {
-        loggerInstanceManager = new LoggerInstanceManager(new ConsoleColoredEnv(), new FileEnv("logs", "log"));
+        loggerInstanceManager = new LoggerInstanceManager(new ConsoleColoredEnv(true), new FileEnv("logs", "log"));
 
         HyLogger logger = loggerInstanceManager.getLoggerInstance("LoggerTest", true);
 
