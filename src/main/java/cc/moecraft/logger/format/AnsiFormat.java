@@ -39,4 +39,14 @@ public enum AnsiFormat
     {
         return PREFIX + code + SUFFIX;
     }
+
+    public static String replaceAllFormatWithANSI(String original)
+    {
+        final String[] result = {original};
+
+        formatsPlaceholderIndex.forEach((k, v) -> result[0] = result[0].replace(FORMAT_PREFIX + k, v.toString()));
+        colorsPlaceholderIndex.forEach((k, v) -> result[0] = result[0].replace(FORMAT_PREFIX + k, v.toString()));
+
+        return result[0];
+    }
 }
