@@ -18,4 +18,9 @@ public class TwoPointGradient
 {
     private AnsiRGB color1; // 从什么颜色开始渐变
     private AnsiRGB color2; // 渐变到什么颜色
+
+    public TwoPointGradient(Color color1, Color color2)
+    {
+        this(new AnsiRGB(color1), new AnsiRGB(color2));
+    }
 }
