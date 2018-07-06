@@ -2,7 +2,9 @@ import cc.moecraft.logger.HyLogger;
 import cc.moecraft.logger.LoggerInstanceManager;
 import cc.moecraft.logger.environments.ConsoleColoredEnv;
 import cc.moecraft.logger.environments.FileEnv;
+import org.fusesource.jansi.AnsiConsole;
 
+import java.awt.*;
 import java.io.IOException;
 
 /**
@@ -27,6 +29,21 @@ public class LoggerTest
         logger.debug("一条测试Debug消息");
         logger.error("一条测试Error消息");
         logger.warning("一条测试Warning消息");
-        logger.logRAINBOW("一条测试彩虹消息wwwwww");
+
+        logger.fancy.logRAINBOW("测试随机颜色消息\n");
+        logger.fancy.logGradient("测试渐变从深蓝到浅蓝\n", Color.BLUE, Color.CYAN);
+        logger.fancy.logGradient("测试渐变从橘色到浅蓝\n", Color.ORANGE, Color.CYAN);
+
+        logger.fancy.logGradient("测试黄绿渐变到天蓝\n",
+                new Color(0, 242, 96),
+                new Color(80, 161, 230));
+
+        logger.fancy.logGradient("测试橙色渐变到粉色\n",
+                new Color(255, 140, 0),
+                new Color(255, 0, 128));
+
+        // 写完多点之后测试:
+        //   #JShine: new Color(18, 194, 233), new Color(196, 113, 237), new Color(246, 79, 89)
+        //   #黄绿橙粉: new Color(64, 224, 208), new Color(255, 140, 0), new Color(255, 0, 128)
     }
 }
