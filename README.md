@@ -274,9 +274,27 @@ logger.fancy.logGradient(消息, 从什么颜色开始渐变, 渐变到什么颜
 // 注意: 必须要支持RGB颜色的后台才支持定向渐变
 ```
 
-#### 8. 测试过的兼容和不兼容的后台程序:
+#### 8. 测试过的兼容和不兼容颜色的后台程序:
 
-TODO
+如果有新的测试结果欢迎Email我(me@hydev.org), 我会加进这个列表的!
+注意: Independent不是一个系统的名字, 它是指这个后台程序兼容多个系统.
+
+完全兼容:
+* Windows 10  - Cmder 1.3.6
+* Ubuntu 17   - XFCE Terminal Emulator
+* Ubuntu 17   - Bash 4.4.12
+* Independent - Git Bash
+* Independent - MinGW / MinTTY
+* Independent - Termius 2.1.6
+
+部分兼容: (这些只会兼容部分颜色, 不兼容完整RGB)
+* Windows 10  - Powershell
+* Windows 10  - 命令提示符
+* Independent - IntelliJ IDEA Run/Debug Console 2018.1.5
+* Independent - Xshell 5
+
+不兼容:
+* Independent - PowerCmd 2.2
 
 <br>
 
