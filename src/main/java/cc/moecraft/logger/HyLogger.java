@@ -48,21 +48,21 @@ public class HyLogger
 
     public void log(String message)
     {
-        for (LogEnvironment environment : instanceManager.getEnvironments()) environment.log(prefix, message);
+        log(LOG, message);
     }
 
     public void debug(String message)
     {
-        if (debug) for (LogEnvironment environment : instanceManager.getEnvironments()) environment.debug(prefix, message);
+        log(DEBUG, message);
     }
 
     public void error(String message)
     {
-        for (LogEnvironment environment : instanceManager.getEnvironments()) environment.error(prefix, message);
+        log(ERROR, message);
     }
 
     public void warning(String message)
     {
-        for (LogEnvironment environment : instanceManager.getEnvironments()) environment.warning(prefix, message);
+        log(WARNING, message);
     }
 }
