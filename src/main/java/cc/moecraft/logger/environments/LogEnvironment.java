@@ -16,25 +16,14 @@ public abstract class LogEnvironment
 {
     public abstract void logRaw(String message);
 
-    public void log(String prefix, String message)
+    public void log(String format, String prefix, String message)
     {
-        logRaw(String.format("%s[%s%s%s] [%s%s%s] %s%s%s", WHITE, PURPLE, getCurrentTime(), WHITE, BLUE, prefix, WHITE, RESET, message, RESET));
+        logRaw(replaceVariables(format, prefix, message));
     }
 
-    public void debug(String prefix, String message)
     {
         StackTraceElement stackTrace = Thread.currentThread().getStackTrace()[2];
-        log(prefix, String.format("%s[%sDEBUG%s(%s%s.%s.%s%s)] %s%s", WHITE, CYAN, WHITE, YELLOW, stackTrace.getClassName(), stackTrace.getMethodName(), stackTrace.getLineNumber(), WHITE, CYAN, message));
-    }
 
-    public void error(String prefix, String message)
-    {
-        StackTraceElement stackTrace = Thread.currentThread().getStackTrace()[2];
-        log(prefix, String.format("%s[%sERROR%s(%s%s.%s.%s%s)] %s%s", WHITE, RED, WHITE, YELLOW, stackTrace.getClassName(), stackTrace.getMethodName(), stackTrace.getLineNumber(), WHITE, RED, message));
-    }
 
-    public void warning(String prefix, String message)
-    {
-        log(prefix, String.format("%s[%sWARNING%s] %s%s", WHITE, RED, WHITE, YELLOW, message));
     }
 }
