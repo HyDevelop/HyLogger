@@ -21,9 +21,23 @@ public abstract class LogEnvironment
         logRaw(replaceVariables(format, prefix, message));
     }
 
+    public static String replaceVariables(String format, String prefix, String message)
     {
         StackTraceElement stackTrace = Thread.currentThread().getStackTrace()[2];
 
+        String stClass = stackTrace.getClassName();
+        String stMethod = stackTrace.getMethodName();
+        String stLine = stackTrace.getLineNumber() + "";
+        String stFull = stClass + "." + stMethod + "." + stLine;
 
+        return format
+                .replace("{time}",      getCurrentTime())
+                .replace("{prefix}",    prefix)
+                .replace("{message}",   message)
+                .replace("{st.class}",  stClass)
+                .replace("{st.method}", stMethod)
+                .replace("{st.line}",   stLine)
+                .replace("{st.full}",   stFull)
+        ;
     }
 }
