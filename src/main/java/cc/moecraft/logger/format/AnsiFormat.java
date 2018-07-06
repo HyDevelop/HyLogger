@@ -16,10 +16,10 @@ public enum AnsiFormat
 {
     RESET("0"),
 
-    HIGH_INTENSITY("1"),
+    HIGH_INTENSITY("1", "l"),
     LOW_INTENSITY("2"),
-    ITALIC("3"),
-    UNDERLINE("4"),
+    ITALIC("3", "o"),
+    UNDERLINE("4", "n"),
     BLINK("5"),
     RAPID_BLINK("6"),
     REVERSE_VIDEO("7"),
