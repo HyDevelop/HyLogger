@@ -1,5 +1,6 @@
 package cc.moecraft.logger.format;
 
+import static cc.moecraft.logger.format.AnsiConstants.*;
 import static cc.moecraft.logger.format.AnsiConstants.PREFIX;
 import static cc.moecraft.logger.format.AnsiConstants.SUFFIX;
 
@@ -26,10 +27,11 @@ public enum AnsiColor
 
     int code;
 
-    AnsiColor(int code)
+    AnsiColor(int code, String ... placeholders)
     {
         this.code = code;
-        AnsiConstants.colors.add(this);
+        colors.add(this);
+        for (String placeholder : placeholders) colorsPlaceholderIndex.put(placeholder, this);
     }
 
     @Override
