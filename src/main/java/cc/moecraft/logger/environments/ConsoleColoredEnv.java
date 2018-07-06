@@ -1,5 +1,6 @@
 package cc.moecraft.logger.environments;
 
+import lombok.NoArgsConstructor;
 import org.fusesource.jansi.AnsiConsole;
 
 /**
@@ -10,11 +11,12 @@ import org.fusesource.jansi.AnsiConsole;
  *
  * @author Hykilpikonna
  */
+@NoArgsConstructor
 public class ConsoleColoredEnv extends LogEnvironment
 {
-    public ConsoleColoredEnv()
+    public ConsoleColoredEnv(boolean passThrough)
     {
-        System.getProperties().setProperty("jansi.passthrough", "true");
+        System.getProperties().setProperty("jansi.passthrough", String.valueOf(passThrough));
     }
 
     @Override
