@@ -23,6 +23,7 @@
 
 #### 已实现功能:
 
+* **v2.5.19**
 * 同时向多个环境实例输出日志
 * 控制台环境
 * 带颜色的控制台环境 (如果控制台不支持颜色也不会乱码)
@@ -33,11 +34,17 @@
 * Debug和Error级别日志显示当前执行的类路径和行数
 * 可以有多个实例
 * 每个实例可以用同样的环境同时有不同的前缀
+*  
+* **v2.5.20**
+* 用RGB获取ANSI颜色代码
+* 定向单行渐变 (影响一行, 或一串字)
+*  
+* **v2.5.21**
+* 自定义每个日志级别的输出格式
+* 可以调是否强制输出颜色
 
 #### 待实现(TODO)的功能:
 
-* 用RGB获取ANSI颜色代码
-* 定向单行渐变 (影响一行, 或一串字)
 * 多点单行渐变
 * 定向二维渐变 (影响一个字符串数组, 输出字符画的时候特别有用)
 * 多点二维渐变 (带渐变角度)
@@ -156,10 +163,52 @@ logger.log("一条Log消息"); // 这些是不同输出级别的日志
 logger.debug("一条Debug消息"); // Debug日志只有开了debug开关才会输出
 logger.error("一条Error消息");
 logger.warning("一条Warning消息");
-logger.logRAINBOW("一条彩虹消息wwwwww"); // TODO: 随机颜色改为定向渐变ww
+
+// 这个渐变详细教程在下面
+logger.fancy.logGradient("一条从橙色渐变到粉色的Log消息\n",
+        new Color(255, 140, 0),
+        new Color(255, 0, 128)); 
 ```
 
-#### 4. 添加颜色和格式:
+#### 4. 更改输出格式:
+
+```java
+lim.setFormat(日志级别, 新的格式); // 给某个日志级别设置输出格式
+```
+
+格式里可用的变量:
+
+| 变量占位符   | 用处              | 例子 |
+| :------------: | :------------: | :------------: |
+| {time}           | 当前时间        | 18-07-06 22:05:41 |
+| {prefix}         | 日志前缀        | Thread-1 |
+| {message}    | 输出内容        | 竜神の剣を喰らえ! |
+| {st.class}       | 发日志的类     | cc.moecraft.Test |
+| {st.method}  | 发日志的方法 | main |
+| {st.line}         | 发日志的行数 | 31 |
+| {st.full}          | 上面三个一起 | cc.moecraft.Test.main:31 |
+
+颜色用了简写替换, 用的颜色码和Minecraft的颜色码一样, &1 到 &f.
+[完整颜色码表](https://i.imgur.com/MSdHuMW.jpg)
+
+格式表:
+
+| 格式简写 | 代表着什么 |
+| :------------: | :------------: |
+| &l | 加粗 |
+| &o | 斜体 |
+| &n | 下划线 |
+
+例子 (默认格式):
+
+```java
+setFormat(LOG,     "&f[&5{time}&f] [&1{prefix}&f] [&aINFO&f] &r{message}&r");
+setFormat(DEBUG,   "&f[&5{time}&f] [&1{prefix}&f] [&bDEBUG&f(&e{st.full}&f)] &b{message}&r");
+setFormat(ERROR,   "&f[&5{time}&f] [&1{prefix}&f] [&cERROR&f(&e{st.full}&f)] &c{message}&r");
+setFormat(WARNING, "&f[&5{time}&f] [&1{prefix}&f] [&cWARNING&f] &e{message}&r");
+```
+
+#### 5. 添加颜色和ANSI格式预设:
 
 ```java
 // 颜色其实就是一个Enum啦...
@@ -197,7 +246,55 @@ AnsiFormat.INVISIBLE_TEXT // 隐身 (意义不明 #2
 logger.log(AnsiColor.GREEN + "" + AnsiFormat.HIGH_INTENSITY + "当然是选择原谅她!");
 ```
 
-#### 5. 定向渐变, 用RGB码获取ANSI码: TODO
+#### 6. 添加自定义RGB颜色:
+
+```java
+// 注意: RGB颜色不是所有后台都支持
+//       大部分有独立主题配置的后台都不支持
+//       比如IntelliJ IDEA自带的那个就不支持
+
+AnsiRGB.toAnsi(红, 绿, 蓝); // 用RGB获取ANSI颜色码
+
+new AnsiRGB(颜色对象).toAnsi(); // 用java.awt.Color颜色对象获取ANSI颜色码
+```
+
+例子:
+
+```java
+logger.log(AnsiRGB.toAnsi(45, 194, 80) + "当然是选择原谅她!");
+```
+
+#### 7. Logger.fancy 特效日志:
+
+```java
+// 1. 线性渐变:
+
+logger.fancy.logGradient(消息, 从什么颜色开始渐变, 渐变到什么颜色); 
+
+// 注意: 必须要支持RGB颜色的后台才支持定向渐变
+```
+
+#### 8. 测试过的兼容和不兼容颜色的后台程序:
+
+如果有新的测试结果欢迎Email我(admin@moecraft.cc), 我会加进这个列表的!
+注意: Independent不是一个系统的名字, 它是指这个后台程序兼容多个系统.
+
+完全兼容:
+* Windows 10  - Cmder 1.3.6
+* Ubuntu 17   - XFCE Terminal Emulator
+* Ubuntu 17   - Bash 4.4.12
+* Independent - Git Bash
+* Independent - MinGW / MinTTY
+* Independent - Termius 2.1.6
+
+部分兼容: (这些只会兼容部分颜色, 不兼容完整RGB)
+* Windows 10  - Powershell
+* Windows 10  - 命令提示符
+* Independent - IntelliJ IDEA Run/Debug Console 2018.1.5
+* Independent - Xshell 5
+
+不兼容:
+* Independent - PowerCmd 2.2
 
 <br>
 
