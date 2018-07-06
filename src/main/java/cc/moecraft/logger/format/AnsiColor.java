@@ -14,16 +14,16 @@ import static cc.moecraft.logger.format.AnsiConstants.SUFFIX;
  */
 public enum AnsiColor
 {
-    RESET(0),
+    RESET (0, "r"),
 
-    BLACK(30),
-    RED(31),
-    GREEN(32),
-    YELLOW(33),
-    BLUE(34),
-    PURPLE(35),
-    CYAN(36),
-    WHITE(37);
+    BLACK (30, "0", "8"),
+    RED   (31, "4", "c"),
+    GREEN (32, "2", "a"),
+    YELLOW(33, "6", "e"),
+    BLUE  (34, "1", "9"),
+    PURPLE(35, "5", "d"),
+    CYAN  (36, "3", "b"),
+    WHITE (37, "7", "f");
 
     int code;
 
