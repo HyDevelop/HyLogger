@@ -30,6 +30,10 @@ public class LoggerInstanceManager
     public LoggerInstanceManager(LogEnvironment... environments)
     {
         this.environments = Arrays.asList(environments);
+        setFormat(LOG,     "&f[&5{time}&f] [&1{prefix}&f] [&aINFO&f] &r{message}&r");
+        setFormat(DEBUG,   "&f[&5{time}&f] [&1{prefix}&f] [&bDEBUG&f(&e{st.full}&f)] &b{message}&r");
+        setFormat(ERROR,   "&f[&5{time}&f] [&1{prefix}&f] [&cERROR&f(&e{st.full}&f)] &c{message}&r");
+        setFormat(WARNING, "&f[&5{time}&f] [&1{prefix}&f] [&cWARNING&f] &e{message}&r");
     }
 
     public LoggerInstanceManager addEnvironment(LogEnvironment ... environments)
