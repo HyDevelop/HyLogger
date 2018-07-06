@@ -1,9 +1,12 @@
 package cc.moecraft.logger;
 
 import cc.moecraft.logger.environments.LogEnvironment;
+import cc.moecraft.logger.format.AnsiFormat;
 import lombok.Getter;
 
 import java.util.*;
+
+import static cc.moecraft.logger.LogLevel.*;
 
 /**
  * 此类由 Hykilpikonna 在 2018/07/04 创建!
@@ -20,6 +23,9 @@ public class LoggerInstanceManager
 
     @Getter
     private List<LogEnvironment> environments;
+
+    @Getter
+    private Map<LogLevel, String> format = new HashMap<>();
 
     public LoggerInstanceManager(LogEnvironment... environments)
     {
