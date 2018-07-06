@@ -1,6 +1,8 @@
 package cc.moecraft.logger.format;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/04 创建!
@@ -12,10 +14,15 @@ import java.util.ArrayList;
  */
 public class AnsiConstants
 {
-    public static final String PREFIX = System.getProperty("os.name").toLowerCase().contains("win") ? "\033[" : "\u001B[";
-    public static final String SUFFIX = "m";
-    public static final String RGB_FORMAT = PREFIX + "38;2;%s;%s;%sm";
+    public static final String PREFIX;
 
-    public static final ArrayList<AnsiColor> colors = new ArrayList<>();
-    public static final ArrayList<AnsiFormat> formats = new ArrayList<>();
+    public static final String SUFFIX;
+    public static final String RGB_FORMAT;
+
+    public static final String FORMAT_PREFIX;
+
+    public static final ArrayList<AnsiColor> colors;
+    public static final Map<String, AnsiColor> colorsPlaceholderIndex;
+    public static final ArrayList<AnsiFormat> formats;
+    public static final Map<String, AnsiFormat> formatsPlaceholderIndex;
 }
