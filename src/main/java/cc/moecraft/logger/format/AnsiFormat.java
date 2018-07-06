@@ -1,5 +1,6 @@
 package cc.moecraft.logger.format;
 
+import static cc.moecraft.logger.format.AnsiConstants.*;
 import static cc.moecraft.logger.format.AnsiConstants.PREFIX;
 import static cc.moecraft.logger.format.AnsiConstants.SUFFIX;
 
@@ -26,10 +27,11 @@ public enum AnsiFormat
 
     String code;
 
-    AnsiFormat(String code) 
+    AnsiFormat(String code, String ... placeholders)
     {
         this.code = code;
-        AnsiConstants.formats.add(this);
+        formats.add(this);
+        for (String placeholder : placeholders) formatsPlaceholderIndex.put(placeholder, this);
     }
 
     @Override
