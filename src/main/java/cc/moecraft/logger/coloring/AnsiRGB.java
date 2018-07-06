@@ -49,6 +49,17 @@ public class AnsiRGB extends Color
         super(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha());
     }
 
+    @Override
+    public String toString()
+    {
+        return toAnsi();
+    }
+
+    public String toAnsi()
+    {
+        return toAnsi(getRed(), getGreen(), getBlue());
+    }
+
     /**
      * 用RGB获取一个ANSI码
      * @param r 红
