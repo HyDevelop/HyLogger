@@ -46,4 +46,9 @@ public class LoggerInstanceManager
         cachedInstance.put(prefix, logger);
         return logger;
     }
+
+    public void setFormat(LogLevel logLevel, String newFormat)
+    {
+        format.put(logLevel, AnsiFormat.replaceAllFormatWithANSI(newFormat));
+    }
 }
