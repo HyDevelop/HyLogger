@@ -191,9 +191,22 @@ lim.setFormat(日志级别, 新的格式); // 给某个日志级别设置输出�
 颜色用了简写替换, 用的颜色码和Minecraft的颜色码一样, &1 到 &f.
 [完整颜色码表](https://i.imgur.com/MSdHuMW.jpg)
 
-格式:
+格式表:
 
+| 格式简写 | 代表着什么 |
+| :------------: | :------------: |
+| &l | 加粗 |
+| &o | 斜体 |
+| &n | 下划线 |
 
+例子 (默认格式):
+
+```java
+setFormat(LOG,     "&f[&5{time}&f] [&1{prefix}&f] [&aINFO&f] &r{message}&r");
+setFormat(DEBUG,   "&f[&5{time}&f] [&1{prefix}&f] [&bDEBUG&f(&e{st.full}&f)] &b{message}&r");
+setFormat(ERROR,   "&f[&5{time}&f] [&1{prefix}&f] [&cERROR&f(&e{st.full}&f)] &c{message}&r");
+setFormat(WARNING, "&f[&5{time}&f] [&1{prefix}&f] [&cWARNING&f] &e{message}&r");
+```
 
 #### 5. 添加颜色和ANSI格式预设:
 
