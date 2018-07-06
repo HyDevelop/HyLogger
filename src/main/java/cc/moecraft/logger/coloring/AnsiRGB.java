@@ -14,4 +14,38 @@ import java.awt.*;
  */
 public class AnsiRGB extends Color
 {
+    public AnsiRGB(int r, int g, int b)
+    {
+        super(r, g, b);
+    }
+
+    public AnsiRGB(int r, int g, int b, int a)
+    {
+        super(r, g, b, a);
+    }
+
+    public AnsiRGB(int rgb)
+    {
+        super(rgb);
+    }
+
+    public AnsiRGB(int rgba, boolean hasalpha)
+    {
+        super(rgba, hasalpha);
+    }
+
+    public AnsiRGB(float r, float g, float b)
+    {
+        super(r, g, b);
+    }
+
+    public AnsiRGB(float r, float g, float b, float a)
+    {
+        super(r, g, b, a);
+    }
+
+    public AnsiRGB(Color color)
+    {
+        super(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha());
+    }
 }
