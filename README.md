@@ -295,8 +295,9 @@ logger.fancy.logGradient(消息, 从什么颜色开始渐变, 渐变到什么颜
 * Independent - IntelliJ IDEA Run/Debug Console 2018.1.5
 * Independent - Xshell 5
 
-不兼容: (这些完全不兼容颜色, 或者兼容得不完整到无法算为兼容预设的程度)
+不兼容: (这些完全不兼容颜色, 会乱码, 或者兼容得不完整到无法算为兼容预设的程度)
 * Windows 10  - Powershell
+* Windows 10  - Babun 1.2.0
 * Independent - PowerCmd 2.2
 * Independent - Hyper
 * Independent - Terminus Alpha
