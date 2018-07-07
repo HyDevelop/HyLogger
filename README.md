@@ -287,7 +287,8 @@ logger.fancy.logGradient(消息, 从什么颜色开始渐变, 渐变到什么颜
 * Independent - Termius 2.1.6
 
 色段兼容: (这些会把RGB颜色分成更概括性的颜色段, 不会乱但是显示效果没有完全兼容的好)
-* Windows 10  - Cmder 1.3.6 (*Bug非常多*)
+* Windows 10  - Cmder 1.3.6
+* Windows 10  - CmdEmu 180626
 
 预设兼容: (这些只会兼容预设颜色, 不兼容完整RGB, 所以RGB码会被解析成很乱的普通颜色码)
 * Windows 10  - 命令提示符
