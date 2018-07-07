@@ -280,23 +280,26 @@ logger.fancy.logGradient(消息, 从什么颜色开始渐变, 渐变到什么颜
 注意: Independent不是一个系统的名字, 它是指这个后台程序兼容多个系统.
 
 完全兼容:
-* Ubuntu 17   - XFCE Terminal Emulator
-* Ubuntu 17   - Bash 4.4.12
+* Windows 10  - Cmder 1.3.6 (**推荐**)
+* Ubuntu 17   - XFCE4 Terminal Emulator
+* Ubuntu 17   - Gnome-Terminal
 * Independent - Git Bash
 * Independent - MinGW / MinTTY
 * Independent - Termius 2.1.6
 
 色段兼容: (这些会把RGB颜色分成更概括性的颜色段, 不会乱但是显示效果没有完全兼容的好)
-* Windows 10  - Cmder 1.3.6
+* 还没有测试结果
 
 预设兼容: (这些只会兼容预设颜色, 不兼容完整RGB, 所以RGB码会被解析成很乱的普通颜色码)
-* Windows 10  - Powershell
 * Windows 10  - 命令提示符
 * Independent - IntelliJ IDEA Run/Debug Console 2018.1.5
 * Independent - Xshell 5
 
-不兼容: (这些)
+不兼容: (这些完全不兼容颜色, 或者兼容得不完整到无法算为兼容预设的程度)
+* Windows 10  - Powershell
 * Independent - PowerCmd 2.2
+* Independent - Hyper
+* Independent - Terminus Alpha
 
 <br>
 
