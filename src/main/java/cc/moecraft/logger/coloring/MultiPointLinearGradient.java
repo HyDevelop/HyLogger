@@ -180,6 +180,7 @@ public class MultiPointLinearGradient
 
         public GradientPoint(Color color, int amount)
         {
+            if (amount <= 0) throw new RuntimeException("颜色Amount不能小于0");
             this.color = color;
             this.amount = amount;
         }
