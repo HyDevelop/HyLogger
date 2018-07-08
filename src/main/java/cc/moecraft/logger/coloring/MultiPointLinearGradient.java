@@ -29,6 +29,11 @@ public class MultiPointLinearGradient
     }
 
 
+    public MultiPointLinearGradient(Color color1, Color color2, Color ... colors)
+    {
+        this(new GradientPoint(color1), new GradientPoint(color2), new ArrayList<>(convert(colors)));
+    }
+
     private static List<GradientPoint> convert(Color[] colors)
     {
         List<GradientPoint> result = new ArrayList<>();
