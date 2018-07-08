@@ -45,7 +45,17 @@ public class LoggerTest
                 new Color(255, 140, 0),
                 new Color(255, 0, 128));
 
-        logger.fancy.logGradient("--------------测试彩虹多点渐变预设--------------\n", GradientPresets.RAINBOW);
+        logger.fancy.logGradient("##############测试彩虹多点渐变预设##############\n", GradientPresets.RAINBOW);
+
+        logger.fancy.logGradient("##############测试蓝到紫到红多点渐变##############\n",
+                new Color(18, 194, 233),
+                new Color(196, 113, 237),
+                new Color(246, 79, 89));
+
+        logger.fancy.logGradient("##############测试蓝到橙到粉多点渐变##############\n",
+                new Color(64, 224, 208),
+                new Color(255, 140, 0),
+                new Color(255, 0, 128));
 
         // 写完多点之后测试:
         //   #JShine: new Color(18, 194, 233), new Color(196, 113, 237), new Color(246, 79, 89)
