@@ -2,6 +2,7 @@ package cc.moecraft.tests;
 
 import cc.moecraft.logger.HyLogger;
 import cc.moecraft.logger.LoggerInstanceManager;
+import cc.moecraft.logger.coloring.GradientPresets;
 import cc.moecraft.logger.environments.ColorSupportLevel;
 import cc.moecraft.logger.environments.ConsoleColoredEnv;
 import cc.moecraft.logger.environments.FileEnv;
@@ -44,6 +45,8 @@ public class LoggerTest
         logger.fancy.logGradient("测试橙色渐变到粉色\n",
                 new Color(255, 140, 0),
                 new Color(255, 0, 128));
+
+        logger.fancy.logGradient("--------------测试彩虹多点渐变预设--------------\n", GradientPresets.RAINBOW);
 
         // 写完多点之后测试:
         //   #JShine: new Color(18, 194, 233), new Color(196, 113, 237), new Color(246, 79, 89)
