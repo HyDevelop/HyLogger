@@ -29,6 +29,13 @@ public class MultiPointLinearGradient
     }
 
 
+    private static List<GradientPoint> convert(Color[] colors)
+    {
+        List<GradientPoint> result = new ArrayList<>();
+        for (Color color : colors) result.add(new GradientPoint(color));
+        return result;
+    }
+
     /**
      * 把一个相对数值的列表转换为绝对数值的列表
      *
