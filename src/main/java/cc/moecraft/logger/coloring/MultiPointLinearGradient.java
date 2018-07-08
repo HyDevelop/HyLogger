@@ -114,5 +114,50 @@ public class MultiPointLinearGradient
         return result;
     }
 
+    /**
+     * 获取最近的两个颜色
+     *
+     * 例子: i=2
+     *   0, 红
+     *   2, 蓝
+     *   5, 橙
+     *   7, 紫
+     *
+     * 获取后:
+     *   蓝
+     *   橙
+     *
+     * @param scaledMap 比例Map
+     * @param index i
+     * @return 最近的两个颜色
+     */
+    public static List<Map.Entry<Integer, GradientPoint>> getNearestTwoColors(List<Map.Entry<Integer, GradientPoint>> scaledMap, int index)
+    {
+        List<Map.Entry<Integer, GradientPoint>> result = new ArrayList<>();
+
+        result.add(scaledMap.get(0));
+        result.add(scaledMap.get(scaledMap.size() - 1));
+
+        for (int i = 0; i < scaledMap.size(); i++)
+        {
+            int currentAmount = scaledMap.get(i).getKey();
+
+            if (currentAmount <= index && currentAmount > result.get(0).getKey())
+            {
+                result.remove(0);
+                result.add(0, scaledMap.get(i));
+            }
+
+            if (currentAmount >= index && currentAmount < result.get(1).getKey())
+            {
+                result.remove(1);
+                result.add(scaledMap.get(i));
+                break;
+            }
+        }
+
+        return result;
+    }
+
     }
 }
