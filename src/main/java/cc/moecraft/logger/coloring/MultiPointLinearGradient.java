@@ -28,6 +28,10 @@ public class MultiPointLinearGradient
         this.total = mappedSizes.get(mappedSizes.size() - 1).getKey();
     }
 
+    public MultiPointLinearGradient(Color color1, GradientPoint color2, GradientPoint ... colors)
+    {
+        this(new GradientPoint(color1), color2, new ArrayList<>(Arrays.asList(colors)));
+    }
 
     public MultiPointLinearGradient(Color color1, Color color2, Color ... colors)
     {
