@@ -14,4 +14,11 @@ import java.util.List;
  */
 public class MultiPointLinearGradient
 {
+    private final ArrayList<GradientPoint> colors;
+    private final int total;
+
+    public MultiPointLinearGradient(GradientPoint color1, GradientPoint color2, ArrayList<GradientPoint> colors)
+    {
+        this.colors = colors;
+    }
 }
