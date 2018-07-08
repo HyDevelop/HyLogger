@@ -172,5 +172,21 @@ public class MultiPointLinearGradient
         return (int) (color2 * ratio + color1 * (1 - ratio));
     }
 
+    @Data
+    public static class GradientPoint
+    {
+        private Color color;
+        private int amount;
+
+        public GradientPoint(Color color, int amount)
+        {
+            this.color = color;
+            this.amount = amount;
+        }
+
+        public GradientPoint(Color color)
+        {
+            this(color, 100);
+        }
     }
 }
