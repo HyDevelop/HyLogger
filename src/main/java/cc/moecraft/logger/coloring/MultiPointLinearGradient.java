@@ -159,6 +159,45 @@ public class MultiPointLinearGradient
         return result;
     }
 
+    /**
+     * 按数量分割为非自然渐变, 获取一个代表所有渐变色的数组
+     * @param amount 数量
+     * @return 渐变
+     */
+    public AnsiRGB[] getColors(int amount)
+    {
+        AnsiRGB[] colors = new AnsiRGB[amount];
+        List<Map.Entry<Integer, MultiPointLinearGradient.GradientPoint>> scaledSizes = MultiPointLinearGradient.scaleSizes(mappedSizes, amount);
+
+        for (int i = 0; i < amount; i++)
+        {
+            List<Map.Entry<Integer, MultiPointLinearGradient.GradientPoint>> nearestTwo = MultiPointLinearGradient.getNearestTwoColors(scaledSizes, i);
+
+            Color color1 = nearestTwo.get(0).getValue().getColor();
+            Color color2 = nearestTwo.get(1).getValue().getColor();
+
+            if (color1.equals(color2))
+            {
+                colors[i] = new AnsiRGB(color1);
+                continue;
+            }
+
+            int value1 = nearestTwo.get(0).getKey();
+            int value2 = nearestTwo.get(1).getKey();
+
+            float ratio = (float) (i - value1) / (float) (value2 - value1);
+
+            int resultR = getColorWithRatio(color1.getRed(), color2.getRed(), ratio);
+            int resultG = getColorWithRatio(color1.getGreen(), color2.getGreen(), ratio);
+            int resultB = getColorWithRatio(color1.getBlue(), color2.getBlue(), ratio);
+
+            AnsiRGB result = new AnsiRGB(resultR, resultG, resultB);
+
+            colors[i] = result;
+        }
+
+        return colors;
+    }
 
     /**
      * 按比例计算颜色
