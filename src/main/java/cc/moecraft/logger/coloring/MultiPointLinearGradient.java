@@ -77,5 +77,42 @@ public class MultiPointLinearGradient
 
         return result;
     }
+
+    /**
+     * 以文字数量缩放Map
+     *
+     * 例子: amount = 7
+     *   0, 红
+     *   100, 蓝
+     *   200, 橙
+     *   250, 紫
+     *
+     * 缩放后:
+     *   0, 红
+     *   2, 蓝 (2.8)
+     *   5, 橙 (5.6)
+     *   7, 紫
+     *
+     * @param mappedSizes 映射过的Map
+     * @param amount 文字数量
+     * @return 缩放后的Map
+     */
+    public static List<Map.Entry<Integer, GradientPoint>> scaleSizes(List<Map.Entry<Integer, GradientPoint>> mappedSizes, int amount)
+    {
+        List<Map.Entry<Integer, GradientPoint>> result = new ArrayList<>();
+
+        double scale = (double) amount / (double) mappedSizes.get(mappedSizes.size() - 1).getKey();
+
+        for (Map.Entry<Integer, GradientPoint> mappedSize : mappedSizes)
+        {
+            result.add(new HashMap.SimpleEntry<>(
+                    (int) (mappedSize.getKey() * scale),
+                    mappedSize.getValue()
+            ));
+        }
+
+        return result;
+    }
+
     }
 }
