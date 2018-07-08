@@ -9,7 +9,6 @@ import cc.moecraft.logger.environments.FileEnv;
 import org.fusesource.jansi.AnsiConsole;
 
 import java.awt.*;
-import java.io.IOException;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/04 创建!

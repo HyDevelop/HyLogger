@@ -4,7 +4,10 @@ import cc.moecraft.logger.environments.LogEnvironment;
 import cc.moecraft.logger.format.AnsiFormat;
 import lombok.Getter;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static cc.moecraft.logger.LogLevel.*;
 

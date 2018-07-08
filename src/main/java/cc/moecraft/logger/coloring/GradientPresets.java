@@ -2,7 +2,7 @@ package cc.moecraft.logger.coloring;
 
 import java.awt.*;
 
-import static cc.moecraft.logger.coloring.MultiPointLinearGradient.*;
+import static cc.moecraft.logger.coloring.MultiPointLinearGradient.GradientPoint;
 
 /**
  * 此类由 Hykilpikonna 在 18-7-7 创建!

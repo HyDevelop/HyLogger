@@ -1,7 +1,5 @@
 package cc.moecraft.logger.environments;
 
-import static cc.moecraft.logger.format.AnsiColor.*;
-import static cc.moecraft.logger.format.AnsiColor.RESET;
 import static cc.moecraft.logger.utils.TimeUtils.getCurrentTime;
 
 /**

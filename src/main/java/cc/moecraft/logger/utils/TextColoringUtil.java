@@ -1,7 +1,6 @@
 package cc.moecraft.logger.utils;
 
 import cc.moecraft.logger.coloring.MultiPointLinearGradient;
-import cc.moecraft.logger.coloring.TwoPointGradient;
 
 import java.awt.*;
 
