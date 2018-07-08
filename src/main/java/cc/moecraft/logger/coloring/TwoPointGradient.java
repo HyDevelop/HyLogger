@@ -13,7 +13,7 @@ import java.awt.*;
  *
  * @author Hykilpikonna
  */
-@Data @AllArgsConstructor
+@Data @AllArgsConstructor @Deprecated
 public class TwoPointGradient
 {
     private AnsiRGB color1; // 从什么颜色开始渐变
