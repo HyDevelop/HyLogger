@@ -3,6 +3,8 @@ package cc.moecraft.logger.environments;
 import lombok.NoArgsConstructor;
 import org.fusesource.jansi.AnsiConsole;
 
+import static cc.moecraft.logger.environments.ColorSupportLevel.*;
+
 /**
  * 此类由 Hykilpikonna 在 2018/07/03 创建!
  * Created by Hykilpikonna on 2018/07/03!
@@ -14,14 +16,19 @@ import org.fusesource.jansi.AnsiConsole;
 @NoArgsConstructor
 public class ConsoleColoredEnv extends LogEnvironment
 {
-    public ConsoleColoredEnv(boolean passThrough)
+    private ColorSupportLevel colorSupportLevel;
+
+    public ConsoleColoredEnv(ColorSupportLevel colorSupportLevel)
     {
-        System.getProperties().setProperty("jansi.passthrough", String.valueOf(passThrough));
+        this.colorSupportLevel = colorSupportLevel;
+        if (colorSupportLevel != FORCED && colorSupportLevel == PASSTHROUGH) System.getProperties().setProperty("jansi.passthrough", "true");
     }
 
     @Override
     public void logRaw(String message)
     {
-        AnsiConsole.out.println(message);
+        // TODO: PRESET_ONLY
+        if (colorSupportLevel == FORCED) System.out.println(message);
+        else AnsiConsole.out.println(message);
     }
 }
