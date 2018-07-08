@@ -15,11 +15,19 @@ import java.util.List;
 public class MultiPointLinearGradient
 {
     private final ArrayList<GradientPoint> colors;
+    private final ArrayList<Map.Entry<Integer, GradientPoint>> mappedSizes;
     private final int total;
 
     public MultiPointLinearGradient(GradientPoint color1, GradientPoint color2, ArrayList<GradientPoint> colors)
     {
+        colors.add(0, color1);
+        colors.add(1, color2);
+
         this.colors = colors;
+        this.mappedSizes = mapSizes(colors);
+        this.total = mappedSizes.get(mappedSizes.size() - 1).getKey();
+    }
+
 
     /**
      * 把一个相对数值的列表转换为绝对数值的列表
