@@ -1,5 +1,6 @@
 package cc.moecraft.logger.utils;
 
+import cc.moecraft.logger.coloring.MultiPointLinearGradient;
 import cc.moecraft.logger.coloring.TwoPointGradient;
 
 import java.awt.*;
@@ -14,10 +15,10 @@ import java.awt.*;
  */
 public class TextColoringUtil
 {
-    public static String getGradientText(String text, Color color1, Color color2)
+    public static String getGradientText(String text, MultiPointLinearGradient gradient)
     {
         char[] chars = text.toCharArray();
-        Color[] colors = new TwoPointGradient(color1, color2).getColors(chars.length);
+        Color[] colors = gradient.getColors(chars.length);
 
         StringBuilder result = new StringBuilder();
 
@@ -27,5 +28,10 @@ public class TextColoringUtil
         }
 
         return result.toString();
+    }
+
+    public static String getGradientText(String text, Color color1, Color color2, Color ... colors)
+    {
+        return getGradientText(text, new MultiPointLinearGradient(color1, color2, colors));
     }
 }
