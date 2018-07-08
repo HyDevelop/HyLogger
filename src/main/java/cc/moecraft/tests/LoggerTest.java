@@ -2,6 +2,7 @@ package cc.moecraft.tests;
 
 import cc.moecraft.logger.HyLogger;
 import cc.moecraft.logger.LoggerInstanceManager;
+import cc.moecraft.logger.environments.ColorSupportLevel;
 import cc.moecraft.logger.environments.ConsoleColoredEnv;
 import cc.moecraft.logger.environments.FileEnv;
 import org.fusesource.jansi.AnsiConsole;
@@ -23,7 +24,7 @@ public class LoggerTest
 
     public static void main(String[] args)
     {
-        loggerInstanceManager = new LoggerInstanceManager(new ConsoleColoredEnv(true), new FileEnv("logs", "log"));
+        loggerInstanceManager = new LoggerInstanceManager(new ConsoleColoredEnv(ColorSupportLevel.FORCED), new FileEnv("logs", "log"));
 
         HyLogger logger = loggerInstanceManager.getLoggerInstance("LoggerTest", true);
 
