@@ -1,5 +1,6 @@
 package cc.moecraft.logger;
 
+import cc.moecraft.logger.coloring.MultiPointLinearGradient;
 import cc.moecraft.logger.format.AnsiConstants;
 import cc.moecraft.logger.utils.TextColoringUtil;
 import lombok.AllArgsConstructor;
@@ -40,9 +41,13 @@ public class FancyLogger
         logger.log(newMessage.toString());
     }
 
-    public void logGradient(String message, Color color1, Color color2)
+    public void logGradient(String message, Color color1, Color color2, Color ... colors)
     {
-        message = TextColoringUtil.getGradientText(message, color1, color2);
-        logger.log(message);
+        logger.log(TextColoringUtil.getGradientText(message, color1, color2, colors));
+    }
+
+    public void logGradient(String message, MultiPointLinearGradient gradient)
+    {
+        logger.log(TextColoringUtil.getGradientText(message, gradient));
     }
 }
