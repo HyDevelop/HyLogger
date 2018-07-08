@@ -3,7 +3,8 @@ package cc.moecraft.logger.environments;
 import lombok.NoArgsConstructor;
 import org.fusesource.jansi.AnsiConsole;
 
-import static cc.moecraft.logger.environments.ColorSupportLevel.*;
+import static cc.moecraft.logger.environments.ColorSupportLevel.FORCED;
+import static cc.moecraft.logger.environments.ColorSupportLevel.PASSTHROUGH;
 
 /**
  * 此类由 Hykilpikonna 在 2018/07/03 创建!

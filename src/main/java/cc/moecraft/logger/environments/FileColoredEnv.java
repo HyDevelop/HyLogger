@@ -1,7 +1,6 @@
 package cc.moecraft.logger.environments;
 
 import java.io.File;
-import java.io.IOException;
 
 /**
  * 此类由 Hykilpikonna 在 2018/07/04 创建!

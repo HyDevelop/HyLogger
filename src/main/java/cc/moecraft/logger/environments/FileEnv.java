@@ -2,14 +2,12 @@ package cc.moecraft.logger.environments;
 
 import cc.moecraft.logger.exceptions.FailedToCreateFileLoggerException;
 import cc.moecraft.logger.format.AnsiColor;
-import cc.moecraft.logger.HyLogger;
 import cc.moecraft.yaml.utils.FileUtils;
 import lombok.Getter;
 import org.fusesource.jansi.AnsiConsole;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.PrintWriter;
 
 import static cc.moecraft.logger.utils.AnsiUtils.removeFormat;

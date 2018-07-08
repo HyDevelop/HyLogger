@@ -1,11 +1,7 @@
 package cc.moecraft.logger;
 
 import cc.moecraft.logger.environments.LogEnvironment;
-import cc.moecraft.logger.format.AnsiConstants;
 import lombok.Getter;
-
-import java.util.ArrayList;
-import java.util.Random;
 
 import static cc.moecraft.logger.LogLevel.*;
 

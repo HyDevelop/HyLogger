@@ -3,8 +3,6 @@ package cc.moecraft.logger;
 import cc.moecraft.logger.coloring.MultiPointLinearGradient;
 import cc.moecraft.logger.format.AnsiConstants;
 import cc.moecraft.logger.utils.TextColoringUtil;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 
 import java.awt.*;
 import java.util.Random;

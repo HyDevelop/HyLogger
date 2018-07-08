@@ -1,10 +1,3 @@
-import cc.moecraft.logger.HyLogger;
-import cc.moecraft.logger.LoggerInstanceManager;
-import cc.moecraft.logger.environments.ConsoleColoredEnv;
-import cc.moecraft.logger.environments.FileEnv;
-import org.fusesource.jansi.AnsiConsole;
-
-import java.awt.*;
 import java.io.IOException;
 
 /**
