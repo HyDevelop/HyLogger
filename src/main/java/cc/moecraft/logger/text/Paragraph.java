@@ -23,6 +23,11 @@ public class Paragraph
         this.sentences = sentences;
     }
 
+    public Paragraph(String ... sentences)
+    {
+        this(new ArrayList<>());
+        addSentences(sentences);
+    }
 
     public Paragraph addSentences(String ... sentences)
     {
