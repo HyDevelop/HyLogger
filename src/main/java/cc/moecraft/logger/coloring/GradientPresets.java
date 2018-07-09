@@ -12,7 +12,10 @@ import static cc.moecraft.logger.coloring.MultiPointLinearGradient.GradientPoint
  */
 public class GradientPresets
 {
-    public static final MultiPointLinearGradient RAINBOW;
+    public static final MultiPointLinearGradient
+            RAINBOW, // 彩虹
+            BPR      // 蓝紫红
+    ;
 
     static
     {
@@ -25,6 +28,12 @@ public class GradientPresets
                 new GradientPoint(new Color(0,   255, 0  ), 18),
                 new GradientPoint(new Color(255, 255, 0  ), 17),
                 new GradientPoint(new Color(255, 0,   0  ), 16)
+        );
+
+        BPR = new MultiPointLinearGradient(
+                new Color(18, 194, 233),
+                new Color(196, 113, 237),
+                new Color(246, 79, 89)
         );
     }
 }
