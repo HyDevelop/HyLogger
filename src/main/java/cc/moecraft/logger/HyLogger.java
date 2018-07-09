@@ -1,6 +1,7 @@
 package cc.moecraft.logger;
 
 import cc.moecraft.logger.environments.LogEnvironment;
+import cc.moecraft.logger.text.Paragraph;
 import lombok.Getter;
 
 import static cc.moecraft.logger.LogLevel.*;
@@ -36,6 +37,13 @@ public class HyLogger
     }
 
     private void log(LogLevel level, String message)
+    {
+        if (level == DEBUG && !debug) return;
+        for (LogEnvironment environment : instanceManager.getEnvironments())
+            environment.log(instanceManager.getFormat().get(level), prefix, message);
+    }
+
+    private void log(LogLevel level, Paragraph message)
     {
         if (level == DEBUG && !debug) return;
         for (LogEnvironment environment : instanceManager.getEnvironments())
