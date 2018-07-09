@@ -39,4 +39,10 @@ public class Paragraph
         this.sentences.addAll(sentences);
         return this;
     }
+
+    public void processNewLines()
+    {
+        sentences = new ArrayList<>(Arrays.asList(toString().split("\n")));
+    }
+
 }
