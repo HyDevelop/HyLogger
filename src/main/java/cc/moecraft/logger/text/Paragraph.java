@@ -72,4 +72,19 @@ public class Paragraph
 
         return charArray;
     }
+
+    @Override
+    public String toString()
+    {
+        StringBuilder result = new StringBuilder();
+
+        result.append(sentences.get(0));
+
+        for (int i = 1; i < sentences.size(); i++)
+        {
+            result.append("\n").append(sentences.get(i));
+        }
+
+        return result.toString();
+    }
 }
