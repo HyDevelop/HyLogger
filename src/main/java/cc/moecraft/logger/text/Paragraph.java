@@ -24,6 +24,11 @@ public class Paragraph
     }
 
 
+    public Paragraph addSentences(String ... sentences)
+    {
+        return addSentences(Arrays.asList(sentences));
+    }
+
     public Paragraph addSentences(Collection<? extends String> sentences)
     {
         this.sentences.addAll(sentences);
