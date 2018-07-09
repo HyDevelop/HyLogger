@@ -57,4 +57,19 @@ public class Paragraph
         return max;
     }
 
+    public char[][] toCharArray()
+    {
+        processNewLines();
+
+        char[][] charArray = new char[sentences.size()][countLongestLineChars()];
+
+        for (int i = 0; i < sentences.size(); i++)
+        {
+            char[] sentence = sentences.get(i).toCharArray();
+
+            System.arraycopy(sentence, 0, charArray[i], 0, sentence.length);
+        }
+
+        return charArray;
+    }
 }
