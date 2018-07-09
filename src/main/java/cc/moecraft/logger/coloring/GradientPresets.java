@@ -14,6 +14,7 @@ public class GradientPresets
 {
     public static final MultiPointLinearGradient
             RAINBOW, // 彩虹
+            BOP,     // 蓝橙粉
             BPR      // 蓝紫红
     ;
 
@@ -28,6 +29,12 @@ public class GradientPresets
                 new GradientPoint(new Color(0,   255, 0  ), 18),
                 new GradientPoint(new Color(255, 255, 0  ), 17),
                 new GradientPoint(new Color(255, 0,   0  ), 16)
+        );
+
+        BOP = new MultiPointLinearGradient(
+                new Color(64, 224, 208),
+                new Color(255, 140, 0),
+                new Color(255, 0, 128)
         );
 
         BPR = new MultiPointLinearGradient(
