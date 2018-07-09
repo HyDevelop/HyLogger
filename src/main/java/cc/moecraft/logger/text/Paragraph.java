@@ -87,4 +87,9 @@ public class Paragraph
 
         return result.toString();
     }
+
+    public void logTo(HyLogger logger)
+    {
+        logger.log(this);
+    }
 }
