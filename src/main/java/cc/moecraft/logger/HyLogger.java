@@ -69,4 +69,24 @@ public class HyLogger
     {
         log(WARNING, message);
     }
+
+    public void log(Paragraph message)
+    {
+        log(LOG, message);
+    }
+
+    public void debug(Paragraph message)
+    {
+        log(DEBUG, message);
+    }
+
+    public void error(Paragraph message)
+    {
+        log(ERROR, message);
+    }
+
+    public void warning(Paragraph message)
+    {
+        log(WARNING, message);
+    }
 }
