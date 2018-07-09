@@ -23,4 +23,10 @@ public class Paragraph
         this.sentences = sentences;
     }
 
+
+    public Paragraph addSentences(Collection<? extends String> sentences)
+    {
+        this.sentences.addAll(sentences);
+        return this;
+    }
 }
