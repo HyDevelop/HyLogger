@@ -45,4 +45,16 @@ public class Paragraph
         sentences = new ArrayList<>(Arrays.asList(toString().split("\n")));
     }
 
+    public int countLongestLineChars()
+    {
+        int max = 0;
+
+        for (String sentence : sentences)
+        {
+            if (sentence.length() > max) max = sentence.length();
+        }
+
+        return max;
+    }
+
 }
