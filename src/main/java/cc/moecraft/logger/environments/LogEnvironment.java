@@ -21,6 +21,10 @@ public abstract class LogEnvironment
         logRaw(replaceVariables(format, prefix, message));
     }
 
+    public void log(String format, String prefix, Paragraph message)
+    {
+        for (String sentence : replaceVariables(format, prefix, message).getSentences()) logRaw(sentence);
+    }
 
     public static Paragraph replaceVariables(String format, String prefix, Paragraph paragraph)
     {
