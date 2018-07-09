@@ -15,4 +15,7 @@ import java.util.Collection;
  */
 public class Paragraph
 {
+    @Getter
+    private ArrayList<String> sentences;
+
 }
