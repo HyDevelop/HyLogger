@@ -1,5 +1,7 @@
 package cc.moecraft.logger.environments;
 
+import cc.moecraft.logger.text.Paragraph;
+
 import static cc.moecraft.logger.utils.TimeUtils.getCurrentTime;
 
 /**
@@ -21,6 +23,17 @@ public abstract class LogEnvironment
 
     public static String replaceVariables(String format, String prefix, String message)
     {
+        return replaceMessage(replaceBasicVariables(format, prefix), message);
+    }
+
+    private static String replaceMessage(String basicFormat, String message)
+    {
+        return basicFormat.replace("{message}",   message);
+    }
+
+    private static String replaceBasicVariables(String format, String prefix)
+    {
+
         StackTraceElement stackTrace = Thread.currentThread().getStackTrace()[5];
 
         String stClass = stackTrace.getClassName();
@@ -31,7 +44,6 @@ public abstract class LogEnvironment
         return format
                 .replace("{time}",      getCurrentTime())
                 .replace("{prefix}",    prefix)
-                .replace("{message}",   message)
                 .replace("{st.class}",  stClass)
                 .replace("{st.method}", stMethod)
                 .replace("{st.line}",   stLine)
