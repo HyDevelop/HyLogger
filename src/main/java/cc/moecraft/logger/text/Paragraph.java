@@ -18,4 +18,9 @@ public class Paragraph
     @Getter
     private ArrayList<String> sentences;
 
+    public Paragraph(ArrayList<String> sentences)
+    {
+        this.sentences = sentences;
+    }
+
 }
