@@ -16,7 +16,7 @@
 <br>
 
 <a name="introduction"></a>
-介绍 (v2.5.21):
+介绍 (v2.5.22):
 --------
 
 这是一个支持颜色和文件输出的日志工具, 理论上颜色输出支持所有支持ANSI ESC Code的控制台.
@@ -42,10 +42,13 @@
 * **v2.5.21**
 * 自定义每个日志级别的输出格式
 * 可以调是否强制输出颜色
+*  
+* **v2.5.22**
+* 自定义颜色支持级别 (Default, Preset Only, Passthrough, Forced)
+* 多点单行渐变
 
 #### 待实现(TODO)的功能:
 
-* 多点单行渐变
 * 定向二维渐变 (影响一个字符串数组, 输出字符画的时候特别有用)
 * 多点二维渐变 (带渐变角度)
 * 无视原有颜色的全局渐变
@@ -73,7 +76,7 @@ Maven 导入:
 <dependency>
     <groupId>com.github.hydevelop</groupId>
     <artifactId>HyLogger</artifactId>
-    <version>2.5.21</version>
+    <version>2.5.22</version>
 </dependency>
 ```
 
@@ -100,13 +103,13 @@ allprojects {
 
 ```gradle
 dependencies {
-    implementation 'com.github.hydevelop:HyLogger:2.5.21'
+    implementation 'com.github.hydevelop:HyLogger:2.5.22'
 }
 ```
 
 <!-- 每次更新都要手动改这些版本号好烦的_(:з」∠)_... -->
 
-#### [其他导入(SBT / Leiningen)](https://jitpack.io/#hydevelop/HyLogger/2.5.21)
+#### [其他导入(SBT / Leiningen)](https://jitpack.io/#hydevelop/HyLogger/2.5.22)
 
 <br>
 
