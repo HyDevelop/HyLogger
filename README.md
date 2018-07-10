@@ -278,13 +278,30 @@ logger.log(AnsiRGB.toAnsi(45, 194, 80) + "当然是选择原谅她!");
 
 #### 7. Logger.fancy 特效日志:
 
-```java
-// 1. 线性渐变:
+#### 7.1. 双向/多点 线性渐变:
 
-logger.fancy.logGradient(消息, 从什么颜色开始渐变, 渐变到什么颜色); 
+```java
+// 线性渐变:
+
+logger.fancy.logGradient(消息, 颜色或渐变对象); 
 
 // 注意: 必须要支持RGB颜色的后台才支持定向渐变
+// 注意: 颜色对象的话至少要两个才行
+
+// 渐变预设在GradientPresets类里
 ```
+
+例子:
+
+```java
+// 使用颜色渐变:
+logger.fancy.logGradient("测试橙色渐变到粉色", new Color(255, 140, 0), new Color(255, 0, 128)); 
+
+// 使用渐变预设渐变:
+logger.fancy.logGradient("##############测试蓝到紫到红多点渐变##############", GradientPresets.BPR);
+```
+
+#### 
 
 #### 8. 测试过的兼容和不兼容颜色的后台程序:
 
