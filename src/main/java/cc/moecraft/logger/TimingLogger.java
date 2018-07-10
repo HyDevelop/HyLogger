@@ -12,6 +12,11 @@ public class TimingLogger
 {
     private long startingTime;
 
+    public TimingLogger()
+    {
+        reset();
+    }
+
     public TimingLogger reset()
     {
         startingTime = System.nanoTime();
