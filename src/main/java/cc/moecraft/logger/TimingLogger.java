@@ -22,6 +22,12 @@ public class TimingLogger
     {
         return System.nanoTime() - startingTime;
     }
+
+    public double getMilliseconds()
+    {
+        return ((double) getTime()) / 1000000d;
+    }
+
     public TimingLogger reset()
     {
         startingTime = System.nanoTime();
