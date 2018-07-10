@@ -2,6 +2,7 @@ package cc.moecraft.logger;
 
 import cc.moecraft.logger.coloring.MultiPointLinearGradient;
 import cc.moecraft.logger.format.AnsiConstants;
+import cc.moecraft.logger.text.Paragraph;
 import cc.moecraft.logger.utils.TextColoringUtil;
 
 import java.awt.*;
@@ -47,5 +48,10 @@ public class FancyLogger
     public void logGradient(String message, MultiPointLinearGradient gradient)
     {
         logger.log(TextColoringUtil.getGradientText(message, gradient));
+    }
+
+    public void logGradient(Paragraph message, MultiPointLinearGradient gradient, int degrees)
+    {
+        logger.log(TextColoringUtil.getGradientParagraph(message.toCharArray(), gradient, degrees));
     }
 }
