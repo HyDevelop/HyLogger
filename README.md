@@ -334,7 +334,26 @@ logger.fancy.logGradient(paragraph,
                 new Color(255, 0, 128)), 15);
 ```
 
-### 8. 测试过的兼容和不兼容颜色的后台程序:
+### 8. Logger.timing 计时器:
+
+```java
+// 用之前先init:
+logger.timing.init();
+
+// 输出一次时间点:
+logger.timing.time();
+
+// 重置计时器时间:
+logger.timing.reset();
+
+// 输出并重置:
+logger.timing.timeAndReset();
+
+// 用完后clear:
+logger.timing.clear();
+```
+
+### 9. 测试过的兼容和不兼容颜色的后台程序:
 
 如果有新的测试结果欢迎Email我(admin@moecraft.cc), 我会加进这个列表的!
 注意: Independent不是一个系统的名字, 它是指这个后台程序兼容多个系统.
