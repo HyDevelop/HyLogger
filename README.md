@@ -85,7 +85,7 @@ Maven 导入:
 <dependency>
     <groupId>com.github.hydevelop</groupId>
     <artifactId>HyLogger</artifactId>
-    <version>2.5.22</version>
+    <version>2.5.23</version>
 </dependency>
 ```
 
@@ -112,13 +112,13 @@ allprojects {
 
 ```gradle
 dependencies {
-    implementation 'com.github.hydevelop:HyLogger:2.5.22'
+    implementation 'com.github.hydevelop:HyLogger:2.5.23'
 }
 ```
 
 <!-- 每次更新都要手动改这些版本号好烦的_(:з」∠)_... -->
 
-#### [其他导入(SBT / Leiningen)](https://jitpack.io/#hydevelop/HyLogger/2.5.22)
+#### [其他导入(SBT / Leiningen)](https://jitpack.io/#hydevelop/HyLogger/2.5.23)
 
 <br>
 
