@@ -54,4 +54,9 @@ public class FancyLogger
     {
         logger.log(TextColoringUtil.getGradientParagraph(message.toCharArray(), gradient, degrees));
     }
+
+    public void logGradient(Paragraph message, MultiPointLinearGradient gradient)
+    {
+        logger.log(TextColoringUtil.getGradientParagraph(message.toCharArray(), gradient, 0));
+    }
 }
