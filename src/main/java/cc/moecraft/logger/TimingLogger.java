@@ -11,4 +11,10 @@ package cc.moecraft.logger;
 public class TimingLogger
 {
     private long startingTime;
+
+    public TimingLogger reset()
+    {
+        startingTime = System.nanoTime();
+        return this;
+    }
 }
