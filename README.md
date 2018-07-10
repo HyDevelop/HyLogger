@@ -126,7 +126,7 @@ dependencies {
 开发:
 --------
 
-#### 1. 创建实例管理器:
+### 1. 创建实例管理器:
 
 ```java
 LoggerInstanceManager lim = new LoggerInstanceManager(日志环境 ...);
@@ -147,7 +147,7 @@ FileEnv           // 无颜色的文件环境
 FileColoredEnv    // 带颜色的文件环境 (大部分编辑器不支持, 所以像我一样的RGB厨以外不推荐使用ww)
 ```
 
-#### 2. 创建/获取实例:
+### 2. 创建/获取实例:
 
 ```java
 // 注意: 可以有多个实例, 每个实例可以有不同的前缀和是否输出Debug,<br> 
@@ -168,7 +168,7 @@ HyLogger logger = lim.getLoggerInstance("Main", false);
 HyLogger logger = lim.getLoggerInstance("线程#" + Thread.currentThread().getId(), false);
 ```
 
-#### 3. 使用实例:
+### 3. 使用实例:
 
 ```java
 logger.log("一条Log消息"); // 这些是不同输出级别的日志
@@ -182,7 +182,7 @@ logger.fancy.logGradient("一条从橙色渐变到粉色的Log消息\n",
         new Color(255, 0, 128)); 
 ```
 
-#### 4. 更改输出格式:
+### 4. 更改输出格式:
 
 ```java
 lim.setFormat(日志级别, 新的格式); // 给某个日志级别设置输出格式
@@ -220,7 +220,7 @@ setFormat(ERROR,   "&f[&5{time}&f] [&1{prefix}&f] [&cERROR&f(&e{st.full}&f)] &c{
 setFormat(WARNING, "&f[&5{time}&f] [&1{prefix}&f] [&cWARNING&f] &e{message}&r");
 ```
 
-#### 5. 添加颜色和ANSI格式预设:
+### 5. 添加颜色和ANSI格式预设:
 
 ```java
 // 颜色其实就是一个Enum啦...
@@ -258,7 +258,7 @@ AnsiFormat.INVISIBLE_TEXT // 隐身 (意义不明 #2
 logger.log(AnsiColor.GREEN + "" + AnsiFormat.HIGH_INTENSITY + "当然是选择原谅她!");
 ```
 
-#### 6. 添加自定义RGB颜色:
+### 6. 添加自定义RGB颜色:
 
 ```java
 // 注意: RGB颜色不是所有后台都支持
@@ -276,7 +276,7 @@ new AnsiRGB(颜色对象).toAnsi(); // 用java.awt.Color颜色对象获取ANSI�
 logger.log(AnsiRGB.toAnsi(45, 194, 80) + "当然是选择原谅她!");
 ```
 
-#### 7. Logger.fancy 特效日志:
+### 7. Logger.fancy 特效日志:
 
 #### 7.1. 双向/多点 线性渐变:
 
@@ -334,7 +334,7 @@ logger.fancy.logGradient(paragraph,
                 new Color(255, 0, 128)), 15);
 ```
 
-#### 8. 测试过的兼容和不兼容颜色的后台程序:
+### 8. 测试过的兼容和不兼容颜色的后台程序:
 
 如果有新的测试结果欢迎Email我(me@hydev.org), 我会加进这个列表的!
 注意: Independent不是一个系统的名字, 它是指这个后台程序兼容多个系统.
