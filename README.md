@@ -301,7 +301,38 @@ logger.fancy.logGradient("测试橙色渐变到粉色", new Color(255, 140, 0), 
 logger.fancy.logGradient("##############测试蓝到紫到红多点渐变##############", GradientPresets.BPR);
 ```
 
-#### 
+#### 7.2. 二维文字块渐变:
+
+```java
+// 先创建一个文字块对象:
+// 注意: 句子不用加换行, 每句直接逗号分开
+Paragraph paragraph = new Paragraph(句子, 句子, 句子 ...);
+
+// 渐变输出
+// 注意: 这个角度单位不是radian, 而是degrees
+logger.fancy.logGradient(paragraph, 渐变对象, 角度);
+```
+
+例子:
+
+```java
+// 创建文字块对象
+Paragraph paragraph = new Paragraph(
+        "┬ ┬┬ ┬┬  ┌─┐┌─┐┌─┐┌─┐┬─┐",
+        "├─┤└┬┘│  │ ││ ┬│ ┬├┤ ├┬┘",
+        "┴ ┴ ┴ ┴─┘└─┘└─┘└─┘└─┘┴└─"
+);
+
+// 用渐变预设输出
+logger.fancy.logGradient(paragraph, GradientPresets.BPR, 15);
+
+// 用自定义颜色创建渐变对象输出
+logger.fancy.logGradient(paragraph, 
+        new MultiPointLinearGradient(
+                new Color(64, 224, 208), 
+                new Color(255, 140, 0), 
+                new Color(255, 0, 128)), 15);
+```
 
 #### 8. 测试过的兼容和不兼容颜色的后台程序:
 
