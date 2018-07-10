@@ -27,6 +27,8 @@ public class HyLogger
 
     public final FancyLogger fancy;
 
+    public final TimingLogger timing;
+
     protected HyLogger(LoggerInstanceManager instanceManager, String prefix, boolean debug)
     {
         this.instanceManager = instanceManager;
@@ -34,6 +36,7 @@ public class HyLogger
         this.debug = debug;
 
         this.fancy = new FancyLogger(this);
+        this.timing = new TimingLogger(this);
     }
 
     private void log(LogLevel level, String message)
