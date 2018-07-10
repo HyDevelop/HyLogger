@@ -23,12 +23,21 @@ public class TimingLogger
         return this;
     }
 
+    public TimingLogger timeAndReset(HyLogger logger)
+    {
+        return time(logger).reset();
+    }
+
     public TimingLogger timeNano(HyLogger logger)
     {
         logger.log(getTime() + " nanos");
         return this;
     }
 
+    public TimingLogger timeNanoAndReset(HyLogger logger)
+    {
+        return timeNano(logger).reset();
+    }
 
     public long getTime()
     {
