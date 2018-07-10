@@ -56,7 +56,7 @@ public class LoggerTest
 
         timing.timeAndReset(logger);
 
-        logger.fancy.logRAINBOW("测试随机颜色消息\n");
+        logger.fancy.logRAINBOW("测试随机颜色消息");
 
         timing.timeAndReset(logger);
 

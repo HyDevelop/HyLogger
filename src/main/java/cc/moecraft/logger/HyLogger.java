@@ -38,16 +38,29 @@ public class HyLogger
 
     private void log(LogLevel level, String message)
     {
-        if (level == DEBUG && !debug) return;
+        if (checkDebug(level)) return;
         for (LogEnvironment environment : instanceManager.getEnvironments())
             environment.log(instanceManager.getFormat().get(level), prefix, message);
     }
 
+    private void log(LogLevel level, String ... message)
+    {
+        if (checkDebug(level)) return;
+        Paragraph paragraph = new Paragraph(message);
+        for (LogEnvironment environment : instanceManager.getEnvironments())
+            environment.log(instanceManager.getFormat().get(level), prefix, paragraph);
+    }
+
     private void log(LogLevel level, Paragraph message)
     {
-        if (level == DEBUG && !debug) return;
+        if (checkDebug(level)) return;
         for (LogEnvironment environment : instanceManager.getEnvironments())
             environment.log(instanceManager.getFormat().get(level), prefix, message);
+    }
+
+    private boolean checkDebug(LogLevel level)
+    {
+        return level == DEBUG && !debug;
     }
 
     public void log(String message)
