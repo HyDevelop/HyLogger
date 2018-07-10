@@ -32,61 +32,60 @@ public class LoggerTest
 
     public static void main(String[] args)
     {
-        TimingLogger timing = new TimingLogger();
-
         loggerInstanceManager = new LoggerInstanceManager(new ConsoleColoredEnv(ColorSupportLevel.FORCED), new FileEnv("logs", "log"));
 
         HyLogger logger = loggerInstanceManager.getLoggerInstance("LoggerTest", true);
 
-        timing.timeAndReset(logger);
+        logger.timing.init();
+        logger.timing.timeAndReset();
 
         logger.log("一条测试Log消息");
 
-        timing.timeAndReset(logger);
+        logger.timing.timeAndReset();
 
         logger.debug("一条测试Debug消息");
 
-        timing.timeAndReset(logger);
+        logger.timing.timeAndReset();
 
         logger.error("一条测试Error消息");
 
-        timing.timeAndReset(logger);
+        logger.timing.timeAndReset();
 
         logger.warning("一条测试Warning消息");
 
-        timing.timeAndReset(logger);
+        logger.timing.timeAndReset();
 
         logger.fancy.logRAINBOW("测试随机颜色消息");
 
-        timing.timeAndReset(logger);
+        logger.timing.timeAndReset();
 
         logger.fancy.logGradient("测试渐变从深蓝到浅蓝", Color.BLUE, Color.CYAN);
 
-        timing.timeAndReset(logger);
+        logger.timing.timeAndReset();
 
         logger.fancy.logGradient("测试渐变从橘色到浅蓝", Color.ORANGE, Color.CYAN);
 
-        timing.timeAndReset(logger);
+        logger.timing.timeAndReset();
 
         logger.fancy.logGradient("测试黄绿渐变到天蓝",
                 new Color(0, 242, 96),
                 new Color(80, 161, 230));
 
-        timing.timeAndReset(logger);
+        logger.timing.timeAndReset();
 
         logger.fancy.logGradient("测试橙色渐变到粉色",
                 new Color(255, 140, 0),
                 new Color(255, 0, 128));
 
-        timing.timeAndReset(logger);
+        logger.timing.timeAndReset();
 
         logger.fancy.logGradient("##############测试彩虹多点渐变预设##############", RAINBOW);
 
-        timing.timeAndReset(logger);
+        logger.timing.timeAndReset();
 
         logger.fancy.logGradient("##############测试蓝到紫到红多点渐变##############",BPR);
 
-        timing.timeAndReset(logger);
+        logger.timing.timeAndReset();
 
         {
             logger.log("测试Paragraph斜向线性渐变 #1:");
@@ -100,7 +99,7 @@ public class LoggerTest
             logger.fancy.logGradient(paragraph, BPR, 15);
         }
 
-        timing.timeAndReset(logger);
+        logger.timing.timeAndReset();
 
         {
             logger.log("测试Paragraph斜向线性渐变 #2:");
@@ -117,6 +116,6 @@ public class LoggerTest
             logger.fancy.logGradient(paragraph, BOP, 60);
         }
 
-        timing.timeAndReset(logger);
+        logger.timing.timeAndReset();
     }
 }
