@@ -83,6 +83,26 @@ public class HyLogger
         log(WARNING, message);
     }
 
+    public void log(String ... message)
+    {
+        log(LOG, message);
+    }
+
+    public void debug(String ... message)
+    {
+        log(DEBUG, message);
+    }
+
+    public void error(String ... message)
+    {
+        log(ERROR, message);
+    }
+
+    public void warning(String ... message)
+    {
+        log(WARNING, message);
+    }
+
     public void log(Paragraph message)
     {
         log(LOG, message);
