@@ -1,5 +1,7 @@
 package cc.moecraft.logger;
 
+import com.sun.org.apache.bcel.internal.generic.LineNumberGen;
+
 /**
  * 此类由 Hykilpikonna 在 2018/07/10 创建!
  * Created by Hykilpikonna on 2018/07/10!
@@ -10,33 +12,34 @@ package cc.moecraft.logger;
  */
 public class TimingLogger
 {
-    private long startingTime;
+    private HyLogger logger;
+    private Long startingTime;
 
-    public TimingLogger()
+    protected TimingLogger(HyLogger logger)
     {
-        reset();
+        this.logger = logger;
     }
 
-    public TimingLogger time(HyLogger logger)
+    public TimingLogger time()
     {
         logger.log(getMilliseconds() + "ms");
         return this;
     }
 
-    public TimingLogger timeAndReset(HyLogger logger)
+    public TimingLogger timeAndReset()
     {
-        return time(logger).reset();
+        return time().reset();
     }
 
-    public TimingLogger timeNano(HyLogger logger)
+    public TimingLogger timeNano()
     {
         logger.log(getTime() + " nanos");
         return this;
     }
 
-    public TimingLogger timeNanoAndReset(HyLogger logger)
+    public TimingLogger timeNanoAndReset()
     {
-        return timeNano(logger).reset();
+        return timeNano().reset();
     }
 
     public long getTime()
