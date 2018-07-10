@@ -15,6 +15,12 @@
 
 <br>
 
+<p align="center">
+  <img src="https://i.imgur.com/TqgyUJt.png">
+</p>
+
+<br>
+
 <a name="introduction"></a>
 介绍 (v2.5.22):
 --------
