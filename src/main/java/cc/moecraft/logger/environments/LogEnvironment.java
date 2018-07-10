@@ -52,7 +52,7 @@ public abstract class LogEnvironment
     private static String replaceBasicVariables(String format, String prefix)
     {
 
-        StackTraceElement stackTrace = Thread.currentThread().getStackTrace()[5];
+        StackTraceElement stackTrace = Thread.currentThread().getStackTrace()[6];
 
         String stClass = stackTrace.getClassName();
         String stMethod = stackTrace.getMethodName();
