@@ -57,4 +57,14 @@ public class TimingLogger
         startingTime = System.nanoTime();
         return this;
     }
+
+    public TimingLogger init()
+    {
+        return reset();
+    }
+
+    public void clear()
+    {
+        startingTime = null;
+    }
 }
