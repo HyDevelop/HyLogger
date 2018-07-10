@@ -17,6 +17,18 @@ public class TimingLogger
         reset();
     }
 
+    public TimingLogger time(HyLogger logger)
+    {
+        logger.log(getMilliseconds() + "ms");
+        return this;
+    }
+
+    public TimingLogger timeNano(HyLogger logger)
+    {
+        logger.log(getTime() + " nanos");
+        return this;
+    }
+
 
     public long getTime()
     {
