@@ -58,6 +58,11 @@ public class HyLogger
             environment.log(instanceManager.getFormat().get(level), prefix, message);
     }
 
+    public void newLine()
+    {
+        log(LOG, "\n");
+    }
+
     private boolean checkDebug(LogLevel level)
     {
         return level == DEBUG && !debug;
