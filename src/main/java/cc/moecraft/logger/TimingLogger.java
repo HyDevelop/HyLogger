@@ -1,7 +1,5 @@
 package cc.moecraft.logger;
 
-import com.sun.org.apache.bcel.internal.generic.LineNumberGen;
-
 /**
  * 此类由 Hykilpikonna 在 2018/07/10 创建!
  * Created by Hykilpikonna on 2018/07/10!

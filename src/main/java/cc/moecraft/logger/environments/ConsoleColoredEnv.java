@@ -1,6 +1,5 @@
 package cc.moecraft.logger.environments;
 
-import lombok.NoArgsConstructor;
 import org.fusesource.jansi.AnsiConsole;
 
 import static cc.moecraft.logger.environments.ColorSupportLevel.FORCED;
