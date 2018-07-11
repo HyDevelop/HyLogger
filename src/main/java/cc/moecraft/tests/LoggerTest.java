@@ -2,21 +2,14 @@ package cc.moecraft.tests;
 
 import cc.moecraft.logger.HyLogger;
 import cc.moecraft.logger.LoggerInstanceManager;
-import cc.moecraft.logger.TimingLogger;
-import cc.moecraft.logger.coloring.GradientPresets;
-import cc.moecraft.logger.coloring.MultiPointLinearGradient;
 import cc.moecraft.logger.environments.ColorSupportLevel;
 import cc.moecraft.logger.environments.ConsoleColoredEnv;
 import cc.moecraft.logger.environments.FileEnv;
 import cc.moecraft.logger.text.Paragraph;
-import cc.moecraft.logger.utils.TextColoringUtil;
-import org.fusesource.jansi.AnsiConsole;
 
 import java.awt.*;
 
 import static cc.moecraft.logger.coloring.GradientPresets.*;
-import static cc.moecraft.logger.coloring.GradientPresets.BPR;
-import static cc.moecraft.logger.coloring.GradientPresets.RAINBOW;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/04 创建!
