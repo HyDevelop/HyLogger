@@ -14,7 +14,6 @@ import static cc.moecraft.logger.environments.ColorSupportLevel.PASSTHROUGH;
  *
  * @author Hykilpikonna
  */
-@NoArgsConstructor
 public class ConsoleColoredEnv extends LogEnvironment
 {
     private ColorSupportLevel colorSupportLevel;
