@@ -118,7 +118,7 @@ dependencies {
 
 <!-- 每次更新都要手动改这些版本号好烦的_(:з」∠)_... -->
 
-#### [其他导入(SBT / Leiningen)](https://jitpack.io/#hydevelop/HyLogger/2.5.24)
+#### [其他导入(SBT / Leiningen)](https://jitpack.io/#HyDevelop/HyLogger/2.5.24)
 
 <br>
 
