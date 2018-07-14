@@ -2,9 +2,7 @@ package cc.moecraft.logger.environments;
 
 import org.fusesource.jansi.AnsiConsole;
 
-import static cc.moecraft.logger.environments.ColorSupportLevel.FORCED;
-import static cc.moecraft.logger.environments.ColorSupportLevel.PASSTHROUGH;
-import static cc.moecraft.logger.environments.ColorSupportLevel.PRESET_ONLY;
+import static cc.moecraft.logger.environments.ColorSupportLevel.*;
 
 /**
  * 此类由 Hykilpikonna 在 2018/07/03 创建!
@@ -20,6 +18,10 @@ public class ConsoleColoredEnv extends LogEnvironment
 
     public ConsoleColoredEnv(ColorSupportLevel colorSupportLevel)
     {
+        if (colorSupportLevel == OS_DEPENDENT)
+            if (System.getProperty("os.name").toLowerCase().contains("win")) colorSupportLevel = PRESET_ONLY;
+            else colorSupportLevel = DEFAULT;
+
         this.colorSupportLevel = colorSupportLevel;
         if (colorSupportLevel != FORCED && colorSupportLevel == PASSTHROUGH) System.getProperties().setProperty("jansi.passthrough", "true");
     }

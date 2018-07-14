@@ -13,5 +13,7 @@ public enum ColorSupportLevel
     DEFAULT,     // 默认支持
     PRESET_ONLY, // 只输出预设颜色, 移除RGB
     PASSTHROUGH, // Jansi的Passthrough
-    FORCED       // 不传入Jansi
+    FORCED,      // 不传入Jansi
+
+    OS_DEPENDENT // 如果是Windows, 就改为PRESET_ONLY, 如果是Linux或者OSX, 就改为DEFAULT
 }
