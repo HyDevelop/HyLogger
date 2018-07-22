@@ -2,7 +2,7 @@ package cc.moecraft.logger.environments;
 
 import cc.moecraft.logger.exceptions.FailedToCreateFileLoggerException;
 import cc.moecraft.logger.format.AnsiColor;
-import cc.moecraft.yaml.utils.FileUtils;
+import cc.moecraft.utils.FileUtils;
 import lombok.Getter;
 import org.fusesource.jansi.AnsiConsole;
 
@@ -11,7 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 import static cc.moecraft.logger.utils.AnsiUtils.removeFormat;
-import static cc.moecraft.logger.utils.TimeUtils.getCurrentTime;
+import static cc.moecraft.utils.TimeUtils.getCurrentTime;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/27 创建!
@@ -63,7 +63,9 @@ public class FileEnv extends LogEnvironment
         if (fileName == null) throw new FailedToCreateFileLoggerException(new NullPointerException());
         if (filePath == null || filePath.isEmpty()) filePath = "./";
         if (!(filePath.endsWith("/") || filePath.endsWith("\\"))) filePath += File.separator;
-        return new File(filePath + fileName + "@" + getCurrentTime().replace(":", "-").replace(" ", "-") + ".log");
+        return new File(filePath + fileName + "@" + getCurrentTime()
+                .replace(":", "-")
+                .replace(" ", "-") + ".log");
     }
 
     @Override
