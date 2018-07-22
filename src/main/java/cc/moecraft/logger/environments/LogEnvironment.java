@@ -2,7 +2,7 @@ package cc.moecraft.logger.environments;
 
 import cc.moecraft.logger.text.Paragraph;
 
-import static cc.moecraft.logger.utils.TimeUtils.getCurrentTime;
+import static cc.moecraft.utils.TimeUtils.getCurrentTime;
 
 /**
  * 此类由 Hykilpikonna 在 2018/07/02 创建!
