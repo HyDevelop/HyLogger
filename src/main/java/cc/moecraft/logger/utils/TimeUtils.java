@@ -13,8 +13,13 @@ import java.util.Calendar;
  */
 public class TimeUtils
 {
+    public static String getCurrentTime(String pattern)
+    {
+        return new SimpleDateFormat(pattern).format(Calendar.getInstance().getTime());
+    }
+
     public static String getCurrentTime()
     {
-        return new SimpleDateFormat("yy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());
+        return getCurrentTime("yy-MM-dd HH:mm:ss");
     }
 }
