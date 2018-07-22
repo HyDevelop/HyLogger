@@ -22,9 +22,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.github.hykilpikonna</groupId>
-            <artifactId>HyConfigLib</artifactId>
-            <version>2.0.73-SNAPSHOT</version>
+            <groupId>com.github.HyDevelop</groupId>
+            <artifactId>HyCommonUtils</artifactId>
+            <version>1.1.0.5</version>
         </dependency>
 
         <dependency>
