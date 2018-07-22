@@ -24,7 +24,7 @@
         <dependency>
             <groupId>com.github.hykilpikonna</groupId>
             <artifactId>HyConfigLib</artifactId>
-            <version>-1eb4f7896a-1</version>
+            <version>2.0.73-SNAPSHOT</version>
         </dependency>
 
         <dependency>
