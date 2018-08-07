@@ -4,10 +4,7 @@ import cc.moecraft.logger.environments.LogEnvironment;
 import cc.moecraft.logger.format.AnsiFormat;
 import lombok.Getter;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static cc.moecraft.logger.LogLevel.*;
 
@@ -25,14 +22,14 @@ public class LoggerInstanceManager
     private Map<String, HyLogger> cachedInstance = new HashMap<>();
 
     @Getter
-    private List<LogEnvironment> environments;
+    private List<LogEnvironment> environments = new ArrayList<>();
 
     @Getter
     private Map<LogLevel, String> format = new HashMap<>();
 
     public LoggerInstanceManager(LogEnvironment... environments)
     {
-        this.environments = Arrays.asList(environments);
+        addEnvironment(environments);
         setFormat(LOG,     "&f[&5{time}&f] [&1{prefix}&f] [&aINFO&f] &r{message}&r");
         setFormat(DEBUG,   "&f[&5{time}&f] [&1{prefix}&f] [&bDEBUG&f(&e{st.full}&f)] &b{message}&r");
         setFormat(ERROR,   "&f[&5{time}&f] [&1{prefix}&f] [&cERROR&f(&e{st.full}&f)] &c{message}&r");
