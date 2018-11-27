@@ -10,5 +10,6 @@ package cc.moecraft.logger;
  */
 public enum LogLevel
 {
-    LOG, ERROR, DEBUG, WARNING
+    LOG, ERROR, DEBUG, WARNING,
+    ERROR_STACKTRACE
 }
