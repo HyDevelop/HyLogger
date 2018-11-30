@@ -26,6 +26,14 @@ public abstract class LogEnvironment
         for (String sentence : replaceVariables(format, prefix, message).getSentences()) logRaw(sentence);
     }
 
+    public void log(String format, String prefix, StackTraceElement stackTraceElement)
+    {
+        format = replaceBasicVariables(format, prefix);
+        format = format.replace("{message}", stackTraceElement.toString());
+
+        logRaw(format);
+    }
+
     public static Paragraph replaceVariables(String format, String prefix, Paragraph paragraph)
     {
         Paragraph result = new Paragraph();
@@ -51,8 +59,14 @@ public abstract class LogEnvironment
 
     private static String replaceBasicVariables(String format, String prefix)
     {
+        StackTraceElement stackTrace = null;
+        StackTraceElement[] elements = Thread.currentThread().getStackTrace();
+        for (int i = 5; i < elements.length; i++)
+        {
+            if (!elements[i].getClassName().startsWith("cc.moecraft.logger")) stackTrace = elements[i];
+        }
 
-        StackTraceElement stackTrace = Thread.currentThread().getStackTrace()[6];
+        if (stackTrace == null) stackTrace = Thread.currentThread().getStackTrace()[0];
 
         String stClass = stackTrace.getClassName();
         String stMethod = stackTrace.getMethodName();
