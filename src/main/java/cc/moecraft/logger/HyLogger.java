@@ -1,10 +1,22 @@
 package cc.moecraft.logger;
 
 import cc.moecraft.logger.environments.LogEnvironment;
+import cc.moecraft.logger.format.AnsiColor;
 import cc.moecraft.logger.text.Paragraph;
+import cc.moecraft.logger.utils.ThrowableUtil;
 import lombok.Getter;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.IdentityHashMap;
+import java.util.Set;
+
 import static cc.moecraft.logger.LogLevel.*;
+import static cc.moecraft.logger.format.AnsiColor.RED;
+import static cc.moecraft.logger.format.AnsiColor.YELLOW;
+import static cc.moecraft.logger.utils.ThrowableUtil.*;
 
 /**
  * 此类由 Hykilpikonna 在 2018/07/02 创建!
@@ -59,6 +71,13 @@ public class HyLogger
         if (checkDebug(level)) return;
         for (LogEnvironment environment : instanceManager.getEnvironments())
             environment.log(instanceManager.getFormat().get(level), prefix, message);
+    }
+
+    private void log(LogLevel level, StackTraceElement stackTraceElement)
+    {
+        if (checkDebug(level)) return;
+        for (LogEnvironment environment : instanceManager.getEnvironments())
+            environment.log(instanceManager.getFormat().get(level), prefix, stackTraceElement);
     }
 
     public void newLine()
@@ -129,5 +148,40 @@ public class HyLogger
     public void warning(Paragraph message)
     {
         log(WARNING, message);
+    }
+
+    public void error(String message, Throwable throwable)
+    {
+        StringWriter errors = new StringWriter();
+        throwable.printStackTrace(new PrintWriter(errors));
+
+        log(ERROR, message + AnsiColor.YELLOW + ": " + throwable.getMessage() + RED + " ->");
+        log(ERROR_STACKTRACE, new Paragraph(errors.toString()));
+    }
+
+    public void error(Throwable throwable)
+    {
+        String format = instanceManager.getFormat().get(ERROR_STACKTRACE);
+        ArrayList<StackTraceEntry> entries = getStackTrace(throwable);
+
+        log(ERROR_STACKTRACE, RED + "Error: " + throwable.getLocalizedMessage());
+
+        for (StackTraceEntry entry : entries)
+        {
+            switch (entry.getType())
+            {
+                case ELEMENT:
+                {
+                    log(ERROR_STACKTRACE, RED + " -> " + YELLOW + entry.getStackTraceElement());
+                    break;
+                }
+                case BEGIN_CAUSE:
+                {
+                    throwable = throwable.getCause();
+                    log(ERROR_STACKTRACE, RED + "Caused By: " + throwable.getLocalizedMessage());
+                    break;
+                }
+            }
+        }
     }
 }
