@@ -26,6 +26,7 @@ import static cc.moecraft.logger.utils.ThrowableUtil.*;
  *
  * @author Hykilpikonna
  */
+@SuppressWarnings("unused")
 public class HyLogger
 {
     @Getter
