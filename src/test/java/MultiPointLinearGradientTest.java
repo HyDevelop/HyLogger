@@ -14,8 +14,7 @@ import java.util.Map;
  */
 class MultiPointLinearGradientTest
 {
-    @Test
-    void testMapping()
+    public static void main(String[] args)
     {
         List<MultiPointLinearGradient.GradientPoint> list = new ArrayList<>();
 
