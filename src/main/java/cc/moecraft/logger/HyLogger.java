@@ -58,7 +58,7 @@ public class HyLogger
      * @param level Level
      * @param message Message
      */
-    private void log(LogLevel level, String message)
+    public void log(LogLevel level, String message)
     {
         if (checkDebug(level)) return;
         for (LogEnvironment environment : instanceManager.getEnvironments())
@@ -71,7 +71,7 @@ public class HyLogger
      * @param level Level
      * @param message Messages
      */
-    private void log(LogLevel level, String ... message)
+    public void log(LogLevel level, String ... message)
     {
         if (checkDebug(level)) return;
         Paragraph paragraph = new Paragraph(message);
@@ -86,7 +86,7 @@ public class HyLogger
      * @param format Format
      * @param args Arguments
      */
-    private void log(LogLevel level, String format, Object ... args)
+    public void log(LogLevel level, String format, Object ... args)
     {
         //TODO
     }
@@ -97,7 +97,7 @@ public class HyLogger
      * @param level Level
      * @param paragraph Paragraph of messages.
      */
-    private void log(LogLevel level, Paragraph paragraph)
+    public void log(LogLevel level, Paragraph paragraph)
     {
         if (checkDebug(level)) return;
         for (LogEnvironment environment : instanceManager.getEnvironments())
@@ -110,11 +110,41 @@ public class HyLogger
      * @param level Level
      * @param stackTraceElement Stack trace element.
      */
-    private void log(LogLevel level, StackTraceElement stackTraceElement)
+    public void log(LogLevel level, StackTraceElement stackTraceElement)
     {
         if (checkDebug(level)) return;
         for (LogEnvironment environment : instanceManager.getEnvironments())
             environment.log(instanceManager.getFormat().get(level), prefix, stackTraceElement);
+    }
+
+    /**
+     * Log a throwable.
+     *
+     * @param throwable Throwable.
+     */
+    public void log(Throwable throwable)
+    {
+        ArrayList<StackTraceEntry> entries = getStackTrace(throwable);
+
+        log(ERROR_STACKTRACE, RED + "Error: " + throwable.getLocalizedMessage());
+
+        for (StackTraceEntry entry : entries)
+        {
+            switch (entry.getType())
+            {
+                case ELEMENT:
+                {
+                    log(ERROR_STACKTRACE, RED + " -> " + YELLOW + entry.getStackTraceElement());
+                    break;
+                }
+                case BEGIN_CAUSE:
+                {
+                    throwable = throwable.getCause();
+                    log(ERROR_STACKTRACE, RED + "Caused By: " + throwable.getLocalizedMessage());
+                    break;
+                }
+            }
+        }
     }
 
     /**
@@ -125,6 +155,12 @@ public class HyLogger
         log(LOG, "\n");
     }
 
+    /**
+     * Returns true when the level is debug and the debug option is false.
+     *
+     * @param level Level
+     * @return True when the level is debug and the debug option is false.
+     */
     private boolean checkDebug(LogLevel level)
     {
         return level == DEBUG && !debug;
@@ -190,37 +226,14 @@ public class HyLogger
         log(WARNING, message);
     }
 
-    public void error(String message, Throwable throwable)
-    {
-        StringWriter errors = new StringWriter();
-        throwable.printStackTrace(new PrintWriter(errors));
-
-        log(ERROR, message + AnsiColor.YELLOW + ": " + throwable.getMessage() + RED + " ->");
-        log(ERROR_STACKTRACE, new Paragraph(errors.toString()));
-    }
-
     public void error(Throwable throwable)
     {
-        ArrayList<StackTraceEntry> entries = getStackTrace(throwable);
+        log(throwable);
+    }
 
-        log(ERROR_STACKTRACE, RED + "Error: " + throwable.getLocalizedMessage());
-
-        for (StackTraceEntry entry : entries)
-        {
-            switch (entry.getType())
-            {
-                case ELEMENT:
-                {
-                    log(ERROR_STACKTRACE, RED + " -> " + YELLOW + entry.getStackTraceElement());
-                    break;
-                }
-                case BEGIN_CAUSE:
-                {
-                    throwable = throwable.getCause();
-                    log(ERROR_STACKTRACE, RED + "Caused By: " + throwable.getLocalizedMessage());
-                    break;
-                }
-            }
-        }
+    public void error(String message, Throwable throwable)
+    {
+        error(message);
+        error(throwable);
     }
 }
