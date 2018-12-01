@@ -51,6 +51,12 @@ public class HyLogger
         this.timing = new TimingLogger(this);
     }
 
+    /**
+     * Log a message.
+     *
+     * @param level Level
+     * @param message Message
+     */
     private void log(LogLevel level, String message)
     {
         if (checkDebug(level)) return;
@@ -58,6 +64,12 @@ public class HyLogger
             environment.log(instanceManager.getFormat().get(level), prefix, message);
     }
 
+    /**
+     * Log multiple messages
+     *
+     * @param level Level
+     * @param message Messages
+     */
     private void log(LogLevel level, String ... message)
     {
         if (checkDebug(level)) return;
@@ -66,13 +78,37 @@ public class HyLogger
             environment.log(instanceManager.getFormat().get(level), prefix, paragraph);
     }
 
-    private void log(LogLevel level, Paragraph message)
+    /**
+     * Log message with a format.
+     *
+     * @param level Level
+     * @param format Format
+     * @param args Arguments
+     */
+    private void log(LogLevel level, String format, Object ... args)
+    {
+        //TODO
+    }
+
+    /**
+     * Log a paragraph of messages.
+     *
+     * @param level Level
+     * @param paragraph Paragraph of messages.
+     */
+    private void log(LogLevel level, Paragraph paragraph)
     {
         if (checkDebug(level)) return;
         for (LogEnvironment environment : instanceManager.getEnvironments())
-            environment.log(instanceManager.getFormat().get(level), prefix, message);
+            environment.log(instanceManager.getFormat().get(level), prefix, paragraph);
     }
 
+    /**
+     * Log a stack trace element.
+     *
+     * @param level Level
+     * @param stackTraceElement Stack trace element.
+     */
     private void log(LogLevel level, StackTraceElement stackTraceElement)
     {
         if (checkDebug(level)) return;
@@ -80,6 +116,9 @@ public class HyLogger
             environment.log(instanceManager.getFormat().get(level), prefix, stackTraceElement);
     }
 
+    /**
+     * Log an empty line.
+     */
     public void newLine()
     {
         log(LOG, "\n");
@@ -161,7 +200,6 @@ public class HyLogger
 
     public void error(Throwable throwable)
     {
-        String format = instanceManager.getFormat().get(ERROR_STACKTRACE);
         ArrayList<StackTraceEntry> entries = getStackTrace(throwable);
 
         log(ERROR_STACKTRACE, RED + "Error: " + throwable.getLocalizedMessage());
