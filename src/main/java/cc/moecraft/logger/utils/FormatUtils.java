@@ -10,4 +10,34 @@ package cc.moecraft.logger.utils;
  */
 public class FormatUtils
 {
+    /**
+     * Format a string.
+     *
+     * @param format Format
+     * @param args Args
+     * @return Formatted string.
+     */
+    public static String resolve(String format, Object... args)
+    {
+        StringBuilder result = new StringBuilder();
+
+        int count = 0;
+        for (int i = 0; i < format.length() - 1; i++)
+        {
+            char charAt = format.charAt(i);
+            String twoChars = format.substring(i, i + 2);
+
+            // Resolve {}
+            if (twoChars.equals("{}"))
+            {
+                result.append(args[count]);
+                count++;
+                i++;
+                continue;
+            }
+            result.append(format.charAt(i));
+        }
+
+        return result.toString();
+    }
 }
