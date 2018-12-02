@@ -22,5 +22,10 @@ public class LogFormatTest
         logger.log("Set {1,2} differs from {}", 3);
         logger.log("Set \\{} differs from {}", "3");
         logger.log("File name is C:\\\\{}.", "file.zip");
+        logger.newLine();
+
+        // Test obtained from:  https://dzone.com/articles/java-string-format-examples
+        logger.logf("%s = %d", "joe", 35);
+        logger.logf("PI = %f%n", Math.PI);
     }
 }
