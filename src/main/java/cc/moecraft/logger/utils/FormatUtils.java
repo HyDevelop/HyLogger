@@ -27,6 +27,17 @@ public class FormatUtils
             char charAt = format.charAt(i);
             String twoChars = format.substring(i, i + 2);
 
+            // Ignore \*
+            if (charAt == '\\')
+            {
+                i++;
+                if (i < format.length())
+                {
+                    result.append(format.charAt(i));
+                }
+                continue;
+            }
+
             // Resolve {}
             if (twoChars.equals("{}"))
             {
