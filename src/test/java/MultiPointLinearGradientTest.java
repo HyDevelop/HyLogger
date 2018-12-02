@@ -1,5 +1,4 @@
 import cc.moecraft.logger.coloring.MultiPointLinearGradient;
-import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 import java.util.ArrayList;
