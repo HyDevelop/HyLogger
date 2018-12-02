@@ -63,6 +63,9 @@
 * 带Slf4j那样格式的输出 (比如`logger.log("12{}45", 3);`)
 * 添加DISABLED颜色支持级别
 * `logger.error`添加Throwable支持
+<br><br>
+* **v3.5.220**
+* 带printf那样格式的输出 (比如`logger.logf("PI = %f%n", Math.PI);`)
 
 #### 待实现(TODO)的功能:
 
