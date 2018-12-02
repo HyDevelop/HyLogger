@@ -2,6 +2,7 @@ package cc.moecraft.logger;
 
 import cc.moecraft.logger.environments.LogEnvironment;
 import cc.moecraft.logger.text.Paragraph;
+import cc.moecraft.logger.utils.FormatUtils;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -60,20 +61,6 @@ public class HyLogger
     }
 
     /**
-     * Log multiple messages
-     *
-     * @param level Level
-     * @param message Messages
-     */
-    public void log(LogLevel level, String ... message)
-    {
-        if (checkDebug(level)) return;
-        Paragraph paragraph = new Paragraph(message);
-        for (LogEnvironment environment : instanceManager.getEnvironments())
-            environment.log(instanceManager.getFormat().get(level), prefix, paragraph);
-    }
-
-    /**
      * Log message with a format.
      *
      * @param level Level
@@ -82,7 +69,7 @@ public class HyLogger
      */
     public void log(LogLevel level, String format, Object ... args)
     {
-        //TODO
+        log(level, FormatUtils.resolve(format, args));
     }
 
     /**
@@ -180,26 +167,6 @@ public class HyLogger
         log(WARNING, message);
     }
 
-    public void log(String ... message)
-    {
-        log(LOG, message);
-    }
-
-    public void debug(String ... message)
-    {
-        log(DEBUG, message);
-    }
-
-    public void error(String ... message)
-    {
-        log(ERROR, message);
-    }
-
-    public void warning(String ... message)
-    {
-        log(WARNING, message);
-    }
-
     public void log(Paragraph message)
     {
         log(LOG, message);
@@ -218,6 +185,26 @@ public class HyLogger
     public void warning(Paragraph message)
     {
         log(WARNING, message);
+    }
+
+    public void log(String format, Object ... message)
+    {
+        log(LOG, format, message);
+    }
+
+    public void debug(String format, Object ... message)
+    {
+        log(DEBUG, format, message);
+    }
+
+    public void error(String format, Object ... message)
+    {
+        log(ERROR, format, message);
+    }
+
+    public void warning(String format, Object ... message)
+    {
+        log(WARNING, format, message);
     }
 
     public void error(Throwable throwable)
