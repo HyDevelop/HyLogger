@@ -133,7 +133,7 @@ public class HyLogger
      */
     public void newLine()
     {
-        log(LOG, "\n");
+        log(LOG, "");
     }
 
     /**
