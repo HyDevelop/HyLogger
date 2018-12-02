@@ -29,18 +29,50 @@ public class ConsoleColoredEnv extends LogEnvironment
     @Override
     public void logRaw(String message)
     {
-        if (colorSupportLevel == FORCED) System.out.println(message);
-        else if (colorSupportLevel == PRESET_ONLY) AnsiConsole.out.println(removeRGB(message));
-        else AnsiConsole.out.println(message);
+        switch (colorSupportLevel)
+        {
+            case FORCED:
+            {
+                System.out.println(message);
+                break;
+            }
+            case PRESET_ONLY:
+            {
+                AnsiConsole.out.println(removeRGB(message));
+                break;
+            }
+            case DISABLED:
+            {
+                System.out.println(removeColor(message));
+                break;
+            }
+            default:
+            {
+                AnsiConsole.out.println(message);
+                break;
+            }
+        }
     }
 
     /**
      * 移除所有RGB同时保留所有预设
+     *
      * @param original 源
      * @return 替换后的
      */
-    public String removeRGB(String original)
+    private String removeRGB(String original)
     {
         return original.replaceAll("\\033\\[38;2;.*?m", "");
+    }
+
+    /**
+     * 移除所有颜色
+     *
+     * @param original 源
+     * @return 替换后的
+     */
+    private String removeColor(String original)
+    {
+        return original.replaceAll("\\033\\[[0-9;]*?m", "");
     }
 }
