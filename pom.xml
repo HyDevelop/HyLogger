@@ -24,7 +24,7 @@
         <dependency>
             <groupId>com.github.HyDevelop</groupId>
             <artifactId>HyCommonUtils</artifactId>
-            <version>1.1.0.5</version>
+            <version>1.4.0.207</version>
         </dependency>
 
         <dependency>
@@ -33,7 +33,6 @@
             <version>1.14.8</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.fusesource.jansi/jansi -->
         <dependency>
             <groupId>org.fusesource.jansi</groupId>
             <artifactId>jansi</artifactId>
