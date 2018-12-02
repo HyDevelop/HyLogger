@@ -1,22 +1,16 @@
 package cc.moecraft.logger;
 
 import cc.moecraft.logger.environments.LogEnvironment;
-import cc.moecraft.logger.format.AnsiColor;
 import cc.moecraft.logger.text.Paragraph;
-import cc.moecraft.logger.utils.ThrowableUtil;
 import lombok.Getter;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.IdentityHashMap;
-import java.util.Set;
 
 import static cc.moecraft.logger.LogLevel.*;
 import static cc.moecraft.logger.format.AnsiColor.RED;
 import static cc.moecraft.logger.format.AnsiColor.YELLOW;
-import static cc.moecraft.logger.utils.ThrowableUtil.*;
+import static cc.moecraft.logger.utils.ThrowableUtil.StackTraceEntry;
+import static cc.moecraft.logger.utils.ThrowableUtil.getStackTrace;
 
 /**
  * 此类由 Hykilpikonna 在 2018/07/02 创建!
