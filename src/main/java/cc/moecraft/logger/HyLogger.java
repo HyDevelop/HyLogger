@@ -61,15 +61,27 @@ public class HyLogger
     }
 
     /**
-     * Log message with a format.
+     * Log message with Slf4J format.
      *
      * @param level Level
-     * @param format Format
+     * @param format Slf4J Format
      * @param args Arguments
      */
     public void log(LogLevel level, String format, Object ... args)
     {
         log(level, FormatUtils.resolve(format, args));
+    }
+
+    /**
+     * Log message with System.printf() format.
+     *
+     * @param level Level
+     * @param format System.printf() format.
+     * @param args Arguments.
+     */
+    public void logf(LogLevel level, String format, Object ... args)
+    {
+        log(level, String.format(format, args));
     }
 
     /**
@@ -205,6 +217,26 @@ public class HyLogger
     public void warning(String format, Object ... message)
     {
         log(WARNING, format, message);
+    }
+
+    public void logf(String format, Object ... message)
+    {
+        logf(LOG, format, message);
+    }
+
+    public void debugf(String format, Object ... message)
+    {
+        logf(DEBUG, format, message);
+    }
+
+    public void errorf(String format, Object ... message)
+    {
+        logf(ERROR, format, message);
+    }
+
+    public void warningf(String format, Object ... message)
+    {
+        logf(WARNING, format, message);
     }
 
     public void error(Throwable throwable)
