@@ -23,7 +23,7 @@ public class AnsiRGB
 {
     private Color foreground;
     private Color background;
-    private AnsiColorMode colorMode = AnsiColorMode.COLOR_8BIT;
+    private AnsiColorMode colorMode = AnsiColorMode.COLOR_RGB;
     
     /**
      * Construct an AnsiRGB object with rgb int (0 - 16777216)
