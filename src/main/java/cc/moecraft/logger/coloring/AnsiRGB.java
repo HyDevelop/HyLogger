@@ -60,14 +60,18 @@ public class AnsiRGB
     }
     
     /**
-     * 用RGB获取一个ANSI码
-     * @param r 红
-     * @param g 绿
-     * @param b 蓝
-     * @return ANSI颜色码
+     * Get ANSI color code.
+     *
+     * @return ANSI color code.
      */
-    public static String toAnsi(int r, int g, int b)
+    @Override
+    public String toString()
     {
-        return String.format(AnsiConstants.RGB_FORMAT, r, g, b);
+        String result = ESC_PREFIX;
+        
+        if (foreground != null) result += FOREGROUND + colorMode.format(foreground);
+        if (background != null) result += BACKGROUND + colorMode.format(background);
+        
+        return result + SUFFIX;
     }
 }
