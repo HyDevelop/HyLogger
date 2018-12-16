@@ -1,6 +1,7 @@
 package cc.moecraft.logger.coloring;
 
 import cc.moecraft.logger.format.AnsiConstants;
+import lombok.*;
 
 import java.awt.*;
 
@@ -12,28 +13,35 @@ import java.awt.*;
  *
  * @author Hykilpikonna
  */
-public class AnsiRGB extends Color
+@Getter
+@Setter
+@AllArgsConstructor
+public class AnsiRGB
 {
-    public AnsiRGB(int r, int g, int b)
-    {
-        super(r, g, b);
-    }
-
+    private int red;
+    private int green;
+    private int blue;
+    
+    /**
+     * Construct an AnsiRGB object with rgb int (0 - 16777216)
+     *
+     * @param rgb RGB int value.
+     */
     public AnsiRGB(int rgb)
     {
-        super(rgb);
+        this(new Color(rgb));
     }
-
-    public AnsiRGB(float r, float g, float b)
-    {
-        super(r, g, b);
-    }
-
+    
+    /**
+     * Construct an AnsiRGB object with a color object.
+     *
+     * @param color Color object.
+     */
     public AnsiRGB(Color color)
     {
         this(color.getRed(), color.getGreen(), color.getBlue());
     }
-
+    
     @Override
     public String toString()
     {
