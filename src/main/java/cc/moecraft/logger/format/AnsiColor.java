@@ -23,7 +23,7 @@ public enum AnsiColor
     CYAN  (36, "3", "b"),
     WHITE (37, "7", "f");
 
-    int code;
+    private int code;
 
     AnsiColor(int code, String ... placeholders)
     {
@@ -51,5 +51,9 @@ public enum AnsiColor
     public String getBackground()
     {
         return ESC_PREFIX + (code + 10) + SUFFIX;
+    }
+    public String getBrightBg()
+    {
+        return ESC_PREFIX + (code + 70) + SUFFIX;
     }
 }
