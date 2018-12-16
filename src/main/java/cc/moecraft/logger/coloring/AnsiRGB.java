@@ -15,6 +15,7 @@ import static cc.moecraft.logger.format.AnsiConstants.*;
  *
  * @author Hykilpikonna
  */
+@SuppressWarnings("WeakerAccess")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -42,20 +43,22 @@ public class AnsiRGB
      */
     public AnsiRGB(Color color)
     {
-        this(color.getRed(), color.getGreen(), color.getBlue());
+        this();
+        setForeground(color);
     }
     
-    @Override
-    public String toString()
+    /**
+     * Construct an AnsiRGB object with R G B values.
+     *
+     * @param r Red
+     * @param g Green
+     * @param b Blue
+     */
+    public AnsiRGB(int r, int g, int b)
     {
-        return toAnsi();
+        this(new Color(r, g, b));
     }
-
-    public String toAnsi()
-    {
-        return toAnsi(getRed(), getGreen(), getBlue());
-    }
-
+    
     /**
      * 用RGB获取一个ANSI码
      * @param r 红
