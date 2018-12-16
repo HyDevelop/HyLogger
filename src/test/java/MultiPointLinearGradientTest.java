@@ -1,9 +1,8 @@
 import cc.moecraft.logger.coloring.MultiPointLinearGradient;
 
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 此类由 Hykilpikonna 在 18-7-7 创建!

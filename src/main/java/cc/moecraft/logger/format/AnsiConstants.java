@@ -1,8 +1,6 @@
 package cc.moecraft.logger.format;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/04 创建!

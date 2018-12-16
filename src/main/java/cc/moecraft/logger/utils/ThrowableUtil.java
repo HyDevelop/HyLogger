@@ -3,10 +3,7 @@ package cc.moecraft.logger.utils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.IdentityHashMap;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 此类由 Hykilpikonna 在 2018/08/18 创建!

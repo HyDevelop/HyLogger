@@ -3,9 +3,7 @@ package cc.moecraft.logger.text;
 import cc.moecraft.logger.HyLogger;
 import lombok.Getter;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.*;
 
 /**
  * 此类由 Hykilpikonna 在 18-7-8 创建!

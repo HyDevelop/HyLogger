@@ -1,6 +1,5 @@
 package cc.moecraft.logger.coloring;
 
-import cc.moecraft.logger.format.AnsiConstants;
 import lombok.*;
 
 import java.awt.*;
