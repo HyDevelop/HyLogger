@@ -1,6 +1,5 @@
 package cc.moecraft.logger.environments;
 
-import cc.moecraft.logger.exceptions.FailedToCreateFileLoggerException;
 import cc.moecraft.logger.format.AnsiColor;
 import cc.moecraft.utils.FileUtils;
 import lombok.Getter;
@@ -19,12 +18,10 @@ import static cc.moecraft.utils.TimeUtils.getCurrentTime;
  *
  * @author Hykilpikonna
  */
+@Getter
 public class FileEnv extends LogEnvironment
 {
-    @Getter
     private PrintWriter fileWriter;
-
-    @Getter
     private File file;
 
     long lastLogTime = System.currentTimeMillis();
@@ -40,7 +37,7 @@ public class FileEnv extends LogEnvironment
         }
         catch (FileNotFoundException e)
         {
-            throw new FailedToCreateFileLoggerException(e);
+            throw new RuntimeException("Failed to create file logger:", e);
         }
 
         Runtime.getRuntime().addShutdownHook(new Thread(() ->
@@ -58,7 +55,7 @@ public class FileEnv extends LogEnvironment
 
     private static File getFile(String filePath, String fileName)
     {
-        if (fileName == null) throw new FailedToCreateFileLoggerException(new NullPointerException());
+        if (fileName == null) throw new RuntimeException("Failed to get file:", new NullPointerException());
         if (filePath == null || filePath.isEmpty()) filePath = "./";
         if (!(filePath.endsWith("/") || filePath.endsWith("\\"))) filePath += File.separator;
         return new File(filePath + fileName + "@" + getCurrentTime()
