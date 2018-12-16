@@ -46,7 +46,7 @@ public enum AnsiColorMode
      * @param b Blue
      * @return Formatted string.
      */
-    private String format(int r, int g, int b)
+    public String format(int r, int g, int b)
     {
         return formatter.format(r, g, b);
     }
