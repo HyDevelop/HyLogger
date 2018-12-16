@@ -23,7 +23,6 @@ public class ConsoleColoredEnv extends LogEnvironment
             else colorSupportLevel = DEFAULT;
 
         this.colorSupportLevel = colorSupportLevel;
-        if (colorSupportLevel != FORCED && colorSupportLevel == PASSTHROUGH) System.getProperties().setProperty("jansi.passthrough", "true");
     }
 
     @Override
@@ -62,7 +61,7 @@ public class ConsoleColoredEnv extends LogEnvironment
      */
     private String removeRGB(String original)
     {
-        return original.replaceAll("\\033\\[38;2;.*?m", "");
+        return original.replaceAll("\\033\\[38;[25];.*?m", "");
     }
 
     /**
