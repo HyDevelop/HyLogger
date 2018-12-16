@@ -1,8 +1,9 @@
 package cc.moecraft.logger.utils;
 
-import cc.moecraft.logger.coloring.MultiPointLinearGradient;
+import cc.moecraft.logger.coloring.*;
 import cc.moecraft.logger.format.AnsiColor;
 import cc.moecraft.logger.text.Paragraph;
+import lombok.AllArgsConstructor;
 
 import java.awt.*;
 
@@ -14,12 +15,16 @@ import java.awt.*;
  *
  * @author Hykilpikonna
  */
+@AllArgsConstructor
 public class TextColoringUtil
 {
-    public static String getGradientText(String text, MultiPointLinearGradient gradient)
+    private String text;
+    private AnsiColorMode colorMode;
+    
+    public String getGradientText(MultiPointLinearGradient gradient)
     {
         char[] chars = text.toCharArray();
-        Color[] colors = gradient.getColors(chars.length);
+        AnsiRGB[] colors = gradient.getColors(colorMode, chars.length);
 
         StringBuilder result = new StringBuilder();
 
@@ -31,12 +36,12 @@ public class TextColoringUtil
         return result.toString();
     }
 
-    public static String getGradientText(String text, Color color1, Color color2, Color ... colors)
+    public String getGradientText(Color color1, Color color2, Color ... colors)
     {
-        return getGradientText(text, new MultiPointLinearGradient(color1, color2, colors));
+        return getGradientText(new MultiPointLinearGradient(color1, color2, colors));
     }
 
-    public static Paragraph getGradientParagraph(char[][] chars, MultiPointLinearGradient gradient, int degrees)
+    public static Paragraph getGradientParagraph(AnsiColorMode colorMode, char[][] chars, MultiPointLinearGradient gradient, int degrees)
     {
         // x = 一句里最多多少字符
         // y = 一共多少句
@@ -90,13 +95,13 @@ public class TextColoringUtil
         //   2 11 |________|\\\
 
 
-        Color[][] newColors = new Color[yWithOffset + 1][xMax + 1];
+        AnsiRGB[][] newColors = new AnsiRGB[yWithOffset + 1][xMax + 1];
 
-        Color[] verticalColors = gradient.getColors(yWithOffset + 1);
+        AnsiRGB[] verticalColors = gradient.getColors(colorMode, yWithOffset + 1);
 
         for (int sourceY = 0; sourceY < verticalColors.length; sourceY++)
         {
-            Color color = verticalColors[sourceY];
+            AnsiRGB color = verticalColors[sourceY];
 
             for (int x = 0; x < xMax + 1; x++)
             {
@@ -121,14 +126,14 @@ public class TextColoringUtil
         for (int y = 0; y < yMax + 1; y++)
         {
             char[] sentence = chars[y];
-            Color[] colors = newColors[y + offset];
+            AnsiRGB[] colors = newColors[y + offset];
 
             StringBuilder oneResult = new StringBuilder();
 
             for (int x = 0; x < xMax + 1; x++)
             {
                 char charInASentence = sentence[x];
-                Color colorInASentence = colors[x];
+                AnsiRGB colorInASentence = colors[x];
 
                 if (charInASentence == '\u0000') continue;
                 if (colorInASentence != null) oneResult.append(colorInASentence);
