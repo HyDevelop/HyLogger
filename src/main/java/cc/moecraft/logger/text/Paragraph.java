@@ -1,6 +1,5 @@
 package cc.moecraft.logger.text;
 
-import cc.moecraft.logger.HyLogger;
 import lombok.Getter;
 
 import java.util.*;
@@ -11,6 +10,7 @@ import java.util.*;
  * Twitter: @Hykilpikonna
  * QQ/Wechat: 
  */
+@SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class Paragraph
 {
     @Getter
@@ -84,10 +84,5 @@ public class Paragraph
         }
 
         return result.toString();
-    }
-
-    public void logTo(HyLogger logger)
-    {
-        logger.log(this);
     }
 }
