@@ -130,6 +130,7 @@ public class TextColoringUtil
                 char charInASentence = sentence[x];
                 Color colorInASentence = colors[x];
 
+                if (charInASentence == '\u0000') continue;
                 if (colorInASentence != null) oneResult.append(colorInASentence);
                 else oneResult.append(AnsiColor.RESET);
 
