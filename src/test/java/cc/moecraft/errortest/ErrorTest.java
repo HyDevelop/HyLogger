@@ -2,9 +2,7 @@ package cc.moecraft.errortest;
 
 import cc.moecraft.logger.HyLogger;
 import cc.moecraft.logger.LoggerInstanceManager;
-import cc.moecraft.logger.environments.ColorSupportLevel;
-import cc.moecraft.logger.environments.ConsoleColoredEnv;
-import cc.moecraft.logger.environments.FileEnv;
+import cc.moecraft.logger.environments.*;
 
 /**
  * 此类由 Hykilpikonna 在 2018/08/18 创建!

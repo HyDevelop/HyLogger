@@ -8,10 +8,8 @@ import lombok.Getter;
 import java.util.ArrayList;
 
 import static cc.moecraft.logger.LogLevel.*;
-import static cc.moecraft.logger.format.AnsiColor.RED;
-import static cc.moecraft.logger.format.AnsiColor.YELLOW;
-import static cc.moecraft.logger.utils.ThrowableUtil.StackTraceEntry;
-import static cc.moecraft.logger.utils.ThrowableUtil.getStackTrace;
+import static cc.moecraft.logger.format.AnsiColor.*;
+import static cc.moecraft.logger.utils.ThrowableUtil.*;
 
 /**
  * 此类由 Hykilpikonna 在 2018/07/02 创建!

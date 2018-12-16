@@ -2,9 +2,7 @@ package cc.moecraft.tests;
 
 import cc.moecraft.logger.HyLogger;
 import cc.moecraft.logger.LoggerInstanceManager;
-import cc.moecraft.logger.environments.ColorSupportLevel;
-import cc.moecraft.logger.environments.ConsoleColoredEnv;
-import cc.moecraft.logger.environments.FileEnv;
+import cc.moecraft.logger.environments.*;
 import cc.moecraft.logger.text.Paragraph;
 
 import java.awt.*;

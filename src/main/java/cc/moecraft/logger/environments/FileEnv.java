@@ -6,9 +6,7 @@ import cc.moecraft.utils.FileUtils;
 import lombok.Getter;
 import org.fusesource.jansi.AnsiConsole;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+import java.io.*;
 
 import static cc.moecraft.logger.utils.AnsiUtils.removeFormat;
 import static cc.moecraft.utils.TimeUtils.getCurrentTime;
