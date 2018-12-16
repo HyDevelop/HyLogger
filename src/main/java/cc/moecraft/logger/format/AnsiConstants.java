@@ -12,14 +12,16 @@ import java.util.Map;
  *
  * @author Hykilpikonna
  */
+@SuppressWarnings("WeakerAccess")
 public class AnsiConstants
 {
-    public static final String PREFIX;
-
-    public static final String SUFFIX;
-    public static final String RGB_FORMAT;
-
-    public static final String FORMAT_PREFIX;
+    public static final String ESC_PREFIX = "\033[";
+    public static final String SUFFIX = "m";
+    
+    public static final String FORMAT_PREFIX = "&";
+    
+    public static final String FOREGROUND = "38;";
+    public static final String BACKGROUND = "48;";
 
     public static final ArrayList<AnsiColor> colors;
     public static final Map<String, AnsiColor> colorsPlaceholderIndex;
@@ -28,12 +30,6 @@ public class AnsiConstants
 
     static
     {
-        PREFIX = System.getProperty("os.name").toLowerCase().contains("win") ? "\033[" : "\u001B[";
-
-        SUFFIX = "m";
-        FORMAT_PREFIX = "&";
-        RGB_FORMAT = PREFIX + "38;2;%s;%s;%sm";
-
         colors = new ArrayList<>();
         formats = new ArrayList<>();
         colorsPlaceholderIndex = new HashMap<>();

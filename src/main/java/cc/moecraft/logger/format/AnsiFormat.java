@@ -35,7 +35,7 @@ public enum AnsiFormat
     @Override
     public String toString() 
     {
-        return PREFIX + code + SUFFIX;
+        return ESC_PREFIX + code + SUFFIX;
     }
 
     public static String replaceAllFormatWithANSI(String original)
