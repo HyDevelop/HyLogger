@@ -37,21 +37,34 @@ public enum AnsiColor
     {
         return ESC_PREFIX + code + SUFFIX;
     }
-
+    
+    /**
+     * @return The ansi color code for this color preset.
+     */
     public String get()
     {
         return toString();
     }
-
+    
+    /**
+     * @return The bright ansi color code for this color preset.
+     */
     public String getBright()
     {
         return ESC_PREFIX + code + ";1" + SUFFIX;
     }
-
+    
+    /**
+     * @return The background ansi color code for this color preset.
+     */
     public String getBackground()
     {
         return ESC_PREFIX + (code + 10) + SUFFIX;
     }
+    
+    /**
+     * @return The bright background ansi color code for this color preset.
+     */
     public String getBrightBg()
     {
         return ESC_PREFIX + (code + 70) + SUFFIX;
