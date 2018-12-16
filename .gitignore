@@ -2,3 +2,6 @@
 target/*
 HyLogger.iml
 *.log
+temp
+splash.txt
+Test2.java
