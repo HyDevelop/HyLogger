@@ -35,7 +35,7 @@ public enum AnsiColor
     @Override
     public String toString()
     {
-        return PREFIX + code + SUFFIX;
+        return ESC_PREFIX + code + SUFFIX;
     }
 
     public String get()
@@ -45,11 +45,11 @@ public enum AnsiColor
 
     public String getBright()
     {
-        return PREFIX + code + ";1" + SUFFIX;
+        return ESC_PREFIX + code + ";1" + SUFFIX;
     }
 
     public String getBackground()
     {
-        return PREFIX + (code + 10) + SUFFIX;
+        return ESC_PREFIX + (code + 10) + SUFFIX;
     }
 }
