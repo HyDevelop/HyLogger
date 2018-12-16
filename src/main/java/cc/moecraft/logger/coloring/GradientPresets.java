@@ -20,7 +20,6 @@ public class GradientPresets
 
     static
     {
-        // 这个彩虹预设的比例真的不是瞎打出来的... 自然的彩虹就是这样的比例...
         RAINBOW = new MultiPointLinearGradient(
                 new Color(255, 0,   0  ),
                 new GradientPoint(new Color(255, 0,   255), 15),
