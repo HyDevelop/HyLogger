@@ -1,9 +1,12 @@
 package cc.moecraft.logger;
 
+import cc.moecraft.logger.coloring.AnsiColorMode;
 import cc.moecraft.logger.coloring.MultiPointLinearGradient;
 import cc.moecraft.logger.format.AnsiConstants;
 import cc.moecraft.logger.text.Paragraph;
 import cc.moecraft.logger.utils.TextColoringUtil;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.awt.*;
 import java.util.Random;
@@ -19,6 +22,9 @@ import java.util.Random;
 public class FancyLogger
 {
     private HyLogger logger;
+    
+    @Setter @Getter
+    private AnsiColorMode colorMode = AnsiColorMode.COLOR_RGB;
 
     protected FancyLogger(HyLogger logger)
     {
@@ -42,21 +48,21 @@ public class FancyLogger
 
     public void logGradient(String message, Color color1, Color color2, Color ... colors)
     {
-        logger.log(TextColoringUtil.getGradientText(message, color1, color2, colors));
+        logger.log(new TextColoringUtil(message, colorMode).getGradientText(color1, color2, colors));
     }
 
     public void logGradient(String message, MultiPointLinearGradient gradient)
     {
-        logger.log(TextColoringUtil.getGradientText(message, gradient));
+        logger.log(new TextColoringUtil(message, colorMode).getGradientText(gradient));
     }
 
     public void logGradient(Paragraph message, MultiPointLinearGradient gradient, int degrees)
     {
-        logger.log(TextColoringUtil.getGradientParagraph(message.toCharArray(), gradient, degrees));
+        logger.log(TextColoringUtil.getGradientParagraph(colorMode, message.toCharArray(), gradient, degrees));
     }
 
     public void logGradient(Paragraph message, MultiPointLinearGradient gradient)
     {
-        logger.log(TextColoringUtil.getGradientParagraph(message.toCharArray(), gradient, 0));
+        logger.log(TextColoringUtil.getGradientParagraph(colorMode, message.toCharArray(), gradient, 0));
     }
 }
