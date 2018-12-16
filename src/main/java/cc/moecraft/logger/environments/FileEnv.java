@@ -25,7 +25,12 @@ public class FileEnv extends LogEnvironment
     private File file;
 
     long lastLogTime = System.currentTimeMillis();
-
+    
+    /**
+     * Construct a file logging environment with a file object.
+     *
+     * @param file File object.
+     */
     public FileEnv(File file)
     {
         this.file = file;
