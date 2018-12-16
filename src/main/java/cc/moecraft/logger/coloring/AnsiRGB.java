@@ -5,6 +5,8 @@ import lombok.*;
 
 import java.awt.*;
 
+import static cc.moecraft.logger.format.AnsiConstants.*;
+
 /**
  * 此类由 Hykilpikonna 在 2018/07/05 创建!
  * Created by Hykilpikonna on 2018/07/05!
@@ -16,11 +18,12 @@ import java.awt.*;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class AnsiRGB
 {
-    private int red;
-    private int green;
-    private int blue;
+    private Color foreground;
+    private Color background;
+    private AnsiColorMode colorMode = AnsiColorMode.COLOR_8BIT;
     
     /**
      * Construct an AnsiRGB object with rgb int (0 - 16777216)
