@@ -164,7 +164,7 @@ public class MultiPointLinearGradient
      * @param amount 数量
      * @return 渐变
      */
-    public AnsiRGB[] getColors(int amount)
+    public AnsiRGB[] getColors(AnsiColorMode colorMode, int amount)
     {
         AnsiRGB[] colors = new AnsiRGB[amount];
         List<Map.Entry<Integer, MultiPointLinearGradient.GradientPoint>> scaledSizes = MultiPointLinearGradient.scaleSizes(mappedSizes, amount);
@@ -194,6 +194,7 @@ public class MultiPointLinearGradient
             AnsiRGB result = new AnsiRGB(resultR, resultG, resultB);
 
             colors[i] = result;
+            colors[i].setColorMode(colorMode);
         }
 
         return colors;
