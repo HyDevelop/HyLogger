@@ -167,11 +167,11 @@ public class MultiPointLinearGradient
     public AnsiRGB[] getColors(AnsiColorMode colorMode, int amount)
     {
         AnsiRGB[] colors = new AnsiRGB[amount];
-        List<Map.Entry<Integer, MultiPointLinearGradient.GradientPoint>> scaledSizes = MultiPointLinearGradient.scaleSizes(mappedSizes, amount);
+        List<Map.Entry<Integer, GradientPoint>> scaledSizes = scaleSizes(mappedSizes, amount);
 
         for (int i = 0; i < amount; i++)
         {
-            List<Map.Entry<Integer, MultiPointLinearGradient.GradientPoint>> nearestTwo = MultiPointLinearGradient.getNearestTwoColors(scaledSizes, i);
+            List<Map.Entry<Integer, GradientPoint>> nearestTwo = getNearestTwoColors(scaledSizes, i);
 
             Color color1 = nearestTwo.get(0).getValue().getColor();
             Color color2 = nearestTwo.get(1).getValue().getColor();
@@ -190,7 +190,7 @@ public class MultiPointLinearGradient
             int resultR = getColorWithRatio(color1.getRed(), color2.getRed(), ratio);
             int resultG = getColorWithRatio(color1.getGreen(), color2.getGreen(), ratio);
             int resultB = getColorWithRatio(color1.getBlue(), color2.getBlue(), ratio);
-
+            
             AnsiRGB result = new AnsiRGB(resultR, resultG, resultB);
 
             colors[i] = result;
