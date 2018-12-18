@@ -1,5 +1,6 @@
 package cc.moecraft.logger.coloring;
 
+import cc.moecraft.logger.utils.ColorConverter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -18,7 +19,7 @@ import java.awt.*;
 public enum AnsiColorMode
 {
     COLOR_RGB((r, g, b) -> String.format("2;%s;%s;%s", r, g, b)),
-    COLOR_8BIT((r, g, b) -> String.format("5;%s", (r * 6 / 256) * 36 + (g * 6 / 256) * 6 + (b * 6 / 256)));
+    COLOR_8BIT((r, g, b) -> String.format("5;%s", ColorConverter.rgbTo8Bit(r, g, b)));
     
     private final AnsiColorFormatter formatter;
     
