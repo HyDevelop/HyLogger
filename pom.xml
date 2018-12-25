@@ -6,7 +6,7 @@
 
     <groupId>cc.moecraft</groupId>
     <artifactId>HyLogger</artifactId>
-    <version>4.0.247</version>
+    <version>4.0.254</version>
 
     <properties>
         <maven.compiler.target>1.8</maven.compiler.target>
