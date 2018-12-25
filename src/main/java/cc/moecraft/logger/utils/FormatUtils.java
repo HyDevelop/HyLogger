@@ -49,6 +49,9 @@ public class FormatUtils
             result.append(format.charAt(i));
         }
 
+        String last = format.substring(format.length() - 2);
+        if (!last.equals("{}")) result.append(last.charAt(1));
+
         return result.toString();
     }
 }
