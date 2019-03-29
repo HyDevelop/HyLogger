@@ -13,13 +13,6 @@
         <maven.compiler.source>1.8</maven.compiler.source>
     </properties>
 
-    <repositories>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-    </repositories>
-
     <dependencies>
         <dependency>
             <groupId>org.fusesource.jansi</groupId>
