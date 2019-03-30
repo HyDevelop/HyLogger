@@ -66,9 +66,9 @@ public class FileEnv extends LogEnvironment
         if (fileName == null) throw new RuntimeException("Failed to get file:", new NullPointerException());
         if (filePath == null || filePath.isEmpty()) filePath = "./";
         if (!(filePath.endsWith("/") || filePath.endsWith("\\"))) filePath += File.separator;
-        return new File(filePath + fileName + "@" + getCurrentTime()
-                .replace(":", "-")
-                .replace(" ", "-") + ".log");
+        // TODO: make this format configurable
+        return new File(filePath + fileName + "@" +
+                new SimpleDateFormat("yy-MM-dd_HH-mm").format(Calendar.getInstance().getTime()) + ".log");
     }
 
     @Override
