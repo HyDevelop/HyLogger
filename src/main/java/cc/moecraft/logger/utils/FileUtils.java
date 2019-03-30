@@ -16,6 +16,25 @@ import java.io.IOException;
 public class FileUtils
 {
     /**
+     * Create file without an exception
+     *
+     * @param file File to create
+     * @return Success or not
+     */
+    public static boolean createSafe(File file)
+    {
+        try
+        {
+            create(file);
+            return true;
+        }
+        catch (FileException e)
+        {
+            return false;
+        }
+    }
+
+    /**
      * Create a file safely
      *
      * @param file File to create
