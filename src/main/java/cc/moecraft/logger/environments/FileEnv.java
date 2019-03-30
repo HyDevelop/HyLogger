@@ -1,14 +1,17 @@
 package cc.moecraft.logger.environments;
 
 import cc.moecraft.logger.format.AnsiColor;
-import cc.moecraft.utils.FileUtils;
+import cc.moecraft.logger.utils.FileUtils;
 import lombok.Getter;
 import org.fusesource.jansi.AnsiConsole;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import static cc.moecraft.logger.utils.AnsiUtils.removeFormat;
-import static cc.moecraft.utils.TimeUtils.getCurrentTime;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/27 创建!
@@ -34,7 +37,7 @@ public class FileEnv extends LogEnvironment
     public FileEnv(File file)
     {
         this.file = file;
-        if (!file.exists()) FileUtils.createFile(file);
+        if (!file.exists()) FileUtils.create(file);
 
         try
         {
