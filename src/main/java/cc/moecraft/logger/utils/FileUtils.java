@@ -41,6 +41,19 @@ public class FileUtils
      */
     public static void create(File file)
     {
+        if (file.isDirectory())
+        {
+            exception("File is directory", file, null);
+        }
+
+        if (!file.getParentFile().exists())
+        {
+            if (!file.getParentFile().mkdirs())
+            {
+                exception("Parent directory creation failed", file, null);
+            }
+        }
+
         if (!file.exists())
         {
             try
@@ -54,31 +67,6 @@ public class FileUtils
             {
                 exception("Unknown", file, e);
             }
-        }
-
-        if (file.isDirectory())
-        {
-            exception("File is directory", file, null);
-        }
-
-        if (!file.getParentFile().exists())
-        {
-            if (!file.mkdir())
-            {
-                exception("Parent directory creation failed", file, null);
-            }
-        }
-
-        try
-        {
-            if (!file.createNewFile())
-            {
-                exception("Unknown", file, null);
-            }
-        }
-        catch (IOException e)
-        {
-            exception("Unknown", file, e);
         }
     }
 
