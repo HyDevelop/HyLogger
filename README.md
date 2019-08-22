@@ -393,6 +393,10 @@ logger.timing.clear();
 * Independent - Hyper
 * Independent - Terminus Alpha
 
+### 10. 给 Eclipse 添加兼容：
+
+在 `Eclipse Marketplace` 中安装 `ANSI Escape in Console` 插件，并启用即可。
+
 <br>
 
 <a name="license"></a>
