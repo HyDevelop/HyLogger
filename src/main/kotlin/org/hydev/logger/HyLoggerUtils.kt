@@ -8,8 +8,11 @@ import kotlin.math.roundToInt
 
 /**
  * Get the string with formats and colors removed.
+ * Or this.replace("\u011B\\[[0-9;]*?m".toRegex(), "")
  */
 fun String.withoutFormat() = this.replace("\u001B\\[[;\\d]*m".toRegex(), "")
+
+fun String.withoutRGB() = this.replace("\u001B\\[38;[25];.*?m".toRegex(), "")
 
 // Shortcuts for RGB
 val Color.r: Int get() = red

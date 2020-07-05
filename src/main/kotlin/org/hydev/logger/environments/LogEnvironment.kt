@@ -1,6 +1,6 @@
 package org.hydev.logger.environments
 
-import org.hydev.logger.HyLoggerConfig.datePattern
+import org.hydev.logger.HyLoggerConfig.timePattern
 import org.hydev.logger.now
 
 /**
@@ -69,7 +69,7 @@ abstract class LogEnvironment
             val stLine = stackTrace.lineNumber.toString() + ""
             val stFull = "$stClass.$stMethod:$stLine"
             return format
-                .replace("{time}", datePattern.now())
+                .replace("{time}", timePattern.now())
                 .replace("{prefix}", prefix)
                 .replace("{st.class}", stClass)
                 .replace("{st.method}", stMethod)
