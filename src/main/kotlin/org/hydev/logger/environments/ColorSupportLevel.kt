@@ -1,18 +1,20 @@
 package org.hydev.logger.environments
 
-/**
- * 此类由 Hykilpikonna 在 2018/07/07 创建!
- * Created by Hykilpikonna on 2018/07/07!
- * Github: https://github.com/hykilpikonna
- * Meow!
- *
- * @author Hykilpikonna
- */
-enum class ColorSupportLevel
+import org.fusesource.jansi.AnsiConsole
+import org.hydev.logger.withoutFormat
+import org.hydev.logger.withoutRGB
+
+enum class ColorSupportLevel(val log: (String) -> Unit)
 {
-    DEFAULT,  // 默认支持
-    PRESET_ONLY,  // 只输出预设颜色, 移除RGB
-    FORCED,  // 不传入Jansi
-    DISABLED,  // 移除所有颜色
-    OS_DEPENDENT // 如果是Windows, 就改为PRESET_ONLY, 如果是Linux或者OSX, 就改为DEFAULT
+    // Default support (let Jansi decide)
+    DEFAULT({ AnsiConsole.out.println(it) }),
+
+    // Only output preset colors and remove xterm-256 colors
+    PRESET_ONLY({ AnsiConsole.out.println(it.withoutRGB()) }),
+
+    // Always output color
+    FORCED({ println(it) }),
+
+    // Remove all colors
+    DISABLED({ println(it.withoutFormat()) }),
 }
