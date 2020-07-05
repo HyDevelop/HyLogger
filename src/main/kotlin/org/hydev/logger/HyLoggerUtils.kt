@@ -1,5 +1,6 @@
 package org.hydev.logger
 
+import org.hydev.logger.format.AnsiConstants
 import java.awt.Color
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -62,3 +63,16 @@ fun DateTimeFormatter.now(): String = LocalDateTime.now().format(this)
  * Add a line to a stringBuilder
  */
 fun StringBuilder.line(line: String): StringBuilder = append(line).append("\n")
+
+/**
+ * Replace format/color codes like &r with actual Ansi colors
+ */
+fun String.parseFormats(): String
+{
+    // TODO: Optimize this
+    var result = this
+    AnsiConstants.formatsIndex.forEach { (k: Char, v: String) ->
+        result = result.replace(AnsiConstants.FORMAT_PREFIX + k, v)
+    }
+    return result
+}
