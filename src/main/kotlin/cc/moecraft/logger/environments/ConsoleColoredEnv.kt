@@ -13,6 +13,7 @@ import org.fusesource.jansi.AnsiConsole
 class ConsoleColoredEnv(colorSupportLevel: ColorSupportLevel) : LogEnvironment()
 {
     private val colorSupportLevel: ColorSupportLevel
+
     override fun logRaw(message: String)
     {
         when (colorSupportLevel)

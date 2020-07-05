@@ -3,7 +3,6 @@ package cc.moecraft.logger
 import cc.moecraft.logger.coloring.AnsiColorMode
 import cc.moecraft.logger.coloring.MultiPointLinearGradient
 import cc.moecraft.logger.format.AnsiConstants
-import cc.moecraft.logger.text.Paragraph
 import cc.moecraft.logger.utils.TextColoringUtil
 import java.awt.Color
 import java.util.*
@@ -27,7 +26,7 @@ class FancyLogger(private val logger: HyLogger)
         val random = Random()
         for (c in message.toCharArray())
         {
-            newMessage.append(AnsiConstants.colors!![random.nextInt(AnsiConstants.colors!!.size)]).append(c)
+            newMessage.append(AnsiConstants.colors[random.nextInt(AnsiConstants.colors.size)]).append(c)
         }
         logger.log(newMessage.toString())
     }
@@ -42,13 +41,8 @@ class FancyLogger(private val logger: HyLogger)
         logger.log(TextColoringUtil(message).getGradientText(gradient))
     }
 
-    fun logGradient(message: Paragraph, gradient: MultiPointLinearGradient, degrees: Int)
+    fun logGradient(message: String, gradient: MultiPointLinearGradient, degrees: Int)
     {
-        logger.log(TextColoringUtil.getGradientParagraph(colorMode, message.toCharArray(), gradient, degrees))
-    }
-
-    fun logGradient(message: Paragraph, gradient: MultiPointLinearGradient)
-    {
-        logger.log(TextColoringUtil.getGradientParagraph(colorMode, message.toCharArray(), gradient, 0))
+        logger.log(TextColoringUtil.getGradientParagraph(message, gradient, degrees))
     }
 }

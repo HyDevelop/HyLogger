@@ -57,3 +57,8 @@ fun String.toDatePattern(): DateTimeFormatter = DateTimeFormatter.ofPattern(this
  * Date pattern to time now
  */
 fun DateTimeFormatter.now(): String = LocalDateTime.now().format(this)
+
+/**
+ * Add a line to a stringBuilder
+ */
+fun StringBuilder.line(line: String): StringBuilder = append(line).append("\n")

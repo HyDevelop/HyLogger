@@ -1,12 +1,12 @@
 package cc.moecraft.logger
 
+import cc.moecraft.logger.HyLoggerConfig.debug
 import cc.moecraft.logger.HyLoggerConfig.environments
 import cc.moecraft.logger.HyLoggerConfig.formats
 import cc.moecraft.logger.LogLevel.*
-import cc.moecraft.logger.text.Paragraph
 import cc.moecraft.logger.utils.FormatUtils
 
-class HyLogger(val prefix: String, val isDebug: Boolean)
+class HyLogger(val prefix: String)
 {
     val fancy = FancyLogger(this)
     val timing = TimingLogger(this)
@@ -48,17 +48,6 @@ class HyLogger(val prefix: String, val isDebug: Boolean)
     }
 
     /**
-     * Log a paragraph of messages.
-     *
-     * @param level Level
-     * @param paragraph Paragraph of messages.
-     */
-    fun log(level: LogLevel, paragraph: Paragraph)
-    {
-        environments.forEach { it.log(formats[level.id], prefix, paragraph) }
-    }
-
-    /**
      * Log a stack trace element.
      *
      * @param level Level
@@ -86,7 +75,7 @@ class HyLogger(val prefix: String, val isDebug: Boolean)
      */
     fun checkDebug(level: LogLevel): Boolean
     {
-        return level == DEBUG && !isDebug
+        return level == DEBUG && !debug
     }
 
     fun log(message: String)
@@ -108,23 +97,6 @@ class HyLogger(val prefix: String, val isDebug: Boolean)
     {
         log(WARNING, message)
     }
-
-    fun log(message: Paragraph)
-    {
-        log(LOG, message)
-    }
-
-    fun debug(message: Paragraph)
-    {
-        log(DEBUG, message)
-    }
-
-    fun error(message: Paragraph)
-    {
-        log(ERROR, message)
-    }
-
-    fun warning(message: Paragraph) = log(WARNING, message)
 
     fun log(format: String, vararg message: Any) = log(LOG, format, *message)
 

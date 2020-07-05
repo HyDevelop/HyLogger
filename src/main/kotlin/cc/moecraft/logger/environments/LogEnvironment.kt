@@ -1,7 +1,6 @@
 package cc.moecraft.logger.environments
 
 import cc.moecraft.logger.HyLoggerConfig.datePattern
-import cc.moecraft.logger.text.Paragraph
 import org.hydev.now
 
 /**
@@ -21,11 +20,6 @@ abstract class LogEnvironment
         logRaw(replaceVariables(format, prefix, message))
     }
 
-    fun log(format: String, prefix: String, message: Paragraph)
-    {
-        for (sentence in replaceVariables(format, prefix, message).sentences) logRaw(sentence)
-    }
-
     fun log(format: String, prefix: String, stackTraceElement: StackTraceElement)
     {
         var format = format
@@ -36,17 +30,6 @@ abstract class LogEnvironment
 
     companion object
     {
-        fun replaceVariables(format: String, prefix: String, paragraph: Paragraph): Paragraph
-        {
-            val result = Paragraph()
-            val basicFormat = replaceBasicVariables(format, prefix)
-            for (sentence in paragraph.sentences)
-            {
-                result.addSentences(replaceMessage(basicFormat, sentence))
-            }
-            return result
-        }
-
         fun replaceVariables(format: String, prefix: String, message: String): String
         {
             return replaceMessage(replaceBasicVariables(format, prefix), message)

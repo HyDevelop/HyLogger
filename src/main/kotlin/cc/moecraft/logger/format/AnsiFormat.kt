@@ -26,10 +26,10 @@ enum class AnsiFormat(var code: String, vararg placeholders: String)
         fun replaceAllFormatWithANSI(original: String): String
         {
             val result = arrayOf(original)
-            AnsiConstants.formatsPlaceholderIndex!!.forEach { (k: String?, v: AnsiFormat?) ->
+            AnsiConstants.formatsPlaceholderIndex.forEach { (k: String?, v: AnsiFormat?) ->
                 result[0] = result[0].replace(AnsiConstants.FORMAT_PREFIX + k, v.toString())
             }
-            AnsiConstants.colorsPlaceholderIndex!!.forEach { (k: String?, v: AnsiColor?) ->
+            AnsiConstants.colorsPlaceholderIndex.forEach { (k: String?, v: AnsiColor?) ->
                 result[0] = result[0].replace(AnsiConstants.FORMAT_PREFIX + k, v.toString())
             }
             return result[0]
@@ -38,7 +38,7 @@ enum class AnsiFormat(var code: String, vararg placeholders: String)
 
     init
     {
-        AnsiConstants.formats!!.add(this)
-        for (placeholder in placeholders) AnsiConstants.formatsPlaceholderIndex!![placeholder] = this
+        AnsiConstants.formats.add(this)
+        for (placeholder in placeholders) AnsiConstants.formatsPlaceholderIndex[placeholder] = this
     }
 }
