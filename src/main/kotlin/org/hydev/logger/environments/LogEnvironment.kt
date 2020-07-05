@@ -26,17 +26,6 @@ abstract class LogEnvironment
         )
     }
 
-    fun log(format: String, prefix: String, stackTraceElement: StackTraceElement)
-    {
-        var format = format
-        format = replaceBasicVariables(
-            format,
-            prefix
-        )
-        format = format.replace("{message}", stackTraceElement.toString())
-        logRaw(format)
-    }
-
     companion object
     {
         fun replaceVariables(format: String, prefix: String, message: String): String

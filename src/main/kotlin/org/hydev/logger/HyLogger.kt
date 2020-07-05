@@ -13,11 +13,8 @@ class HyLogger(val prefix: String)
 
     /**
      * Log a message.
-     *
-     * @param level Level
-     * @param message Message
      */
-    fun log(level: LogLevel, message: String)
+    private fun log(level: LogLevel, message: String)
     {
         if (checkDebug(level)) return
         environments.forEach { it.log(formats[level.id], prefix, message) }
@@ -25,33 +22,13 @@ class HyLogger(val prefix: String)
 
     /**
      * Log message with Slf4J format.
-     *
-     * @param level Level
-     * @param format Slf4J Format
-     * @param args Arguments
      */
-    fun log(level: LogLevel, format: String, vararg args: Any) = log(level, resolve(format, *args))
+    private fun log(level: LogLevel, format: String, vararg args: Any) = log(level, resolve(format, *args))
 
     /**
      * Log message with System.printf() format.
-     *
-     * @param level Level
-     * @param format System.printf() format.
-     * @param args Arguments.
      */
-    fun logf(level: LogLevel, format: String, vararg args: Any) = log(level, String.format(format, *args))
-
-    /**
-     * Log a stack trace element.
-     *
-     * @param level Level
-     * @param stackTraceElement Stack trace element.
-     */
-    fun log(level: LogLevel, stackTraceElement: StackTraceElement)
-    {
-        if (checkDebug(level)) return
-        environments.forEach { it.log(formats[level.id], prefix, stackTraceElement) }
-    }
+    private fun logf(level: LogLevel, format: String, vararg args: Any) = log(level, String.format(format, *args))
 
     /**
      * Log an empty line.
