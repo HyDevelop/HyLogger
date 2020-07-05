@@ -18,11 +18,12 @@ object HyLoggerConfig
 
     var datePattern = "yyyy-MM-dd HH:mm:ss".toDatePattern()
 
-    var formats = mutableListOf("&f[&5{time}&f] [&1{prefix}&f] [&aINFO&f] &r{message}&r",
-        "&f[&5{time}&f] [&1{prefix}&f] [&bDEBUG&f(&e{st.full}&f)] &b{message}&r",
-        "&f[&5{time}&f] [&1{prefix}&f] [&cERROR&f(&e{st.full}&f)] &c{message}&r",
-        "&f[&5{time}&f] [&1{prefix}&f] [&cWARNING&f] &e{message}&r",
-        "&f[&5{time}&f] [&1{prefix}&f] &e{message}&r")
+    var formats = mutableListOf(
+        "&f[&5{time}&f] [&1{prefix}&f] [&aINFO&f] &r{message}&r".parseFormats(),
+        "&f[&5{time}&f] [&1{prefix}&f] [&bDEBUG&f(&e{st.full}&f)] &b{message}&r".parseFormats(),
+        "&f[&5{time}&f] [&1{prefix}&f] [&cERROR&f(&e{st.full}&f)] &c{message}&r".parseFormats(),
+        "&f[&5{time}&f] [&1{prefix}&f] [&cWARNING&f] &e{message}&r".parseFormats(),
+        "&f[&5{time}&f] [&1{prefix}&f] &e{message}&r".parseFormats())
 
     val environments: MutableList<LogEnvironment> = ArrayList()
 
