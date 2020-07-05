@@ -18,16 +18,12 @@ object AnsiConstants
     const val FOREGROUND = "38;"
     const val BACKGROUND = "48;"
 
-    var colors: ArrayList<AnsiColor> = ArrayList()
-    var colorsPlaceholderIndex: MutableMap<String, AnsiColor> = HashMap()
-    var formats: ArrayList<AnsiFormat> = ArrayList()
-    var formatsPlaceholderIndex: MutableMap<String, AnsiFormat> = HashMap()
+    val formatsIndex: MutableMap<Char, String> = HashMap()
 
     init
     {
-        // 必须要先加载上才行
-        var temp: Any
-        temp = AnsiColor.RESET
-        temp = AnsiFormat.RESET
+        // Index enum values
+        AnsiColor.values().forEach { it.placeholders.forEach { char -> formatsIndex[char] = it.value } }
+        AnsiFormat.values().forEach { it.placeholders.forEach { char -> formatsIndex[char] = it.value } }
     }
 }
