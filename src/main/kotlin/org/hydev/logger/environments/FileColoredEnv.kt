@@ -1,4 +1,4 @@
-package cc.moecraft.logger.environments
+package org.hydev.logger.environments
 
 import java.io.File
 

@@ -1,6 +1,6 @@
 package color
 
-import org.hydev.toAnsi8
+import org.hydev.logger.toAnsi8
 import java.awt.Color
 
 /**

@@ -1,5 +1,5 @@
-import cc.moecraft.logger.HyLogger
-import cc.moecraft.logger.format.AnsiColor
+import org.hydev.logger.HyLogger
+import org.hydev.logger.format.AnsiColor
 
 /**
  * 此类由 Hykilpikonna 在 2018/12/16 创建!
@@ -14,6 +14,7 @@ object BackgroundTest
     @JvmStatic
     fun main(args: Array<String>)
     {
-        HyLogger("Test").log(AnsiColor.RED.background + AnsiColor.GREEN + "Hello world!")
+        HyLogger("Test")
+            .log(AnsiColor.RED.background + AnsiColor.GREEN + "Hello world!")
     }
 }

@@ -1,5 +1,5 @@
-import cc.moecraft.logger.coloring.MultiPointLinearGradient
-import cc.moecraft.logger.coloring.MultiPointLinearGradient.GradientPoint
+import org.hydev.logger.coloring.MultiPointLinearGradient
+import org.hydev.logger.coloring.MultiPointLinearGradient.GradientPoint
 import java.awt.Color
 import java.util.*
 

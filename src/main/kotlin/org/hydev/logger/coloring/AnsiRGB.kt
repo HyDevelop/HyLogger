@@ -1,7 +1,7 @@
-package cc.moecraft.logger.coloring
+package org.hydev.logger.coloring
 
-import cc.moecraft.logger.HyLoggerConfig.colorMode
-import cc.moecraft.logger.format.AnsiConstants
+import org.hydev.logger.HyLoggerConfig.colorMode
+import org.hydev.logger.format.AnsiConstants
 import java.awt.Color
 
 class AnsiRGB(var foreground: Color, var background: Color? = null)

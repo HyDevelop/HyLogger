@@ -1,8 +1,8 @@
 
-import cc.moecraft.logger.HyLogger
-import cc.moecraft.logger.coloring.GradientPresets.BOP
-import cc.moecraft.logger.coloring.GradientPresets.BPR
-import cc.moecraft.logger.coloring.GradientPresets.RAINBOW
+import org.hydev.logger.HyLogger
+import org.hydev.logger.coloring.GradientPresets.BOP
+import org.hydev.logger.coloring.GradientPresets.BPR
+import org.hydev.logger.coloring.GradientPresets.RAINBOW
 import java.awt.Color
 
 /**

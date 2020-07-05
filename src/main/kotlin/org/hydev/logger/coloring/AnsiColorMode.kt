@@ -1,7 +1,7 @@
-package cc.moecraft.logger.coloring
+package org.hydev.logger.coloring
 
-import org.hydev.toAnsi256
-import org.hydev.toAnsi8
+import org.hydev.logger.toAnsi256
+import org.hydev.logger.toAnsi8
 import java.awt.Color
 
 enum class AnsiColorMode(val format: (Color) -> String)

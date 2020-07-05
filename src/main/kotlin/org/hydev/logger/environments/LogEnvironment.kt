@@ -1,7 +1,7 @@
-package cc.moecraft.logger.environments
+package org.hydev.logger.environments
 
-import cc.moecraft.logger.HyLoggerConfig.datePattern
-import org.hydev.now
+import org.hydev.logger.HyLoggerConfig.datePattern
+import org.hydev.logger.now
 
 /**
  * 此类由 Hykilpikonna 在 2018/07/02 创建!
@@ -17,13 +17,22 @@ abstract class LogEnvironment
 
     fun log(format: String, prefix: String, message: String)
     {
-        logRaw(replaceVariables(format, prefix, message))
+        logRaw(
+            replaceVariables(
+                format,
+                prefix,
+                message
+            )
+        )
     }
 
     fun log(format: String, prefix: String, stackTraceElement: StackTraceElement)
     {
         var format = format
-        format = replaceBasicVariables(format, prefix)
+        format = replaceBasicVariables(
+            format,
+            prefix
+        )
         format = format.replace("{message}", stackTraceElement.toString())
         logRaw(format)
     }
@@ -32,7 +41,13 @@ abstract class LogEnvironment
     {
         fun replaceVariables(format: String, prefix: String, message: String): String
         {
-            return replaceMessage(replaceBasicVariables(format, prefix), message)
+            return replaceMessage(
+                replaceBasicVariables(
+                    format,
+                    prefix
+                ),
+                message
+            )
         }
 
         private fun replaceMessage(basicFormat: String, message: String): String

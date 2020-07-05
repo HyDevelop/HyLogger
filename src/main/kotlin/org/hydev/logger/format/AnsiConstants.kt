@@ -1,4 +1,4 @@
-package cc.moecraft.logger.format
+package org.hydev.logger.format
 
 import java.util.*
 

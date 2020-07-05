@@ -1,4 +1,4 @@
-package cc.moecraft.logger.environments
+package org.hydev.logger.environments
 
 /**
  * 此类由 Hykilpikonna 在 2018/07/07 创建!

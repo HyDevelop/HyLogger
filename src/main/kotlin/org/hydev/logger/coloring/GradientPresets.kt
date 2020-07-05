@@ -1,6 +1,6 @@
-package cc.moecraft.logger.coloring
+package org.hydev.logger.coloring
 
-import cc.moecraft.logger.coloring.MultiPointLinearGradient.GradientPoint
+import org.hydev.logger.coloring.MultiPointLinearGradient.GradientPoint
 import java.awt.Color
 
 object GradientPresets

@@ -1,7 +1,7 @@
 package color
 
-import org.hydev.to8Bit
-import org.hydev.toAnsi8
+import org.hydev.logger.to8Bit
+import org.hydev.logger.toAnsi8
 import java.awt.Color
 
 /**

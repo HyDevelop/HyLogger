@@ -1,10 +1,10 @@
-package cc.moecraft.logger
+package org.hydev.logger
 
-import cc.moecraft.logger.HyLoggerConfig.debug
-import cc.moecraft.logger.HyLoggerConfig.environments
-import cc.moecraft.logger.HyLoggerConfig.formats
-import cc.moecraft.logger.LogLevel.*
-import cc.moecraft.logger.utils.FormatUtils
+import org.hydev.logger.HyLoggerConfig.debug
+import org.hydev.logger.HyLoggerConfig.environments
+import org.hydev.logger.HyLoggerConfig.formats
+import org.hydev.logger.LogLevel.*
+import org.hydev.logger.utils.FormatUtils
 
 class HyLogger(val prefix: String)
 {
