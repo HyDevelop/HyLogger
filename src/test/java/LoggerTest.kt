@@ -19,38 +19,36 @@ object LoggerTest
     fun main(args: Array<String>)
     {
         val logger = HyLogger("LoggerTest")
-        logger.timing.init()
-        logger.timing.timeAndReset()
+        logger.timing.reset()
+        logger.timing.time().reset()
         logger.log("一条测试Log消息")
-        logger.timing.timeAndReset()
+        logger.timing.time().reset()
         logger.debug("一条测试Debug消息")
-        logger.timing.timeAndReset()
+        logger.timing.time().reset()
         logger.error("一条测试Error消息")
-        logger.timing.timeAndReset()
+        logger.timing.time().reset()
         logger.warning("一条测试Warning消息")
-        logger.timing.timeAndReset()
-        logger.fancy.logRAINBOW("测试随机颜色消息")
-        logger.timing.timeAndReset()
+        logger.timing.time().reset()
         logger.fancy.logGradient("测试渐变从深蓝到浅蓝", Color.BLUE, Color.CYAN)
-        logger.timing.timeAndReset()
+        logger.timing.time().reset()
         logger.fancy.logGradient("测试渐变从橘色到浅蓝", Color.ORANGE, Color.CYAN)
-        logger.timing.timeAndReset()
+        logger.timing.time().reset()
         logger.fancy.logGradient(
             "测试黄绿渐变到天蓝",
             Color(0, 242, 96),
             Color(80, 161, 230)
         )
-        logger.timing.timeAndReset()
+        logger.timing.time().reset()
         logger.fancy.logGradient(
             "测试橙色渐变到粉色",
             Color(255, 140, 0),
             Color(255, 0, 128)
         )
-        logger.timing.timeAndReset()
+        logger.timing.time().reset()
         logger.fancy.logGradient("##############测试彩虹多点渐变预设##############", RAINBOW)
-        logger.timing.timeAndReset()
+        logger.timing.time().reset()
         logger.fancy.logGradient("##############测试蓝到紫到红多点渐变##############", BPR)
-        logger.timing.timeAndReset()
+        logger.timing.time().reset()
         run {
             logger.log("测试Paragraph斜向线性渐变 #1:")
             val paragraph = """
@@ -59,7 +57,7 @@ object LoggerTest
                 ┴ ┴ ┴ ┴─┘└─┘└─┘└─┘└─┘┴└─""".trimIndent()
             logger.fancy.logGradient(paragraph, BPR, 15)
         }
-        logger.timing.timeAndReset()
+        logger.timing.time().reset()
         run {
             logger.log("测试Paragraph斜向线性渐变 #2:")
             val paragraph =
@@ -71,6 +69,6 @@ object LoggerTest
                       /____/            /____//____/             """.trimIndent()
             logger.fancy.logGradient(paragraph, BOP, 60)
         }
-        logger.timing.timeAndReset()
+        logger.timing.time().reset()
     }
 }
