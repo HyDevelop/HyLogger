@@ -1,6 +1,8 @@
 package org.hydev
 
 import java.awt.Color
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import kotlin.math.roundToInt
 
 /**
@@ -45,3 +47,13 @@ fun Color.toAnsi256() = "2;$r;$g;$b"
  * Convert color to 8Bit ANSI color code
  */
 fun Color.toAnsi8() = "5;${to8Bit()}"
+
+/**
+ * String to date pattern
+ */
+fun String.toDatePattern(): DateTimeFormatter = DateTimeFormatter.ofPattern(this)
+
+/**
+ * Date pattern to time now
+ */
+fun DateTimeFormatter.now(): String = LocalDateTime.now().format(this)
