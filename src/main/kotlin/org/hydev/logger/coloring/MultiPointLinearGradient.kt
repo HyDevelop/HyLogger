@@ -1,4 +1,4 @@
-package cc.moecraft.logger.coloring
+package org.hydev.logger.coloring
 
 import java.awt.Color
 import java.util.AbstractMap.SimpleEntry
@@ -13,7 +13,11 @@ class MultiPointLinearGradient(color1: GradientPoint, color2: GradientPoint, col
         this(GradientPoint(color1), color2, mutableListOf(*colors))
 
     constructor(color1: Color, color2: Color, vararg colors: Color) :
-        this(GradientPoint(color1), GradientPoint(color2), ArrayList<GradientPoint>(convert(listOf(*colors))))
+        this(
+            GradientPoint(color1),
+            GradientPoint(color2), ArrayList<GradientPoint>(
+                convert(listOf(*colors))
+            ))
 
     init
     {
@@ -32,10 +36,17 @@ class MultiPointLinearGradient(color1: GradientPoint, color2: GradientPoint, col
     fun getColors(amount: Int): List<AnsiRGB>
     {
         val colors = ArrayList<AnsiRGB>()
-        val scaledSizes = scaleSizes(mappedSizes, amount)
+        val scaledSizes = scaleSizes(
+            mappedSizes,
+            amount
+        )
         for (i in 0 until amount)
         {
-            val nearestTwo = getNearestTwoColors(scaledSizes, i)
+            val nearestTwo =
+                getNearestTwoColors(
+                    scaledSizes,
+                    i
+                )
 
             val color1 = nearestTwo[0].value.color
             val color2 = nearestTwo[1].value.color
@@ -49,9 +60,24 @@ class MultiPointLinearGradient(color1: GradientPoint, color2: GradientPoint, col
             val value1 = nearestTwo[0].key
             val value2 = nearestTwo[1].key
             val ratio = (i - value1).toFloat() / (value2 - value1).toFloat()
-            val resultR = getColorWithRatio(color1.red, color2.red, ratio)
-            val resultG = getColorWithRatio(color1.green, color2.green, ratio)
-            val resultB = getColorWithRatio(color1.blue, color2.blue, ratio)
+            val resultR =
+                getColorWithRatio(
+                    color1.red,
+                    color2.red,
+                    ratio
+                )
+            val resultG =
+                getColorWithRatio(
+                    color1.green,
+                    color2.green,
+                    ratio
+                )
+            val resultB =
+                getColorWithRatio(
+                    color1.blue,
+                    color2.blue,
+                    ratio
+                )
             val result = AnsiRGB(Color(resultR, resultG, resultB))
             colors[i] = result
         }
@@ -65,7 +91,11 @@ class MultiPointLinearGradient(color1: GradientPoint, color2: GradientPoint, col
         private fun convert(colors: List<Color>): List<GradientPoint>
         {
             val result: MutableList<GradientPoint> = ArrayList()
-            for (color in colors) result.add(GradientPoint(color))
+            for (color in colors) result.add(
+                GradientPoint(
+                    color
+                )
+            )
             return result
         }
 

@@ -1,4 +1,4 @@
-package cc.moecraft.logger.format
+package org.hydev.logger.format
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/04 创建!

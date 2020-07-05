@@ -1,9 +1,9 @@
-package cc.moecraft.logger
+package org.hydev.logger
 
-import cc.moecraft.logger.coloring.AnsiColorMode
-import cc.moecraft.logger.coloring.MultiPointLinearGradient
-import cc.moecraft.logger.format.AnsiConstants
-import cc.moecraft.logger.utils.TextColoringUtil
+import org.hydev.logger.coloring.AnsiColorMode
+import org.hydev.logger.coloring.MultiPointLinearGradient
+import org.hydev.logger.format.AnsiConstants
+import org.hydev.logger.utils.TextColoringUtil
 import java.awt.Color
 import java.util.*
 
@@ -26,7 +26,9 @@ class FancyLogger(private val logger: HyLogger)
         val random = Random()
         for (c in message.toCharArray())
         {
-            newMessage.append(AnsiConstants.colors[random.nextInt(AnsiConstants.colors.size)]).append(c)
+            newMessage.append(
+                AnsiConstants.colors[random.nextInt(
+                    AnsiConstants.colors.size)]).append(c)
         }
         logger.log(newMessage.toString())
     }

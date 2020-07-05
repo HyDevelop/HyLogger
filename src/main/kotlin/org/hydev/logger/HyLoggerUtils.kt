@@ -1,4 +1,4 @@
-package org.hydev
+package org.hydev.logger
 
 import java.awt.Color
 import java.time.LocalDateTime

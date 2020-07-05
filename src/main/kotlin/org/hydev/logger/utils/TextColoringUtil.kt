@@ -1,9 +1,9 @@
-package cc.moecraft.logger.utils
+package org.hydev.logger.utils
 
-import cc.moecraft.logger.coloring.AnsiRGB
-import cc.moecraft.logger.coloring.MultiPointLinearGradient
-import cc.moecraft.logger.format.AnsiFormat.RESET
-import org.hydev.line
+import org.hydev.logger.coloring.AnsiRGB
+import org.hydev.logger.coloring.MultiPointLinearGradient
+import org.hydev.logger.format.AnsiFormat.RESET
+import org.hydev.logger.line
 import java.awt.Color
 import kotlin.math.tan
 
@@ -31,7 +31,13 @@ class TextColoringUtil(private val text: String)
 
     fun getGradientText(color1: Color, color2: Color, vararg colors: Color): String
     {
-        return getGradientText(MultiPointLinearGradient(color1, color2, *colors))
+        return getGradientText(
+            MultiPointLinearGradient(
+                color1,
+                color2,
+                *colors
+            )
+        )
     }
 
     companion object

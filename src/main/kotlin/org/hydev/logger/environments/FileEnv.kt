@@ -1,8 +1,8 @@
-package cc.moecraft.logger.environments
+package org.hydev.logger.environments
 
-import cc.moecraft.logger.format.AnsiColor
+import org.hydev.logger.format.AnsiColor
 import org.fusesource.jansi.AnsiConsole
-import org.hydev.withoutFormat
+import org.hydev.logger.withoutFormat
 import java.io.File
 import java.io.PrintWriter
 import java.text.SimpleDateFormat
@@ -33,7 +33,12 @@ open class FileEnv(val file: File) : LogEnvironment()
         })
     }
 
-    constructor(filePath: String, fileName: String?) : this(getFile(filePath, fileName))
+    constructor(filePath: String, fileName: String?) : this(
+        getFile(
+            filePath,
+            fileName
+        )
+    )
 
     override fun logRaw(message: String)
     {

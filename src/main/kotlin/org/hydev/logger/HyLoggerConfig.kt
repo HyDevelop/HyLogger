@@ -1,8 +1,7 @@
-package cc.moecraft.logger
+package org.hydev.logger
 
-import cc.moecraft.logger.coloring.AnsiColorMode
-import cc.moecraft.logger.environments.LogEnvironment
-import org.hydev.toDatePattern
+import org.hydev.logger.coloring.AnsiColorMode
+import org.hydev.logger.environments.LogEnvironment
 import java.util.*
 
 /**
