@@ -6,16 +6,19 @@
  *
  * @author Hykilpikonna
  */
-public class ColorTest
+object ColorTest
 {
-    public static void main(String[] args)
+    @JvmStatic
+    fun main(args: Array<String>)
     {
-        for (int i = 0; i < 256; i += 16)
+        var i = 0
+        while (i < 256)
         {
-            for (int j = 0; j < 16; j++)
+            for (j in 0..15)
             {
-                System.out.print(String.format(" \u001b[38;5;%sm %s \u001b[0m ", i + j, i + j));
+                print(String.format(" \u001b[38;5;%sm %s \u001b[0m ", i + j, i + j))
             }
+            i += 16
         }
     }
 }
