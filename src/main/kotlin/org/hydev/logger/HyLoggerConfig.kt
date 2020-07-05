@@ -16,8 +16,7 @@ object HyLoggerConfig
 {
     var colorMode = AnsiColorMode.COLOR_RGB
 
-    var datePattern = "yyyy-MM-dd HH:mm:ss".toDatePattern()
-
+    var timePattern = "yyyy-MM-dd HH:mm:ss".toDatePattern()
     var formats = mutableListOf(
         "&f[&5{time}&f] [&1{prefix}&f] [&aINFO&f] &r{message}&r".parseFormats(),
         "&f[&5{time}&f] [&1{prefix}&f] [&bDEBUG&f(&e{st.full}&f)] &b{message}&r".parseFormats(),
@@ -28,4 +27,7 @@ object HyLoggerConfig
     val environments: MutableList<LogEnvironment> = ArrayList()
 
     var debug = false
+
+    var fileTimePattern = "yy-MM-dd_HH-mm".toDatePattern()
+    var fileFormat = "log-{name}@{time}.txt"
 }

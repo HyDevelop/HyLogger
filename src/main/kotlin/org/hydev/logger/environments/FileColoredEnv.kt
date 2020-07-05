@@ -13,12 +13,7 @@ import java.io.File
 class FileColoredEnv: FileEnv
 {
     constructor(file: File) : super(file)
-    {
-    }
-
-    constructor(filePath: String, fileName: String?) : super(filePath, fileName)
-    {
-    }
+    constructor(path: String, name: String) : super(path, name)
 
     override fun logRaw(message: String)
     {

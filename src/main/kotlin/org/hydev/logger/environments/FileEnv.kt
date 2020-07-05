@@ -1,12 +1,13 @@
 package org.hydev.logger.environments
 
-import org.hydev.logger.format.AnsiColor
 import org.fusesource.jansi.AnsiConsole
+import org.hydev.logger.HyLoggerConfig.fileFormat
+import org.hydev.logger.HyLoggerConfig.fileTimePattern
+import org.hydev.logger.format.AnsiColor
+import org.hydev.logger.now
 import org.hydev.logger.withoutFormat
 import java.io.File
 import java.io.PrintWriter
-import java.text.SimpleDateFormat
-import java.util.*
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/27 创建!
@@ -33,32 +34,12 @@ open class FileEnv(val file: File) : LogEnvironment()
         })
     }
 
-    constructor(filePath: String, fileName: String?) : this(
-        getFile(
-            filePath,
-            fileName
-        )
-    )
+    constructor(path: String, name: String) :
+        this(File(File(path), fileFormat.replace("{name}", name).replace("{time}", fileTimePattern.now())))
 
     override fun logRaw(message: String)
     {
         fileWriter.write(message.withoutFormat())
         fileWriter.flush()
-    }
-
-    companion object
-    {
-        private fun getFile(filePath: String, fileName: String?): File
-        {
-            var filePath: String? = filePath
-            if (fileName == null) throw RuntimeException("Failed to get file:", NullPointerException())
-            if (filePath == null || filePath.isEmpty()) filePath = "./"
-            if (!(filePath.endsWith("/") || filePath.endsWith("\\"))) filePath += File.separator
-            // TODO: make this format configurable
-            return File(
-                filePath + fileName + "@" +
-                    SimpleDateFormat("yy-MM-dd_HH-mm").format(Calendar.getInstance().time) + ".log"
-            )
-        }
     }
 }
