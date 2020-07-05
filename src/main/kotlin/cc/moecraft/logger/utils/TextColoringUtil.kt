@@ -1,11 +1,11 @@
 package cc.moecraft.logger.utils
 
-import cc.moecraft.logger.coloring.AnsiColorMode
 import cc.moecraft.logger.coloring.AnsiRGB
 import cc.moecraft.logger.coloring.MultiPointLinearGradient
-import cc.moecraft.logger.format.AnsiColor
-import cc.moecraft.logger.text.Paragraph
+import cc.moecraft.logger.format.AnsiFormat.RESET
+import org.hydev.line
 import java.awt.Color
+import kotlin.math.tan
 
 /**
  * 此类由 Hykilpikonna 在 2018/07/05 创建!
@@ -36,18 +36,15 @@ class TextColoringUtil(private val text: String)
 
     companion object
     {
-        fun getGradientParagraph(
-            colorMode: AnsiColorMode,
-            chars: Array<CharArray>,
-            gradient: MultiPointLinearGradient,
-            degrees: Int
-        ): Paragraph
+        fun getGradientParagraph(text: String, gradient: MultiPointLinearGradient, degrees: Int): String
         {
+            val chars = text.lines().map { it.toCharArray() }
+
             // x = 一句里最多多少字符
             // y = 一共多少句
             val yMax = chars.size - 1
             val xMax: Int = chars[0].size - 1
-            val slope = Math.tan(Math.toRadians(degrees.toDouble())) // y = slope * x
+            val slope = tan(Math.toRadians(degrees.toDouble())) // y = slope * x
 
             // 0. 获取Offset
 
@@ -111,7 +108,7 @@ class TextColoringUtil(private val text: String)
             }
 
             // 2. 把颜色二维数组映射到实际文字
-            val result = Paragraph()
+            val result = StringBuilder()
             for (y in 0 until yMax + 1)
             {
                 val sentence = chars[y]
@@ -122,12 +119,12 @@ class TextColoringUtil(private val text: String)
                     val charInASentence = sentence[x]
                     val colorInASentence = colors[x]
                     if (charInASentence == '\u0000') continue
-                    if (colorInASentence != null) oneResult.append(colorInASentence) else oneResult.append(AnsiColor.RESET)
+                    oneResult.append(colorInASentence ?: RESET)
                     oneResult.append(charInASentence)
                 }
-                result.addSentences(oneResult.toString())
+                result.line(oneResult.toString())
             }
-            return result
+            return result.toString()
         }
     }
 
