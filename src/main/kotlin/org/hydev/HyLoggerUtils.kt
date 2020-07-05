@@ -35,3 +35,13 @@ fun Color.to8Bit(): Int
     return if (gray) (232f + (r + g + b) / 33f).roundToInt()
     else 16 + (r / 256f * 6f).toInt() * 36 + (g / 256f * 6f).toInt() * 6 + (b / 256f * 6f).toInt()
 }
+
+/**
+ * Convert color to xterm-256 ANSI color code
+ */
+fun Color.toAnsi256() = "2;$r;$g;$b"
+
+/**
+ * Convert color to 8Bit ANSI color code
+ */
+fun Color.toAnsi8() = "5;${to8Bit()}"
