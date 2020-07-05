@@ -6,13 +6,16 @@
  *
  * @author Hykilpikonna
  */
-public class BlueTest
+object BlueTest
 {
-    public static void main(String[] args)
+    @JvmStatic
+    fun main(args: Array<String>)
     {
-        for (int i = 0; i < 256; i += 1)
+        var i = 0
+        while (i < 256)
         {
-            System.out.print(String.format(" \u001b[38;2;0;0;%sm %s \u001b[0m ", i, i));
+            print(String.format(" \u001b[38;2;0;0;%sm %s \u001b[0m ", i, i))
+            i += 1
         }
     }
 }
