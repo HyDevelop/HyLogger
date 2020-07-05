@@ -13,7 +13,7 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
     implementation("org.fusesource.jansi:jansi:1.18")
-    
+
     testImplementation("junit", "junit", "4.12")
 }
 
