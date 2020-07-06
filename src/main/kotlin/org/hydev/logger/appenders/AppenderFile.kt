@@ -1,4 +1,4 @@
-package org.hydev.logger.environments
+package org.hydev.logger.appenders
 
 import org.hydev.logger.HyLoggerConfig.fileFormat
 import org.hydev.logger.HyLoggerConfig.fileTimePattern
@@ -7,13 +7,22 @@ import org.hydev.logger.withoutFormat
 import java.io.File
 import java.io.PrintWriter
 
-open class FileEnv(val file: File) : LogEnvironment()
+open class AppenderFile(file: File) : Appender()
 {
     var fileWriter: PrintWriter
-    var lastLogTime = System.currentTimeMillis()
 
     init
     {
+        // Create formatter (File format defaults to csv)
+        formatter =
+        {
+            val thread = Thread.currentThread()
+
+            listOf<Any>(System.currentTimeMillis(), it.prefix, it.level, it.fqcn, it.msg,
+                thread.id, thread.name, thread.priority).joinToString(",", "", "")
+        }
+
+        // File
         if (!file.exists()) file.createNewFile()
         fileWriter = file.printWriter()
 
