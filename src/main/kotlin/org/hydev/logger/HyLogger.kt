@@ -1,7 +1,7 @@
 package org.hydev.logger
 
 import org.hydev.logger.HyLoggerConfig.debug
-import org.hydev.logger.HyLoggerConfig.environments
+import org.hydev.logger.HyLoggerConfig.appenders
 import org.hydev.logger.LogLevel.*
 import org.hydev.logger.appenders.LogData
 import org.hydev.logger.utils.FormatUtils.resolve
@@ -23,7 +23,7 @@ class HyLogger(val prefix: String)
             .first { s -> !s.className.startsWith("org.hydev.logger") }
         val fqcn = "${stack.className}.${stack.methodName}:${stack.lineNumber}"
 
-        environments.forEach { it.log(LogData(level, prefix, message, fqcn)) }
+        appenders.forEach { it.log(LogData(level, prefix, message, fqcn)) }
     }
 
     /**

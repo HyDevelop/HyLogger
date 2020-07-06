@@ -1,8 +1,8 @@
 package org.hydev.logger
 
 import org.hydev.logger.appenders.Appender
+import org.hydev.logger.appenders.AppenderConsole
 import org.hydev.logger.coloring.AnsiColorMode
-import java.util.*
 
 /**
  * Global configuration for the logger
@@ -18,7 +18,7 @@ object HyLoggerConfig
 
     var timePattern = "yyyy-MM-dd HH:mm:ss".toDatePattern()
 
-    val environments: MutableList<Appender> = ArrayList()
+    val appenders: MutableList<Appender> = mutableListOf(AppenderConsole())
 
     var debug = false
 
