@@ -16,7 +16,7 @@ class HyLogger(val prefix: String)
      */
     private fun log(level: LogLevel, message: String)
     {
-        if (checkDebug(level)) return
+        if (level == DEBUG && !debug) return
 
         // Find stack trace
         val stack = Thread.currentThread().stackTrace
@@ -41,18 +41,10 @@ class HyLogger(val prefix: String)
      */
     fun newLine() = log(LOG, "")
 
-    /**
-     * Returns true when the level is debug and the debug option is false.
-     *
-     * @param level Level
-     * @return True when the level is debug and the debug option is false.
-     */
-    fun checkDebug(level: LogLevel): Boolean = level == DEBUG && !debug
-
-    fun log(message: String) = log(LOG, message)
-    fun debug(message: String) = log(DEBUG, message)
-    fun error(message: String) = log(ERROR, message)
-    fun warning(message: String) = log(WARNING, message)
+    fun log(message: Any) = log(LOG, message.toString())
+    fun debug(message: Any) = log(DEBUG, message.toString())
+    fun error(message: Any) = log(ERROR, message.toString())
+    fun warning(message: Any) = log(WARNING, message.toString())
 
     fun log(format: String, vararg args: Any) = log(LOG, format, *args)
     fun debug(format: String, vararg args: Any) = log(DEBUG, format, *args)
