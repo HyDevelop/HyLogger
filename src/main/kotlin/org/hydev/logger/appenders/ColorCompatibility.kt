@@ -1,10 +1,10 @@
-package org.hydev.logger.environments
+package org.hydev.logger.appenders
 
 import org.fusesource.jansi.AnsiConsole
 import org.hydev.logger.withoutFormat
 import org.hydev.logger.withoutRGB
 
-enum class ColorSupportLevel(val log: (String) -> Unit)
+enum class ColorCompatibility(val log: (String) -> Unit)
 {
     // Default support (let Jansi decide)
     DEFAULT({ AnsiConsole.out.println(it) }),

@@ -2,8 +2,8 @@ package org.hydev.logger
 
 import org.hydev.logger.HyLoggerConfig.debug
 import org.hydev.logger.HyLoggerConfig.environments
-import org.hydev.logger.HyLoggerConfig.formats
 import org.hydev.logger.LogLevel.*
+import org.hydev.logger.appenders.LogData
 import org.hydev.logger.utils.FormatUtils.resolve
 
 class HyLogger(val prefix: String)
@@ -17,7 +17,13 @@ class HyLogger(val prefix: String)
     private fun log(level: LogLevel, message: String)
     {
         if (checkDebug(level)) return
-        environments.forEach { it.log(formats[level.id], prefix, message) }
+
+        // Find stack trace
+        val stack = Thread.currentThread().stackTrace
+            .first { s -> !s.className.startsWith("org.hydev.logger") }
+        val fqcn = "${stack.className}.${stack.methodName}:${stack.lineNumber}"
+
+        environments.forEach { it.log(LogData(level, prefix, message, fqcn)) }
     }
 
     /**
