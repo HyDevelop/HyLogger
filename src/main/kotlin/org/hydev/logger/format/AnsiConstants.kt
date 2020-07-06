@@ -2,14 +2,6 @@ package org.hydev.logger.format
 
 import java.util.*
 
-/**
- * 此类由 Hykilpikonna 在 2018/05/04 创建!
- * Created by Hykilpikonna on 2018/05/04!
- * Github: https://github.com/hykilpikonna
- * Meow!
- *
- * @author Hykilpikonna
- */
 object AnsiConstants
 {
     const val ESC_PREFIX = "\u001b["

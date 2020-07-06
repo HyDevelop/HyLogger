@@ -10,5 +10,5 @@ package org.hydev.logger
  */
 enum class LogLevel(val id: Int)
 {
-    LOG(0), ERROR(1), DEBUG(2), WARNING(3), ERROR_STACKTRACE(4)
+    LOG(0), DEBUG(1), ERROR(2), WARNING(3)
 }
