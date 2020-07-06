@@ -23,5 +23,5 @@ object HyLoggerConfig
     var debug = false
 
     var fileTimePattern = "yy-MM-dd_HH-mm".toDatePattern()
-    var fileFormat = "log-{name}@{time}.txt"
+    var fileFormat = "log-{name}@{time}.csv"
 }
