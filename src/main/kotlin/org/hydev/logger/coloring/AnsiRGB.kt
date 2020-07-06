@@ -1,7 +1,10 @@
 package org.hydev.logger.coloring
 
 import org.hydev.logger.HyLoggerConfig.colorMode
-import org.hydev.logger.format.AnsiConstants
+import org.hydev.logger.format.AnsiConstants.BACKGROUND
+import org.hydev.logger.format.AnsiConstants.ESC_PREFIX
+import org.hydev.logger.format.AnsiConstants.FOREGROUND
+import org.hydev.logger.format.AnsiConstants.SUFFIX
 import java.awt.Color
 
 class AnsiRGB(var foreground: Color, var background: Color? = null)
@@ -13,8 +16,8 @@ class AnsiRGB(var foreground: Color, var background: Color? = null)
      */
     override fun toString(): String
     {
-        var result = AnsiConstants.ESC_PREFIX + AnsiConstants.FOREGROUND + colorMode.format(foreground)
-        if (background != null) result += AnsiConstants.BACKGROUND + colorMode.format(background!!)
-        return result + AnsiConstants.SUFFIX
+        var result = ESC_PREFIX + FOREGROUND + colorMode.format(foreground)
+        if (background != null) result += BACKGROUND + colorMode.format(background!!)
+        return result + SUFFIX
     }
 }
