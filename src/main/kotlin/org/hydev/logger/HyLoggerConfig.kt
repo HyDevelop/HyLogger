@@ -1,7 +1,7 @@
 package org.hydev.logger
 
+import org.hydev.logger.appenders.Appender
 import org.hydev.logger.coloring.AnsiColorMode
-import org.hydev.logger.environments.LogEnvironment
 import java.util.*
 
 /**
@@ -17,14 +17,8 @@ object HyLoggerConfig
     var colorMode = AnsiColorMode.COLOR_RGB
 
     var timePattern = "yyyy-MM-dd HH:mm:ss".toDatePattern()
-    var formats = mutableListOf(
-        "&f[&5{time}&f] [&1{prefix}&f] [&aINFO&f] &r{message}&r".parseFormats(),
-        "&f[&5{time}&f] [&1{prefix}&f] [&bDEBUG&f(&e{st.full}&f)] &b{message}&r".parseFormats(),
-        "&f[&5{time}&f] [&1{prefix}&f] [&cERROR&f(&e{st.full}&f)] &c{message}&r".parseFormats(),
-        "&f[&5{time}&f] [&1{prefix}&f] [&cWARNING&f] &e{message}&r".parseFormats(),
-        "&f[&5{time}&f] [&1{prefix}&f] &e{message}&r".parseFormats())
 
-    val environments: MutableList<LogEnvironment> = ArrayList()
+    val environments: MutableList<Appender> = ArrayList()
 
     var debug = false
 
