@@ -33,9 +33,9 @@ class MultiPointLinearGradient(color1: GradientPoint, color2: GradientPoint, col
      * @param amount 数量
      * @return 渐变
      */
-    fun getColors(amount: Int): List<AnsiRGB>
+    fun getColors(amount: Int): List<ColorCombo>
     {
-        val colors = ArrayList<AnsiRGB>()
+        val colors = ArrayList<ColorCombo>()
         val scaledSizes = scaleSizes(
             mappedSizes,
             amount
@@ -53,7 +53,7 @@ class MultiPointLinearGradient(color1: GradientPoint, color2: GradientPoint, col
 
             if (color1 == color2)
             {
-                colors[i] = AnsiRGB(color1)
+                colors[i] = ColorCombo(color1)
                 continue
             }
 
@@ -78,7 +78,7 @@ class MultiPointLinearGradient(color1: GradientPoint, color2: GradientPoint, col
                     color2.blue,
                     ratio
                 )
-            val result = AnsiRGB(Color(resultR, resultG, resultB))
+            val result = ColorCombo(Color(resultR, resultG, resultB))
             colors[i] = result
         }
         return colors
