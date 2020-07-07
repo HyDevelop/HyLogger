@@ -14,7 +14,7 @@ import org.hydev.logger.coloring.AnsiColorMode
  */
 object HyLoggerConfig
 {
-    var colorMode = AnsiColorMode.COLOR_RGB
+    var colorMode = AnsiColorMode.TRUE_COLOR_24BIT
 
     var timePattern = "yyyy-MM-dd HH:mm:ss".toDatePattern()
 
