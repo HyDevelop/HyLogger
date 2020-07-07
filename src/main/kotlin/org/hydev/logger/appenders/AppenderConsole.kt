@@ -1,13 +1,13 @@
 package org.hydev.logger.appenders
 
+import org.hydev.logger.HyLoggerConfig.colorCompatibility
 import org.hydev.logger.HyLoggerConfig.timePattern
 import org.hydev.logger.LogLevel.*
-import org.hydev.logger.appenders.ColorCompatibility.DEFAULT
 import org.hydev.logger.format.AnsiColor.*
 import org.hydev.logger.now
 import org.hydev.logger.parseFormats
 
-class AppenderConsole(val cc: ColorCompatibility = DEFAULT) : Appender()
+class AppenderConsole() : Appender()
 {
     init
     {
@@ -29,5 +29,5 @@ class AppenderConsole(val cc: ColorCompatibility = DEFAULT) : Appender()
         }
     }
 
-    override fun logRaw(message: String) = cc.log(message)
+    override fun logRaw(message: String) = colorCompatibility.log(message)
 }

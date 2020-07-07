@@ -2,6 +2,7 @@ package org.hydev.logger
 
 import org.hydev.logger.appenders.Appender
 import org.hydev.logger.appenders.AppenderConsole
+import org.hydev.logger.appenders.ColorCompatibility
 import org.hydev.logger.coloring.AnsiColorMode
 
 /**
@@ -15,6 +16,7 @@ import org.hydev.logger.coloring.AnsiColorMode
 object HyLoggerConfig
 {
     var colorMode = AnsiColorMode.TRUE_COLOR_24BIT
+    var colorCompatibility = ColorCompatibility.FORCED
 
     var timePattern = "yyyy-MM-dd HH:mm:ss".toDatePattern()
 
