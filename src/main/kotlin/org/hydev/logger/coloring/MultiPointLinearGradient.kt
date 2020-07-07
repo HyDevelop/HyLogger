@@ -1,5 +1,8 @@
 package org.hydev.logger.coloring
 
+import org.hydev.logger.b
+import org.hydev.logger.g
+import org.hydev.logger.r
 import java.awt.Color
 import java.util.AbstractMap.SimpleEntry
 
@@ -13,11 +16,7 @@ class MultiPointLinearGradient(color1: GradientPoint, color2: GradientPoint, col
         this(GradientPoint(color1), color2, mutableListOf(*colors))
 
     constructor(color1: Color, color2: Color, vararg colors: Color) :
-        this(
-            GradientPoint(color1),
-            GradientPoint(color2), ArrayList<GradientPoint>(
-                convert(listOf(*colors))
-            ))
+        this(GradientPoint(color1), GradientPoint(color2), ArrayList<GradientPoint>(convert(listOf(*colors))))
 
     init
     {
@@ -33,52 +32,33 @@ class MultiPointLinearGradient(color1: GradientPoint, color2: GradientPoint, col
      * @param amount 数量
      * @return 渐变
      */
-    fun getColors(amount: Int): List<ColorCombo>
+    fun getColors(amount: Int): List<Color>
     {
-        val colors = ArrayList<ColorCombo>()
-        val scaledSizes = scaleSizes(
-            mappedSizes,
-            amount
-        )
+        val colors = ArrayList<Color>()
+        val scaledSizes = scaleSizes(mappedSizes, amount)
         for (i in 0 until amount)
         {
-            val nearestTwo =
-                getNearestTwoColors(
-                    scaledSizes,
-                    i
-                )
+            val nearestTwo = getNearestTwoColors(scaledSizes, i)
 
-            val color1 = nearestTwo[0].value.color
-            val color2 = nearestTwo[1].value.color
+            val a = nearestTwo[0].value.color
+            val b = nearestTwo[1].value.color
 
-            if (color1 == color2)
+            if (a == b)
             {
-                colors[i] = ColorCombo(color1)
+                colors[i] = a
                 continue
             }
 
             val value1 = nearestTwo[0].key
             val value2 = nearestTwo[1].key
+
             val ratio = (i - value1).toFloat() / (value2 - value1).toFloat()
-            val resultR =
-                getColorWithRatio(
-                    color1.red,
-                    color2.red,
-                    ratio
-                )
-            val resultG =
-                getColorWithRatio(
-                    color1.green,
-                    color2.green,
-                    ratio
-                )
-            val resultB =
-                getColorWithRatio(
-                    color1.blue,
-                    color2.blue,
-                    ratio
-                )
-            val result = ColorCombo(Color(resultR, resultG, resultB))
+
+            val resultR = getColorWithRatio(a.r, b.r, ratio)
+            val resultG = getColorWithRatio(a.g, b.g, ratio)
+            val resultB = getColorWithRatio(a.b, b.b, ratio)
+
+            val result = Color(resultR, resultG, resultB)
             colors[i] = result
         }
         return colors
@@ -91,11 +71,7 @@ class MultiPointLinearGradient(color1: GradientPoint, color2: GradientPoint, col
         private fun convert(colors: List<Color>): List<GradientPoint>
         {
             val result: MutableList<GradientPoint> = ArrayList()
-            for (color in colors) result.add(
-                GradientPoint(
-                    color
-                )
-            )
+            for (color in colors) result.add(GradientPoint(color))
             return result
         }
 
