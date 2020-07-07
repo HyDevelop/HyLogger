@@ -3,6 +3,7 @@ package org.hydev.logger.coloring
 import org.hydev.logger.b
 import org.hydev.logger.g
 import org.hydev.logger.r
+import org.hydev.logger.to8Bit
 import java.awt.Color
 
 enum class AnsiColorMode(val format: (Color) -> String)
