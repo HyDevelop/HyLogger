@@ -7,7 +7,7 @@ import org.hydev.logger.format.AnsiConstants.FOREGROUND
 import org.hydev.logger.format.AnsiConstants.SUFFIX
 import java.awt.Color
 
-class AnsiRGB(var foreground: Color, var background: Color? = null)
+class ColorCombo(var foreground: Color, var background: Color? = null)
 {
     /**
      * Get ANSI color code.
