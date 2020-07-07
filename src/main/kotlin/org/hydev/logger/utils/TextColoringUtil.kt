@@ -1,6 +1,5 @@
 package org.hydev.logger.utils
 
-import org.hydev.logger.coloring.ColorCombo
 import org.hydev.logger.coloring.MultiPointLinearGradient
 import org.hydev.logger.format.AnsiFormat.RESET
 import org.hydev.logger.line
@@ -94,7 +93,7 @@ class TextColoringUtil(private val text: String)
             //   1 10 |\\文字\\|\\
             //   2 11 |________|\\\
             val newColors =
-                Array(yWithOffset + 1) { arrayOfNulls<ColorCombo>(xMax + 1) }
+                Array(yWithOffset + 1) { arrayOfNulls<Color>(xMax + 1) }
             val verticalColors = gradient.getColors(yWithOffset + 1)
             for (sourceY in verticalColors.indices)
             {

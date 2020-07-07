@@ -1,7 +1,8 @@
 package org.hydev.logger
 
-import org.hydev.logger.coloring.AnsiColorMode
+import org.hydev.logger.HyLoggerConfig.colorMode
 import org.hydev.logger.format.AnsiConstants
+import org.hydev.logger.format.AnsiConstants.BACKGROUND
 import org.hydev.logger.format.AnsiConstants.ESC_PREFIX
 import org.hydev.logger.format.AnsiConstants.FOREGROUND
 import org.hydev.logger.format.AnsiConstants.SUFFIX
@@ -46,7 +47,8 @@ fun Color.to8Bit(): Int
     else 16 + (r / 256f * 6f).toInt() * 36 + (g / 256f * 6f).toInt() * 6 + (b / 256f * 6f).toInt()
 }
 
-fun Color.foreground(mode: AnsiColorMode) = "" + ESC_PREFIX + FOREGROUND + mode.format(this) + SUFFIX
+fun Color.foreground() = "" + ESC_PREFIX + FOREGROUND + colorMode.format(this) + SUFFIX
+fun Color.background() = "" + ESC_PREFIX + BACKGROUND + colorMode.format(this) + SUFFIX
 
 /**
  * String to date pattern
