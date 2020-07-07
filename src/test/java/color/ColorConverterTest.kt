@@ -1,7 +1,9 @@
 package color
 
+import org.hydev.logger.coloring.AnsiColorMode.TRUE_COLOR_24BIT
+import org.hydev.logger.coloring.AnsiColorMode.XTERM_256_8BIT
+import org.hydev.logger.foreground
 import org.hydev.logger.to8Bit
-import org.hydev.logger.toAnsi8
 import java.awt.Color
 
 /**
@@ -47,7 +49,7 @@ object ColorConverterTest
                     var b = 0
                     while (b < 256)
                     {
-                        print(Color(r, r, r).toAnsi8() + "█")
+                        print(Color(r, r, r).foreground(TRUE_COLOR_24BIT) + "█")
                         b += 16
                     }
                     print(" ")
@@ -66,7 +68,7 @@ object ColorConverterTest
                 var b = 0
                 while (b < 256)
                 {
-                    print("\u001b[38;2;" + r + ";" + g + ";" + b + "m█")
+                    print(Color(r, r, r).foreground(XTERM_256_8BIT) + "█")
                     b += 16
                 }
                 print(" ")

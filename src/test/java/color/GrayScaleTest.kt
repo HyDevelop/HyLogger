@@ -1,6 +1,8 @@
 package color
 
-import org.hydev.logger.toAnsi8
+import org.hydev.logger.coloring.AnsiColorMode.TRUE_COLOR_24BIT
+import org.hydev.logger.coloring.AnsiColorMode.XTERM_256_8BIT
+import org.hydev.logger.foreground
 import java.awt.Color
 
 /**
@@ -17,19 +19,15 @@ object GrayScaleTest
     fun main(args: Array<String>)
     {
         run {
-            var r = 0
-            while (r < 256)
+            for (r in 0..255 step 16)
             {
-                print(Color(r, r, r).toAnsi8() + "█")
-                r += 16
+                print(Color(r, r, r).foreground(XTERM_256_8BIT) + "█")
             }
         }
         println("")
-        var r = 0
-        while (r < 256)
+        for (r in 0..255 step 16)
         {
-            print("\u001b[38;2;" + r + ";" + r + ";" + r + "m█")
-            r += 16
+            print(Color(r, r, r).foreground(TRUE_COLOR_24BIT) + "█")
         }
     }
 }

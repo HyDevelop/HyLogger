@@ -1,6 +1,10 @@
 package org.hydev.logger
 
+import org.hydev.logger.coloring.AnsiColorMode
 import org.hydev.logger.format.AnsiConstants
+import org.hydev.logger.format.AnsiConstants.ESC_PREFIX
+import org.hydev.logger.format.AnsiConstants.FOREGROUND
+import org.hydev.logger.format.AnsiConstants.SUFFIX
 import java.awt.Color
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -41,6 +45,8 @@ fun Color.to8Bit(): Int
     return if (gray) (232f + (r + g + b) / 33f).roundToInt()
     else 16 + (r / 256f * 6f).toInt() * 36 + (g / 256f * 6f).toInt() * 6 + (b / 256f * 6f).toInt()
 }
+
+fun Color.foreground(mode: AnsiColorMode) = "" + ESC_PREFIX + FOREGROUND + mode.format(this) + SUFFIX
 
 /**
  * String to date pattern
