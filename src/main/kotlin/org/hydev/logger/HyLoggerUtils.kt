@@ -43,16 +43,6 @@ fun Color.to8Bit(): Int
 }
 
 /**
- * Convert color to xterm-256 ANSI color code
- */
-fun Color.toAnsi256() = "2;$r;$g;$b"
-
-/**
- * Convert color to 8Bit ANSI color code
- */
-fun Color.toAnsi8() = "5;${to8Bit()}"
-
-/**
  * String to date pattern
  */
 fun String.toDatePattern(): DateTimeFormatter = DateTimeFormatter.ofPattern(this)
