@@ -1,6 +1,6 @@
 package org.hydev.logger.utils
 
-import org.hydev.logger.coloring.MultiPointLinearGradient
+import org.hydev.logger.coloring.LinearGradient
 import org.hydev.logger.foreground
 import org.hydev.logger.format.AnsiColor.RESET
 import org.hydev.logger.line
@@ -18,7 +18,7 @@ import kotlin.math.tan
  */
 class TextColoringUtil(private val text: String)
 {
-    fun getGradientText(gradient: MultiPointLinearGradient): String
+    fun getGradientText(gradient: LinearGradient): String
     {
         val chars = text.toCharArray()
         val colors = gradient.getColors(chars.size)
@@ -32,12 +32,12 @@ class TextColoringUtil(private val text: String)
 
     fun getGradientText(c1: Color, c2: Color, vararg colors: Color): String
     {
-        return getGradientText(MultiPointLinearGradient(c1, c2, *colors))
+        return getGradientText(LinearGradient(c1, c2, *colors))
     }
 
     companion object
     {
-        fun getGradientParagraph(text: String, gradient: MultiPointLinearGradient, degrees: Double): String
+        fun getGradientParagraph(text: String, gradient: LinearGradient, degrees: Double): String
         {
             // Get array of char arrays
             if (text.isBlank()) return text
@@ -94,7 +94,7 @@ class TextColoringUtil(private val text: String)
                     val actualY = sourceY + (slope * x).toInt() - yOffset
 
                     if (actualY in lines.indices)
-                        colorPlane[actualY].add(verticalColors[sourceY])
+                        colorPlane[actualY].add(0, verticalColors[sourceY])
                 }
             }
 
