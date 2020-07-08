@@ -6,17 +6,13 @@ import java.awt.Color
 
 class FancyLogger(private val logger: HyLogger)
 {
-    fun logGradient(message: String, color1: Color, color2: Color, vararg colors: Color)
-    {
-        logger.log(TextColoringUtil(message).getGradientText(color1, color2, *colors))
-    }
+    fun gradient(message: String, c1: Color, c2: Color, vararg colors: Color)
+        = gradient(message, LinearGradient(c1, c2, *colors))
 
-    fun logGradient(message: String, gradient: LinearGradient)
-    {
-        logger.log(TextColoringUtil(message).getGradientText(gradient))
-    }
+    fun gradient(message: String, gradient: LinearGradient)
+        = logger.log(gradient.colorText(message))
 
-    fun logGradient(message: String, gradient: LinearGradient, degrees: Double)
+    fun gradient(message: String, gradient: LinearGradient, degrees: Double)
     {
         logger.log(TextColoringUtil.getGradientParagraph(message, gradient, degrees))
     }
