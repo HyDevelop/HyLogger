@@ -6,7 +6,7 @@ import org.hydev.logger.r
 import java.awt.Color
 import kotlin.math.roundToInt
 
-class MultiPointLinearGradient(private val colors: MutableList<GradientPoint>)
+class LinearGradient(private val colors: MutableList<GradientPoint>)
 {
     init
     {
