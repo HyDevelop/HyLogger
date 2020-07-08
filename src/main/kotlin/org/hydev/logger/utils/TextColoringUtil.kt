@@ -18,23 +18,6 @@ import kotlin.math.tan
  */
 class TextColoringUtil(private val text: String)
 {
-    fun getGradientText(gradient: LinearGradient): String
-    {
-        val chars = text.toCharArray()
-        val colors = gradient.getColors(chars.size)
-        val result = StringBuilder()
-        for (i in chars.indices)
-        {
-            result.append(colors[i].foreground()).append(chars[i])
-        }
-        return result.toString()
-    }
-
-    fun getGradientText(c1: Color, c2: Color, vararg colors: Color): String
-    {
-        return getGradientText(LinearGradient(c1, c2, *colors))
-    }
-
     companion object
     {
         fun getGradientParagraph(text: String, gradient: LinearGradient, degrees: Double): String

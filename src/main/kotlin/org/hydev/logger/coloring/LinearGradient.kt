@@ -1,6 +1,7 @@
 package org.hydev.logger.coloring
 
 import org.hydev.logger.b
+import org.hydev.logger.foreground
 import org.hydev.logger.g
 import org.hydev.logger.r
 import java.awt.Color
@@ -82,5 +83,28 @@ class LinearGradient(private val colors: MutableList<GradientPoint>)
     {
         val scale = size.toDouble() / colors.last().pos
         return colors.map { GradientPoint(it.color, (it.pos * scale).roundToInt()) }
+    }
+
+    /**
+     * Colorize some text, no angles involved
+     *
+     * @param text
+     * @return Colored text
+     */
+    fun colorText(text: String): String
+    {
+        if (text.isBlank()) return text
+
+        val lines = text.lines()
+        val colors = getColors(lines.maxBy { it.length }!!.length)
+        val result = StringBuilder()
+
+        for (line in lines)
+        {
+            line.forEachIndexed { i, c -> result.append(colors[i].foreground()).append(c) }
+            result.append("\n")
+        }
+
+        return result.toString().trimEnd('\n')
     }
 }

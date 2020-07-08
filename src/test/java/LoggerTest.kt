@@ -25,25 +25,25 @@ object LoggerTest
         logger.error("一条测试Error消息")
         logger.warning("一条测试Warning消息")
         logger.timing.time().reset()
-        logger.fancy.logGradient("测试渐变从深蓝到浅蓝", Color.BLUE, Color.CYAN)
+        logger.fancy.gradient("测试渐变从深蓝到浅蓝", Color.BLUE, Color.CYAN)
         logger.timing.time().reset()
-        logger.fancy.logGradient("测试渐变从橘色到浅蓝", Color.ORANGE, Color.CYAN)
+        logger.fancy.gradient("测试渐变从橘色到浅蓝", Color.ORANGE, Color.CYAN)
         logger.timing.time().reset()
-        logger.fancy.logGradient(
+        logger.fancy.gradient(
             "测试黄绿渐变到天蓝",
             Color(0, 242, 96),
             Color(80, 161, 230)
         )
         logger.timing.time().reset()
-        logger.fancy.logGradient(
+        logger.fancy.gradient(
             "测试橙色渐变到粉色",
             Color(255, 140, 0),
             Color(255, 0, 128)
         )
         logger.timing.time().reset()
-        logger.fancy.logGradient("##############测试彩虹多点渐变预设##############", RAINBOW)
+        logger.fancy.gradient("##############测试彩虹多点渐变预设##############", RAINBOW)
         logger.timing.time().reset()
-        logger.fancy.logGradient("##############测试蓝到紫到红多点渐变##############", BPR)
+        logger.fancy.gradient("##############测试蓝到紫到红多点渐变##############", BPR)
         logger.timing.time().reset()
         run {
             logger.log("测试Paragraph斜向线性渐变 #1:")
@@ -51,7 +51,7 @@ object LoggerTest
                 ┬ ┬┬ ┬┬  ┌─┐┌─┐┌─┐┌─┐┬─┐
                 ├─┤└┬┘│  │ ││ ┬│ ┬├┤ ├┬┘
                 ┴ ┴ ┴ ┴─┘└─┘└─┘└─┘└─┘┴└─""".trimIndent()
-            logger.fancy.logGradient(paragraph, BPR, 15.0)
+            logger.fancy.gradient(paragraph, BPR, 15.0)
         }
         logger.timing.time().reset()
         run {
@@ -63,7 +63,7 @@ object LoggerTest
                  / __  / /_/ / /___/ /_/ / /_/ / /_/ /  __/ /    
                 /_/ /_/\__, /_____/\____/\__, /\__, /\___/_/
                       /____/            /____//____/             """.trimIndent()
-            logger.fancy.logGradient(paragraph, BOP, 60.0)
+            logger.fancy.gradient(paragraph, BOP, 60.0)
         }
         logger.timing.time().reset()
     }
