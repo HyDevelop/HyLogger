@@ -1,6 +1,7 @@
 package org.hydev.logger.utils
 
 import org.hydev.logger.coloring.MultiPointLinearGradient
+import org.hydev.logger.foreground
 import org.hydev.logger.format.AnsiFormat.RESET
 import org.hydev.logger.line
 import java.awt.Color
@@ -23,20 +24,14 @@ class TextColoringUtil(private val text: String)
         val result = StringBuilder()
         for (i in chars.indices)
         {
-            result.append(colors[i].toString()).append(chars[i])
+            result.append(colors[i].foreground()).append(chars[i])
         }
         return result.toString()
     }
 
-    fun getGradientText(color1: Color, color2: Color, vararg colors: Color): String
+    fun getGradientText(c1: Color, c2: Color, vararg colors: Color): String
     {
-        return getGradientText(
-            MultiPointLinearGradient(
-                color1,
-                color2,
-                *colors
-            )
-        )
+        return getGradientText(MultiPointLinearGradient(c1, c2, *colors))
     }
 
     companion object
@@ -124,7 +119,7 @@ class TextColoringUtil(private val text: String)
                     val charInASentence = sentence[x]
                     val colorInASentence = colors[x]
                     if (charInASentence == '\u0000') continue
-                    oneResult.append(colorInASentence ?: RESET)
+                    oneResult.append(colorInASentence?.foreground() ?: RESET)
                     oneResult.append(charInASentence)
                 }
                 result.line(oneResult.toString())

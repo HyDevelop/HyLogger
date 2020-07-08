@@ -1,19 +1,18 @@
 package org.hydev.logger.coloring
 
-import org.hydev.logger.coloring.MultiPointLinearGradient.GradientPoint
 import java.awt.Color
 
 object GradientPresets
 {
     // 彩虹
     var RAINBOW = MultiPointLinearGradient(
-        Color(255, 0, 0),
+        GradientPoint(Color(255, 0, 0), 0),
         GradientPoint(Color(255, 0, 255), 15),
-        GradientPoint(Color(0, 0, 255), 19),
-        GradientPoint(Color(0, 255, 255), 15),
-        GradientPoint(Color(0, 255, 0), 18),
-        GradientPoint(Color(255, 255, 0), 17),
-        GradientPoint(Color(255, 0, 0), 16)
+        GradientPoint(Color(0, 0, 255), 34),
+        GradientPoint(Color(0, 255, 255), 50),
+        GradientPoint(Color(0, 255, 0), 68),
+        GradientPoint(Color(255, 255, 0), 85),
+        GradientPoint(Color(255, 0, 0), 100)
     )
 
     // 蓝橙粉

@@ -4,187 +4,83 @@ import org.hydev.logger.b
 import org.hydev.logger.g
 import org.hydev.logger.r
 import java.awt.Color
-import java.util.AbstractMap.SimpleEntry
+import kotlin.math.roundToInt
 
-class MultiPointLinearGradient(color1: GradientPoint, color2: GradientPoint, colors: MutableList<GradientPoint>)
+class MultiPointLinearGradient(private val colors: MutableList<GradientPoint>)
 {
-    private val colors: MutableList<GradientPoint>
-    private val mappedSizes: MutableList<Map.Entry<Int, GradientPoint>>
-    private val total: Int
-
-    constructor(color1: Color, color2: GradientPoint, vararg colors: GradientPoint) :
-        this(GradientPoint(color1), color2, mutableListOf(*colors))
-
-    constructor(color1: Color, color2: Color, vararg colors: Color) :
-        this(GradientPoint(color1), GradientPoint(color2), ArrayList<GradientPoint>(convert(listOf(*colors))))
-
     init
     {
-        colors.add(0, color1)
-        colors.add(1, color2)
-        this.colors = colors
-        mappedSizes = mapSizes(colors)
-        total = mappedSizes[mappedSizes.size - 1].key
+        colors.sortBy { it.pos }
     }
 
+    constructor(c1: GradientPoint, c2: GradientPoint, vararg colors: GradientPoint):
+        this(mutableListOf(c1, c2, *colors))
+
+    constructor(c1: Color, c2: Color, vararg colors: Color) :
+        this(mutableListOf(c1, c2, *colors).mapIndexed { i, it -> GradientPoint(it, i * 10) }.toMutableList())
+
     /**
-     * 按数量分割为非自然渐变, 获取一个代表所有渐变色的数组
-     * @param amount 数量
-     * @return 渐变
+     * Create a gradient list of colors for a set size.
+     *
+     * @param size How many pixels (chars) are there?
+     * @return A gradient of colors, one color for every pixel (char)
      */
-    fun getColors(amount: Int): List<Color>
+    fun getColors(size: Int): List<Color>
     {
-        val colors = ArrayList<Color>()
-        val scaledSizes = scaleSizes(mappedSizes, amount)
-        for (i in 0 until amount)
+        val result = ArrayList<Color>()
+        val scaled = getScaled(size).toMutableList()
+
+        var c1 = scaled.removeAt(0)
+        var c2 = scaled.removeAt(0)
+
+        for (x in 0 until size)
         {
-            val nearestTwo = getNearestTwoColors(scaledSizes, i)
-
-            val a = nearestTwo[0].value.color
-            val b = nearestTwo[1].value.color
-
-            if (a == b)
+            // Switches from one color to the next
+            if (c2.pos == x)
             {
-                colors[i] = a
+                result.add(c2.color)
+                c1 = c2
+                c2 = scaled.removeAt(0)
                 continue
             }
 
-            val value1 = nearestTwo[0].key
-            val value2 = nearestTwo[1].key
+            // If they are the same color
+            if (c1 == c2)
+            {
+                result.add(c1.color)
+                continue
+            }
 
-            val ratio = (i - value1).toFloat() / (value2 - value1).toFloat()
+            // Ratio is calculated with the relative position of the two colors
+            val ratio = (x - c1.pos).toFloat() / (c2.pos - c1.pos).toFloat()
 
-            val resultR = getColorWithRatio(a.r, b.r, ratio)
-            val resultG = getColorWithRatio(a.g, b.g, ratio)
-            val resultB = getColorWithRatio(a.b, b.b, ratio)
+            // Calculate proportional rgb values
+            val r = getColorWithRatio(c1.color.r, c2.color.r, ratio)
+            val g = getColorWithRatio(c1.color.g, c2.color.g, ratio)
+            val b = getColorWithRatio(c1.color.b, c2.color.b, ratio)
 
-            val result = Color(resultR, resultG, resultB)
-            colors[i] = result
+            result.add(Color(r, g, b))
         }
-        return colors
+        return result
     }
 
-    class GradientPoint constructor(var color: Color, var amount: Int = 100)
+    fun getColorWithRatio(v1: Int, v2: Int, ratio: Float) = (v2 * ratio + v1 * (1 - ratio)).toInt()
 
-    companion object
+    /**
+     * Scale a list of color points to a specific pixel size
+     *
+     * Example: size = 7
+     *   colors = [(0, Red), (100, Blue), (200, Orange), (250, Purple)]
+     *
+     * Return: [(0, Red), (3, Blue), (6, Orange), (7, Purple)]
+     *
+     * @param colors List of color points
+     * @param size How many pixels (chars) are there?
+     * @return List with positions scaled to match the size
+     */
+    fun getScaled(size: Int): List<GradientPoint>
     {
-        private fun convert(colors: List<Color>): List<GradientPoint>
-        {
-            val result: MutableList<GradientPoint> = ArrayList()
-            for (color in colors) result.add(GradientPoint(color))
-            return result
-        }
-
-        /**
-         * 把一个相对数值的列表转换为绝对数值的列表
-         *
-         * 例子:
-         * 100, 红
-         * 100, 蓝
-         * 100, 橙
-         * 50, 紫
-         *
-         * 转换后:
-         * 0, 红
-         * 100, 蓝
-         * 200, 橙
-         * 250, 紫
-         *
-         * @param gradientPoints 相对数值的列表
-         * @return 绝对数值的列表
-         */
-        fun mapSizes(gradientPoints: List<GradientPoint>): ArrayList<Map.Entry<Int, GradientPoint>>
-        {
-            val result = ArrayList<Map.Entry<Int, GradientPoint>>()
-            var total = 0 - gradientPoints[0].amount
-            for (gradientPoint in gradientPoints)
-            {
-                total += gradientPoint.amount
-                result.add(SimpleEntry(total, gradientPoint))
-            }
-            return result
-        }
-
-        /**
-         * 以文字数量缩放Map
-         *
-         * 例子: amount = 7
-         * 0, 红
-         * 100, 蓝
-         * 200, 橙
-         * 250, 紫
-         *
-         * 缩放后:
-         * 0, 红
-         * 2, 蓝 (2.8)
-         * 5, 橙 (5.6)
-         * 7, 紫
-         *
-         * @param mappedSizes 映射过的Map
-         * @param amount 文字数量
-         * @return 缩放后的Map
-         */
-        fun scaleSizes(mappedSizes: List<Map.Entry<Int, GradientPoint>>, amount: Int): List<Map.Entry<Int, GradientPoint>>
-        {
-            val result: MutableList<Map.Entry<Int, GradientPoint>> = ArrayList()
-            val scale = amount.toDouble() / mappedSizes[mappedSizes.size - 1].key.toDouble()
-            for ((key, value) in mappedSizes)
-            {
-                result.add(SimpleEntry((key * scale).toInt(), value))
-            }
-            return result
-        }
-
-        /**
-         * 获取最近的两个颜色
-         *
-         * 例子: i=2
-         * 0, 红
-         * 2, 蓝
-         * 5, 橙
-         * 7, 紫
-         *
-         * 获取后:
-         * 蓝
-         * 橙
-         *
-         * @param scaledMap 比例Map
-         * @param index i
-         * @return 最近的两个颜色
-         */
-        fun getNearestTwoColors(scaledMap: List<Map.Entry<Int, GradientPoint>>, index: Int): List<Map.Entry<Int, GradientPoint>>
-        {
-            val result: MutableList<Map.Entry<Int, GradientPoint>> = ArrayList()
-            result.add(scaledMap[0])
-            result.add(scaledMap[scaledMap.size - 1])
-            for (i in scaledMap.indices)
-            {
-                val currentAmount = scaledMap[i].key
-                if (currentAmount <= index && currentAmount > result[0].key)
-                {
-                    result.removeAt(0)
-                    result.add(0, scaledMap[i])
-                }
-                if (currentAmount >= index && currentAmount < result[1].key)
-                {
-                    result.removeAt(1)
-                    result.add(scaledMap[i])
-                    break
-                }
-            }
-            return result
-        }
-
-        /**
-         * 按比例计算颜色
-         * @param color1 颜色值1
-         * @param color2 颜色值2
-         * @param ratio 比例
-         * @return 计算后的颜色
-         */
-        fun getColorWithRatio(color1: Int, color2: Int, ratio: Float): Int
-        {
-            return (color2 * ratio + color1 * (1 - ratio)).toInt()
-        }
+        val scale = size.toDouble() / colors.last().pos
+        return colors.map { GradientPoint(it.color, (it.pos * scale).roundToInt()) }
     }
 }
