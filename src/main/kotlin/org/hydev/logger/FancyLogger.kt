@@ -16,7 +16,7 @@ class FancyLogger(private val logger: HyLogger)
         logger.log(TextColoringUtil(message).getGradientText(gradient))
     }
 
-    fun logGradient(message: String, gradient: MultiPointLinearGradient, degrees: Int)
+    fun logGradient(message: String, gradient: MultiPointLinearGradient, degrees: Double)
     {
         logger.log(TextColoringUtil.getGradientParagraph(message, gradient, degrees))
     }
