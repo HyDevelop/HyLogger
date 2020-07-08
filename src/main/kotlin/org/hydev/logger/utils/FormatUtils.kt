@@ -13,12 +13,13 @@ object FormatUtils
     fun resolve(format: String, vararg args: Any): String
     {
         val result = StringBuilder()
+        val f = "$format "
         var count = 0
         var i = 0
 
-        loop@ while (i < format.length - 1)
+        loop@ while (i < f.length - 1)
         {
-            when (format.substring(i, i + 2))
+            when (f.substring(i, i + 2))
             {
                 "\\{" ->
                 {
@@ -35,14 +36,14 @@ object FormatUtils
                     // End early
                     if (args.size <= count)
                     {
-                        result.append(format.substring(i))
+                        result.append(f.substring(i))
                         break@loop
                     }
                 }
 
                 else ->
                 {
-                    result.append(format[i])
+                    result.append(f[i])
                     i++
                 }
             }
