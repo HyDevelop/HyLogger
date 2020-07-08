@@ -1,11 +1,10 @@
 package org.hydev.logger.coloring
 
-import org.hydev.logger.b
-import org.hydev.logger.foreground
-import org.hydev.logger.g
-import org.hydev.logger.r
+import org.hydev.logger.*
+import org.hydev.logger.format.AnsiColor
 import java.awt.Color
 import kotlin.math.roundToInt
+import kotlin.math.tan
 
 class LinearGradient(private val colors: MutableList<GradientPoint>)
 {
@@ -83,6 +82,64 @@ class LinearGradient(private val colors: MutableList<GradientPoint>)
     {
         val scale = size.toDouble() / colors.last().pos
         return colors.map { GradientPoint(it.color, (it.pos * scale).roundToInt()) }
+    }
+
+    fun getColorPlane(width: Int, height: Int, degrees: Double): List<List<Color>>
+    {
+        // y = slope * x
+        val slope = tan(Math.toRadians(degrees))
+
+        // 0. Obtain offset:
+        // - Offset defines how many pixels of gradient we need.
+        //
+        //    Offset = 8
+        //    ↓
+        //     0  =\
+        //     1  = \
+        //     2  =  \
+        //     3  =   \
+        //     4  =    \
+        //     5  =     \
+        //     6  =      \
+        //     7  =       \
+        //     8  =      ( \
+        //   0 9  ##########
+        //   1 10 ###Text###
+        //   2 11 ##########
+        //   ↑
+        //   Actual lines of text
+
+        val yOffset = (slope * width).toInt()
+        val yWithOffset = height + yOffset
+
+        // 1. Convert a line of gradient pixels to a plane of colors:
+        // - Each line segment drawn parallel to the slope has a consistent
+        //   color equal to the color of the beginning of the line.
+        //
+        //     0  =\
+        //     1  =\\
+        //    ...
+        //     7  =\\\\\\\\
+        //     8  =\\\\\\\\\
+        //   0 9  |--------|\
+        //   1 10 |\\Text\\|\\
+        //   2 11 |________|\\\
+
+        val colorPlane = List(height) { ArrayList<Color>() }
+        val verticalColors = getColors(yWithOffset)
+        for (sourceY in verticalColors.indices)
+        {
+            for (x in 0..width)
+            {
+                // Use x and slope to calculate the actual y value
+                val actualY = sourceY + (slope * x).toInt() - yOffset
+
+                if (actualY in 0 until height)
+                    colorPlane[actualY].add(0, verticalColors[sourceY])
+            }
+        }
+
+        return colorPlane
     }
 
     /**
