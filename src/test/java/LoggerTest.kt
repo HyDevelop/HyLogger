@@ -20,13 +20,9 @@ object LoggerTest
     {
         val logger = HyLogger("LoggerTest")
         logger.timing.reset()
-        logger.timing.time().reset()
         logger.log("一条测试Log消息")
-        logger.timing.time().reset()
         logger.debug("一条测试Debug消息")
-        logger.timing.time().reset()
         logger.error("一条测试Error消息")
-        logger.timing.time().reset()
         logger.warning("一条测试Warning消息")
         logger.timing.time().reset()
         logger.fancy.logGradient("测试渐变从深蓝到浅蓝", Color.BLUE, Color.CYAN)
@@ -55,7 +51,7 @@ object LoggerTest
                 ┬ ┬┬ ┬┬  ┌─┐┌─┐┌─┐┌─┐┬─┐
                 ├─┤└┬┘│  │ ││ ┬│ ┬├┤ ├┬┘
                 ┴ ┴ ┴ ┴─┘└─┘└─┘└─┘└─┘┴└─""".trimIndent()
-            logger.fancy.logGradient(paragraph, BPR, 15)
+            logger.fancy.logGradient(paragraph, BPR, 15.0)
         }
         logger.timing.time().reset()
         run {
@@ -67,7 +63,7 @@ object LoggerTest
                  / __  / /_/ / /___/ /_/ / /_/ / /_/ /  __/ /    
                 /_/ /_/\__, /_____/\____/\__, /\__, /\___/_/
                       /____/            /____//____/             """.trimIndent()
-            logger.fancy.logGradient(paragraph, BOP, 60)
+            logger.fancy.logGradient(paragraph, BOP, 60.0)
         }
         logger.timing.time().reset()
     }
