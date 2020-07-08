@@ -60,8 +60,8 @@ object LoggerTest
         logger.timing.time().reset()
         run {
             logger.log("测试Paragraph斜向线性渐变 #2:")
-            val paragraph =
-                                """    __  __      __                               
+            val paragraph = """
+                    __  __      __                               
                    / / / /_  __/ /   ____  ____ _____ ____  _____
                   / /_/ / / / / /   / __ \/ __ `/ __ `/ _ \/ ___/
                  / __  / /_/ / /___/ /_/ / /_/ / /_/ /  __/ /    
