@@ -84,6 +84,14 @@ class LinearGradient(private val colors: MutableList<GradientPoint>)
         return colors.map { GradientPoint(it.color, (it.pos * scale).roundToInt()) }
     }
 
+    /**
+     * Get a 2D plane of gradient colors, can be tilted.
+     *
+     * @param width
+     * @param height
+     * @param degrees
+     * @return Plane of colors (Note: Y first!)
+     */
     fun getColorPlane(width: Int, height: Int, degrees: Double): List<List<Color>>
     {
         // y = slope * x
@@ -163,5 +171,35 @@ class LinearGradient(private val colors: MutableList<GradientPoint>)
         }
 
         return result.toString().trimEnd('\n')
+    }
+
+    /**
+     * Colorize some text, can be tilted
+     *
+     * @param text
+     * @param degrees
+     * @return Colored text
+     */
+    fun colorText(text: String, degrees: Double): String
+    {
+        // Get array of char arrays
+        if (text.isBlank()) return text
+        val lines = text.replace("\u0000", "").lines()
+
+        // x = How many chars are in a line
+        // y = How many lines are in text
+        val width = lines.maxBy { it.length }!!.length - 1
+        val colorPlane = getColorPlane(width, lines.size, degrees)
+
+        // 2. Map the color plane to the actual texts.
+        val result = StringBuilder()
+        for (y in lines.indices)
+        {
+            val one = lines[y].mapIndexed { x, it -> colorPlane[y][x].foreground() + it }
+                .joinToString("", "", "")
+
+            result.line(one + AnsiColor.RESET).toString()
+        }
+        return result.toString()
     }
 }
