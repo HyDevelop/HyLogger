@@ -2,9 +2,10 @@ package org.hydev.logger.utils
 
 import org.hydev.logger.coloring.MultiPointLinearGradient
 import org.hydev.logger.foreground
-import org.hydev.logger.format.AnsiFormat.RESET
+import org.hydev.logger.format.AnsiColor.RESET
 import org.hydev.logger.line
 import java.awt.Color
+import java.lang.Math.toRadians
 import kotlin.math.tan
 
 /**
@@ -36,21 +37,21 @@ class TextColoringUtil(private val text: String)
 
     companion object
     {
-        fun getGradientParagraph(text: String, gradient: MultiPointLinearGradient, degrees: Int): String
+        fun getGradientParagraph(text: String, gradient: MultiPointLinearGradient, degrees: Double): String
         {
-            val chars = text.lines().map { it.toCharArray() }
+            // Get array of char arrays
+            if (text.isBlank()) return text
+            val lines = text.replace("\u0000", "").lines()
 
-            // x = 一句里最多多少字符
-            // y = 一共多少句
-            val yMax = chars.size - 1
-            val xMax: Int = chars[0].size - 1
-            val slope = tan(Math.toRadians(degrees.toDouble())) // y = slope * x
+            // x = How many chars are in a line
+            // y = How many lines are in text
+            val xMax = lines.maxBy { it.length }!!.length - 1
+            val slope = tan(toRadians(degrees)) // y = slope * x
 
-            // 0. 获取Offset
-
-            // Offset算法:
+            // 0. Obtain offset:
+            // - Offset defines how many pixels of gradient we need.
             //
-            //    获取的渐变颜色的行数, offset = 8
+            //    Offset = 8
             //    ↓
             //     0  =\
             //     1  = \
@@ -60,69 +61,51 @@ class TextColoringUtil(private val text: String)
             //     5  =     \
             //     6  =      \
             //     7  =       \
-            //     8  = 角度 ( \
+            //     8  =      ( \
             //   0 9  ##########
-            //   1 10 ###文字###
+            //   1 10 ###Text###
             //   2 11 ##########
             //   ↑
-            //   实际文字的行数
-            val offset = (slope * xMax).toInt()
-            val yWithOffset = yMax + offset
+            //   Actual lines of text
 
-            // 1. 获取Color[][]
+            val yOffset = (slope * xMax).toInt()
+            val yWithOffset = lines.size + yOffset
 
-            // 获取算法:
-            //
-            // 从一条1维的颜色数组按照倾斜度(slope)映射进去
+            // 1. Convert a line of gradient pixels to a plane of colors:
+            // - Each line segment drawn parallel to the slope has a consistent
+            //   color equal to the color of the beginning of the line.
             //
             //     0  =\
             //     1  =\\
-            //     2  =\\\
-            //     3  =\\\\
-            //     4  =\\\\\
-            //     5  =\\\\\\
-            //     6  =\\\\\\\
+            //    ...
             //     7  =\\\\\\\\
             //     8  =\\\\\\\\\
             //   0 9  |--------|\
-            //   1 10 |\\文字\\|\\
+            //   1 10 |\\Text\\|\\
             //   2 11 |________|\\\
-            val newColors =
-                Array(yWithOffset + 1) { arrayOfNulls<Color>(xMax + 1) }
-            val verticalColors = gradient.getColors(yWithOffset + 1)
+
+            val colorPlane = Array(lines.size) { ArrayList<Color>() }
+            val verticalColors = gradient.getColors(yWithOffset)
             for (sourceY in verticalColors.indices)
             {
-                val color = verticalColors[sourceY]
-                for (x in 0 until xMax + 1)
+                for (x in 0..xMax)
                 {
-                    // 从斜度(slope)用X获取实际点
-                    val newY = sourceY + (slope * x).toInt()
-                    try
-                    {
-                        newColors[newY][x] = color
-                    } catch (e: IndexOutOfBoundsException)
-                    {
-                        break
-                    }
+                    // Use x and slope to calculate the actual y value
+                    val actualY = sourceY + (slope * x).toInt() - yOffset
+
+                    if (actualY in lines.indices)
+                        colorPlane[actualY].add(verticalColors[sourceY])
                 }
             }
 
-            // 2. 把颜色二维数组映射到实际文字
+            // 2. Map the color plane to the actual texts.
             val result = StringBuilder()
-            for (y in 0 until yMax + 1)
+            for (y in lines.indices)
             {
-                val sentence = chars[y]
-                val colors = newColors[y + offset]
-                val oneResult = StringBuilder()
-                for (x in 0 until xMax + 1)
-                {
-                    val charInASentence = sentence[x]
-                    val colorInASentence = colors[x]
-                    if (charInASentence == '\u0000') continue
-                    oneResult.append(colorInASentence?.foreground() ?: RESET)
-                    oneResult.append(charInASentence)
-                }
-                result.line(oneResult.toString())
+                val one = lines[y].mapIndexed { x, it -> colorPlane[y][x].foreground() + it }
+                    .joinToString("", "", "")
+
+                result.line(one + RESET).toString()
             }
             return result.toString()
         }
