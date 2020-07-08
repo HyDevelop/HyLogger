@@ -1,7 +1,6 @@
 package org.hydev.logger
 
 import org.hydev.logger.coloring.LinearGradient
-import org.hydev.logger.utils.TextColoringUtil
 import java.awt.Color
 
 class FancyLogger(private val logger: HyLogger)
@@ -13,7 +12,5 @@ class FancyLogger(private val logger: HyLogger)
         = logger.log(gradient.colorText(message))
 
     fun gradient(message: String, gradient: LinearGradient, degrees: Double)
-    {
-        logger.log(TextColoringUtil.getGradientParagraph(message, gradient, degrees))
-    }
+        = logger.log(gradient.colorText(message, degrees))
 }

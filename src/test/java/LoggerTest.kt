@@ -41,30 +41,30 @@ object LoggerTest
             Color(255, 0, 128)
         )
         logger.timing.time().reset()
-        logger.fancy.gradient("##############测试彩虹多点渐变预设##############", RAINBOW)
+        logger.fancy.gradient("""
+            |############################################
+            |##############测试彩虹多点渐变预设##############
+            |############################################""".trimMargin(), RAINBOW)
         logger.timing.time().reset()
+
         logger.fancy.gradient("##############测试蓝到紫到红多点渐变##############", BPR)
         logger.timing.time().reset()
-        run {
-            logger.log("测试Paragraph斜向线性渐变 #1:")
-            val paragraph = """
-                ┬ ┬┬ ┬┬  ┌─┐┌─┐┌─┐┌─┐┬─┐
-                ├─┤└┬┘│  │ ││ ┬│ ┬├┤ ├┬┘
-                ┴ ┴ ┴ ┴─┘└─┘└─┘└─┘└─┘┴└─""".trimIndent()
-            logger.fancy.gradient(paragraph, BPR, 15.0)
-        }
+
+        logger.log("测试Paragraph斜向线性渐变 #1:")
+        logger.fancy.gradient("""
+            ┬ ┬┬ ┬┬  ┌─┐┌─┐┌─┐┌─┐┬─┐
+            ├─┤└┬┘│  │ ││ ┬│ ┬├┤ ├┬┘
+            ┴ ┴ ┴ ┴─┘└─┘└─┘└─┘└─┘┴└─""".trimIndent(), BPR, 15.0)
         logger.timing.time().reset()
-        run {
-            logger.log("测试Paragraph斜向线性渐变 #2:")
-            val paragraph = """
-                    __  __      __                               
-                   / / / /_  __/ /   ____  ____ _____ ____  _____
-                  / /_/ / / / / /   / __ \/ __ `/ __ `/ _ \/ ___/
-                 / __  / /_/ / /___/ /_/ / /_/ / /_/ /  __/ /    
-                /_/ /_/\__, /_____/\____/\__, /\__, /\___/_/
-                      /____/            /____//____/             """.trimIndent()
-            logger.fancy.gradient(paragraph, BOP, 60.0)
-        }
+
+        logger.log("测试Paragraph斜向线性渐变 #2:")
+        logger.fancy.gradient("""
+                __  __      __                               
+               / / / /_  __/ /   ____  ____ _____ ____  _____
+              / /_/ / / / / /   / __ \/ __ `/ __ `/ _ \/ ___/
+             / __  / /_/ / /___/ /_/ / /_/ / /_/ /  __/ /    
+            /_/ /_/\__, /_____/\____/\__, /\__, /\___/_/
+                  /____/            /____//____/             """.trimIndent(), BOP, 60.0)
         logger.timing.time().reset()
     }
 }
