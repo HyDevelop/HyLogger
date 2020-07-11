@@ -1,7 +1,7 @@
 package org.hydev.logger.coloring
 
 import org.hydev.logger.*
-import org.hydev.logger.format.AnsiColor
+import org.hydev.logger.format.AnsiColor.RESET
 import java.awt.Color
 import kotlin.math.roundToInt
 import kotlin.math.tan
@@ -161,13 +161,20 @@ class LinearGradient(private val colors: MutableList<GradientPoint>)
         if (text.isBlank()) return text
 
         val lines = text.lines()
-        val colors = getColors(lines.maxBy { it.length }!!.length)
+        val colors = getColors(lines.map { it.widthLength() }.max()!!)
         val result = StringBuilder()
 
         for (line in lines)
         {
-            line.forEachIndexed { i, c -> result.append(colors[i].foreground()).append(c) }
-            result.append("\n")
+            var colorIndex = 0
+            line.forEach { c ->
+                result.append(colors[colorIndex].foreground()).append(c)
+                colorIndex++
+
+                // Account for full width characters
+                if (c.isFullWidth()) colorIndex++
+            }
+            result.append(RESET).append("\n")
         }
 
         return result.toString().trimEnd('\n')
@@ -188,17 +195,24 @@ class LinearGradient(private val colors: MutableList<GradientPoint>)
 
         // x = How many chars are in a line
         // y = How many lines are in text
-        val width = lines.maxBy { it.length }!!.length - 1
+        val width = lines.map { it.widthLength() }.max()!! - 1
         val colorPlane = getColorPlane(width, lines.size, degrees)
 
         // 2. Map the color plane to the actual texts.
         val result = StringBuilder()
         for (y in lines.indices)
         {
-            val one = lines[y].mapIndexed { x, it -> colorPlane[y][x].foreground() + it }
-                .joinToString("", "", "")
+            var colorIndex = 0
+            val one = lines[y].map { c ->
+                val line = colorPlane[y][colorIndex].foreground() + c
+                colorIndex++
 
-            result.line(one + AnsiColor.RESET).toString()
+                // Account for full width characters
+                if (c.isFullWidth()) colorIndex++
+                line
+            }.joinToString("", "", "")
+
+            result.line(one + RESET).toString()
         }
         return result.toString()
     }
