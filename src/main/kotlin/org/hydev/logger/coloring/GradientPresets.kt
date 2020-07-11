@@ -8,7 +8,7 @@ object GradientPresets
     var RAINBOW = LinearGradient(
         GradientPoint(Color(255, 0, 0), 0),
         GradientPoint(Color(255, 0, 255), 15),
-        GradientPoint(Color(0, 0, 255), 34),
+        GradientPoint(Color(126, 126, 255), 34),
         GradientPoint(Color(0, 255, 255), 50),
         GradientPoint(Color(0, 255, 0), 68),
         GradientPoint(Color(255, 255, 0), 85),
