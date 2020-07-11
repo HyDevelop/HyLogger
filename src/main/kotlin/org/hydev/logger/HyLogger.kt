@@ -19,7 +19,7 @@ class HyLogger(val prefix: String)
         if (level == DEBUG && !debug) return
 
         // Find stack trace
-        val stack = Thread.currentThread().stackTrace
+        val stack = Thread.currentThread().stackTrace.toMutableList().apply { removeAt(0); removeAt(0) }
             .first { s -> !s.className.startsWith("org.hydev.logger") }
         val fqcn = "${stack.className}.${stack.methodName}:${stack.lineNumber}"
 
