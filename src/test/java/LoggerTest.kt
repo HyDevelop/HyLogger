@@ -20,7 +20,9 @@ object LoggerTest
     fun main(args: Array<String>)
     {
         val logger = HyLogger("LoggerTest")
+        logger.fancy.gradient("Initiating...", Color.ORANGE, Color.YELLOW)
         logger.timing.reset()
+        println()
 
         logger.log("一条测试Log消息")
         logger.error("一条测试Error消息")

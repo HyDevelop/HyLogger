@@ -214,6 +214,6 @@ class LinearGradient(private val colors: MutableList<GradientPoint>)
 
             result.line(one + RESET).toString()
         }
-        return result.toString()
+        return result.toString().trimEnd('\n')
     }
 }
