@@ -1,0 +1,102 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.3.72'
+
+    // Publishing
+    id "maven"
+    id "signing"
+}
+
+group 'org.hydev'
+archivesBaseName = "HyLogger"
+version '2.0.0.325'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+// ########## //
+// Publishing //
+// ########## //
+
+task sourceJar(type: Jar) {
+    classifier "sources"
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier "javadoc"
+    from javadoc
+}
+
+artifacts {
+    archives jar
+    archives sourceJar
+    archives javadocJar
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUser, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUser, password: ossrhPassword)
+            }
+
+            pom.project {
+                name = 'HyLogger'
+                description = 'Bring RGB to your Kotlin/Java outputs! | 全彩的日志库w'
+                url = "https://github.com/HyDevelop/HyLogger"
+                packaging = 'jar'
+
+                licenses {
+                    license {
+                        name = "MIT"
+                        url = "https://github.com/HyDevelop/HyLogger/blob/master/LICENSE"
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = "hykilpikonna"
+                        name = "Hykilpikonna"
+                        email = "admin@moecraft.cc"
+                    }
+                    developer {
+                        id = "vergedx"
+                        name = "Vanilla"
+                        email = "wxy20001225@126.com"
+                    }
+                }
+
+                scm {
+                    connection = "scm:svn:https://github.com/HyDevelop/HyLogger.git"
+                    developerConnection = "scm:svn:https://github.com/HyDevelop/HyLogger.git"
+                    url = "https://github.com/HyDevelop/HyLogger"
+                }
+            }
+        }
+    }
+}
+
+signing {
+    useGpgCmd()
+    sign configurations.archives
+}
