@@ -17,6 +17,7 @@ repositories {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation "org.fusesource.jansi:jansi:1.18"
 }
 
 compileKotlin {
