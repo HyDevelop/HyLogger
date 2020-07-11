@@ -129,3 +129,13 @@ fun Char.isFullWidth(): Boolean
         else -> false
     }
 }
+
+/**
+ * @return Length accounting for full-width characters
+ */
+fun String.widthLength(): Int
+{
+    var len = length
+    forEach { if (it.isFullWidth()) len++ }
+    return len
+}
