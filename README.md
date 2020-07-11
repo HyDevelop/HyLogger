@@ -4,13 +4,12 @@
   </a>
 </h1>
 <h4 align="center">
-  妈妈快看, 那个人的日志会变色!!
+  RGB, even in the console outputs!
 </h4>
 <h5 align="center">
-  <a href="#maven">Maven 导入</a>&nbsp;&nbsp;
-  <a href="#introduction">介绍</a>&nbsp;&nbsp;
-  <a href="#development">开发</a>&nbsp;&nbsp;
-  <a href="#license">开源条款</a>
+  <a href="#introduction">Introduction</a>&nbsp;&nbsp;|&nbsp;
+  <a href="#development">Getting Started</a>&nbsp;&nbsp;|&nbsp;
+  <a href="#license">License</a>
 </h5>
 
 <br>
@@ -69,10 +68,6 @@
 <br><br>
 * **v4.0.247**
 * 支持`8BIT (256)`颜色环境
-
-#### 待实现(TODO)的功能:
-
-* 无视原有颜色的全局渐变
 
 <br>
 
