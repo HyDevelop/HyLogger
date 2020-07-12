@@ -85,6 +85,34 @@ In **Kotlin** you can do this:
 logger.debug("User $user tried to inject a SQL sequence: ${json.value}")
 ```
 
+### 4. Fancy Logging:
+
+#### Terminals' compatibility with TrueColor
+
+Unlike the regular logging features, 
+these fancy logging features need proper support by the terminal program you're using. 
+The terminal programs with **perfect compatibility** for each platform are following:
+(If you found a new compatible program, please post an issue)
+
+- MacOS: [iTerm](https://www.iterm2.com/)
+- Windows: Git Bash / MinTTY
+- Linux: XFCE4 Terminal Emulator / Gnome-Terminal
+
+Here is a list of **incompatible** programs:
+
+- Windows: CMD / Powershell / Babun 1.2.0 / PowerCmd 2.2 / Xshell 5
+- All Platform: Hyper
+
+Here is a list of **partially compatible** programs: 
+(Might not display TrueColor properly or have some bugs)
+
+- Windows: Xshell 5 / Cmder 1.3.6 / CmdEmu 180626
+
+How to add support for Eclipse terminal:
+
+- ~~Just use IntelliJ!~~ Install `ANSI Escape in Console` plugin in Eclipse Marketplace.
+
+
 
 
 格式表:
