@@ -176,6 +176,17 @@ Eg.
 logger.fancy.gradient("Orange to Pink Gradient", Color(255, 140, 0), Color(255, 0, 128))
 ```
 
+### 6. Extra Features:
+
+#### Timer:
+
+```java
+// Resets the timer
+logger.timing.reset();
+
+// Print the elapsed time in ms and reset
+logger.timing.time().reset();
+```
 
 
 
