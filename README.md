@@ -148,6 +148,20 @@ How to add support for **Eclipse terminal**:
 - Just use IntelliJ! It's 100% better.
 - Or install `ANSI Escape in Console` plugin in Eclipse Marketplace.
 
+#### Use RGB:
+
+Java:
+
+```java
+logger.log("{}Awwwww", HyLoggerUtilsKt.foreground(new Color(252, 168, 187)));
+```
+
+Kotlin:
+
+```kotlin
+logger.log("${new Color(252, 168, 187).foreground()}Awwwww");
+```
+
 
 
 
