@@ -65,6 +65,13 @@ logger.error("This could never happen in theory, right?");
 logger.warning("Nerf this!");
 ```
 
+Formatting with `String.format()`:
+
+```java
+logger.logf("Player %s just ate %.2f stardrops.", username, amount);
+logger.errorf("Time has just been distorted by %.5f picoseconds.", timeDiff);
+```
+
 
 
 格式表:
