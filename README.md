@@ -72,6 +72,13 @@ logger.logf("Player %s just ate %.2f stardrops.", username, amount);
 logger.errorf("Time has just been distorted by %.5f picoseconds.", timeDiff);
 ```
 
+Formatting like SLF4J (This is completely useless in Kotlin):
+
+```java
+logger.log("{}! {} Everywhere!", "Brackets", "Brackets")
+logger.debug("User {} just posted {} on {}", user, json, board)
+```
+
 
 
 格式表:
