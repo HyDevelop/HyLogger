@@ -26,6 +26,7 @@ What Is This?
 
 HyLogger is a console logging library designed for human programmers to read. Its APIs are simple and clean, and its color-coding features make logging more readable. It focuses on coloring features like color-coding.
 
+TODO: Add support for universal System.err override
 
 <br>
 
