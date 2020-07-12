@@ -44,6 +44,16 @@ HyLogger is a console logging library designed for human programmers to read. It
 
 It'll be available after clicking the reload button in IDEA!
 
+### 1. Create Logger:
+
+```java
+HyLogger logger = new HyLogger("Scenario Name");
+```
+
+```kotlin
+val logger = HyLogger("Scenario Name")
+```
+
 
 
 格式表:
