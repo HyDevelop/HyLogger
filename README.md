@@ -21,10 +21,10 @@
 <br>
 
 <a name="introduction"></a>
-介绍 (v4.0.254):
+What Is This?
 --------
 
-这是一个支持颜色和文件输出的日志工具, 理论上颜色输出支持所有支持 ANSI ESC Code 的控制台.
+HyLogger is a console logging library designed for human programmers to read. Its APIs are simple and clean, and its color-coding features make logging more readable. It focuses on coloring features like color-coding.
 
 <br>
 
