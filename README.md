@@ -45,91 +45,6 @@ HyLogger is a console logging library designed for human programmers to read. It
 It'll be available after clicking the reload button in IDEA!
 
 
-```
-
-```
-
-
-<a name="development"></a>
-开发:
---------
-
-### 1. 创建实例管理器:
-
-```java
-LoggerInstanceManager lim = new LoggerInstanceManager(日志环境 ...);
-```
-
-例子: 如果需要一边在后台输出带颜色的一边在文件里输出不带颜色的, 写成这样:
-
-```java
-LoggerInstanceManager lim = new LoggerInstanceManager(new ConsoleColoredEnv(), new FileEnv("logs", "log"));
-```
-
-可用的日志环境:
-
-```java
-ConsoleEnv        // 无颜色的控制台环境
-ConsoleColoredEnv // 带颜色的控制台环境 (使用 Jansi 类库, 控制台不支持颜色的话也不会乱码)
-FileEnv           // 无颜色的文件环境
-FileColoredEnv    // 带颜色的文件环境 (大部分编辑器不支持, 所以像我一样的 RGB 厨以外不推荐使用ww)
-```
-
-### 2. 创建/获取实例:
-
-```java
-// 注意: 可以有多个实例, 每个实例可以有不同的前缀和是否输出 Debug, 
-//       但是同一个实例管理器下的所有实例都有同样的输出环境.
-
-HyLogger logger = lim.getLoggerInstance(前缀, 是否输出 Debug);
-```
-
-例子: 如果前缀是 Main, 然后不输出 Debug: (这个很容易懂吧...
-
-```java
-HyLogger logger = lim.getLoggerInstance("Main", false);
-```
-
-例子#2: 如果前缀是线程号...:
-
-```java
-HyLogger logger = lim.getLoggerInstance("线程#" + Thread.currentThread().getId(), false);
-```
-
-### 3. 使用实例:
-
-```java
-logger.log("一条 Log 消息"); // 这些是不同输出级别的日志
-logger.debug("一条 Debug 消息"); // Debug 日志只有开了 debug 开关才会输出
-logger.error("一条 Error 消息");
-logger.warning("一条 Warning 消息");
-
-// 这个渐变详细教程在下面
-logger.fancy.logGradient("一条从橙色渐变到粉色的 Log 消息\n",
-        new Color(255, 140, 0),
-        new Color(255, 0, 128)); 
-```
-
-### 4. 更改输出格式:
-
-```java
-lim.setFormat(日志级别, 新的格式); // 给某个日志级别设置输出格式
-```
-
-格式里可用的变量:
-
-| 变量占位符   | 用处              | 例子 |
-| :------------: | :------------: | :------------: |
-| {time}           | 当前时间        | 18-07-06 22:05:41 |
-| {prefix}         | 日志前缀        | Thread-1 |
-| {message}    | 输出内容        | 竜神の剣を喰らえ! |
-| {st.class}       | 发日志的类     | cc.moecraft.Test |
-| {st.method}  | 发日志的方法 | main |
-| {st.line}         | 发日志的行数 | 31 |
-| {st.full}          | 上面三个一起 | cc.moecraft.Test.main:31 |
-
-颜色用了简写替换, 用的颜色码和 Minecraft 的颜色码一样, &1 到 &f.
-[完整颜色码表](https://i.imgur.com/MSdHuMW.jpg)
 
 格式表:
 
@@ -280,38 +195,6 @@ logger.timing.timeAndReset();
 // 用完后 clear:
 logger.timing.clear();
 ```
-
-### 9. 测试过的兼容和不兼容颜色的后台程序:
-
-如果有新的测试结果欢迎 Email 我(me@hydev.org), 我会加进这个列表的!
-注意: Independent 不是一个系统的名字, 它是指这个后台程序兼容多个系统.
-
-完全兼容:
-* Ubuntu 17   - XFCE4 Terminal Emulator
-* Ubuntu 17   - Gnome-Terminal
-* Independent - Git Bash
-* Independent - MinGW / MinTTY
-* Independent - Termius 2.1.6
-
-色段兼容: (这些会把 RGB 颜色分成更概括性的颜色段, 不会乱但是显示效果没有完全兼容的好)
-* Windows 10  - Cmder 1.3.6
-* Windows 10  - CmdEmu 180626
-
-预设兼容: (这些只会兼容预设颜色, 不兼容完整 RGB, 所以 RGB 码会被解析成很乱的普通颜色码)
-* Windows 10  - 命令提示符
-* Independent - IntelliJ IDEA Run/Debug Console 2018.1.5
-* Independent - Xshell 5
-
-不兼容: (这些完全不兼容颜色, 会乱码, 或者兼容得不完整到无法算为兼容预设的程度)
-* Windows 10  - Powershell
-* Windows 10  - Babun 1.2.0
-* Independent - PowerCmd 2.2
-* Independent - Hyper
-* Independent - Terminus Alpha
-
-### 10. 给 Eclipse 添加兼容：
-
-在 `Eclipse Marketplace` 中安装 `ANSI Escape in Console` 插件，并启用即可。
 
 <br>
 
