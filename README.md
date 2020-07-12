@@ -26,65 +26,29 @@ What Is This?
 
 HyLogger is a console logging library designed for human programmers to read. Its APIs are simple and clean, and its color-coding features make logging more readable. It focuses on coloring features like color-coding.
 
+
 <br>
 
-<a name="maven"></a>
-Maven 导入:
---------
+<a name="development"></a>
+## Getting Started
 
-没有添加 JitPack 的 Repo 的话首先添加 Repo, 在 pom 里面把这些粘贴进去:
-
-```xml
-<repositories>
-    <repository>
-    <id>jitpack.io</id>
-    <url>https://jitpack.io</url>
-    </repository>
-</repositories>
-```
-
-然后添加这个库:
+### 1. Import using Gradle / Maven:
 
 ```xml
 <dependency>
-    <groupId>com.github.hydevelop</groupId>
+    <groupId>org.hydev</groupId>
     <artifactId>HyLogger</artifactId>
-    <version>4.0.254</version>
+    <version>2.0.0.325</version>
 </dependency>
 ```
 
-然后 ReImport 之后就导入好了!
+It'll be available after clicking the reload button in IDEA!
 
-<br>
 
-<a name="gradle"></a>
-Gradle 导入:
---------
-
-没有添加 JitPack 的 Repo 的话首先添加 Repo, 在 pom 里面把这些粘贴进去:
-
-```gradle
-allprojects {
-    repositories {
-        ...
-        maven { url 'https://jitpack.io' }
-    }
-}
 ```
 
-然后添加这个库:
-
-```gradle
-dependencies {
-    implementation 'com.github.hydevelop:HyLogger:4.0.254'
-}
 ```
 
-<!-- 每次更新都要手动改这些版本号好烦的_(:з」∠)_... -->
-
-#### [其他导入(SBT / Leiningen)](https://jitpack.io/#HyDevelop/HyLogger/4.0.254)
-
-<br>
 
 <a name="development"></a>
 开发:
