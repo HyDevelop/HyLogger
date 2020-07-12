@@ -54,6 +54,17 @@ HyLogger logger = new HyLogger("Scenario Name");
 val logger = HyLogger("Scenario Name")
 ```
 
+### 2. Basic Logging:
+
+Basic logging (they are basically the same for Kotlin and Java):
+
+```java
+logger.log("Oak logs are the best.");
+logger.debug("This is not logged if HyLoggerConfig.debug is off.");
+logger.error("This could never happen in theory, right?");
+logger.warning("Nerf this!");
+```
+
 
 
 格式表:
