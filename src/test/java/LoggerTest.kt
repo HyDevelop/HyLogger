@@ -38,18 +38,10 @@ object LoggerTest
         logger.fancy.gradient("测试渐变从橘色到浅蓝", Color.ORANGE, Color.CYAN)
         logger.timing.time().reset()
 
-        logger.fancy.gradient(
-            "测试黄绿渐变到天蓝",
-            Color(0, 242, 96),
-            Color(80, 161, 230)
-        )
+        logger.fancy.gradient("测试黄绿渐变到天蓝", Color(0, 242, 96), Color(80, 161, 230))
         logger.timing.time().reset()
 
-        logger.fancy.gradient(
-            "测试橙色渐变到粉色",
-            Color(255, 140, 0),
-            Color(255, 0, 128)
-        )
+        logger.fancy.gradient("测试橙色渐变到粉色", Color(255, 140, 0), Color(255, 0, 128))
         logger.timing.time().reset()
 
         logger.fancy.gradient("""
