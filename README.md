@@ -79,6 +79,12 @@ logger.log("{}! {} Everywhere!", "Brackets", "Brackets")
 logger.debug("User {} just posted {} on {}", user, json, board)
 ```
 
+In **Kotlin** you can do this:
+
+```kotlin
+logger.debug("User $user tried to inject a SQL sequence: ${json.value}")
+```
+
 
 
 格式表:
