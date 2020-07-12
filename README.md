@@ -105,6 +105,22 @@ Kotlin:
 logger.log("&cHeck &eyeah!&r".parseFormats())
 ```
 
+#### B. Use Color Constants:
+
+Java: (Import static AnsiColor.* first)
+
+```java
+logger.log("{}Heck {}yeah!{}", RED, YELLOW, RESET)
+```
+
+Kotlin: (Import AnsiColor.* first)
+
+```kotlin
+logger.log("${RED}Heck ${YELLOW}yeah!$RESET")
+```
+
+### 4. RGB Color Logging:
+
 #### Terminals' compatibility with TrueColor
 
 Unlike the regular logging features, 
