@@ -46,9 +46,13 @@ It'll be available after clicking the reload button in IDEA!
 
 ### 1. Create Logger:
 
+Java: 
+
 ```java
 HyLogger logger = new HyLogger("Scenario Name");
 ```
+
+Kotlin:
 
 ```kotlin
 val logger = HyLogger("Scenario Name")
@@ -85,7 +89,21 @@ In **Kotlin** you can do this:
 logger.debug("User $user tried to inject a SQL sequence: ${json.value}")
 ```
 
-### 4. Fancy Logging:
+### 3. Preset Color Logging:
+
+#### A. Use [**Minecraft Color-code**](https://www.spigotmc.org/attachments/example2-png.188806/):
+
+Java:
+
+```java
+logger.log(HyLoggerUtilsKt.parseFormats("&cHeck &eyeah!&r"))
+```
+
+Kotlin:
+
+```kotlin
+logger.log("&cHeck &eyeah!&r".parseFormats())
+```
 
 #### Terminals' compatibility with TrueColor
 
