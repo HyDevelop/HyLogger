@@ -1,6 +1,6 @@
 <h1 align="center">
   <a href="#!">
-    <img src="https://i.imgur.com/4dkZaN1.png" height="200">
+    <img src="https://i.imgur.com/OyCCc9z.jpg" height="50">
   </a>
 </h1>
 <h4 align="center">
