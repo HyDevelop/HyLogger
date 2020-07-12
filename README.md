@@ -94,6 +94,7 @@ these fancy logging features need proper support by the terminal program you're 
 The terminal programs with **perfect compatibility** for each platform are following:
 (If you found a new compatible program, please post an issue)
 
+- All Platform: [Terminus Alpha](https://github.com/Eugeny/terminus)
 - MacOS: [iTerm](https://www.iterm2.com/)
 - Windows: Git Bash / MinTTY
 - Linux: XFCE4 Terminal Emulator / Gnome-Terminal
