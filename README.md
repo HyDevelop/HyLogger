@@ -162,6 +162,20 @@ Kotlin:
 logger.log("${new Color(252, 168, 187).foreground()}Awwwww");
 ```
 
+#### Gradients:
+
+LinearGradient defines a gradient pattern on a single line. (Eg. Red to Blue)
+There are several presets in the `GradientPresets` class,
+and you can create your own too.
+
+Please see [LoggerTest.kt](https://github.com/HyDevelop/HyLogger/blob/master/src/test/java/LoggerTest.kt) for examples!
+
+Eg.
+
+```kotlin
+logger.fancy.gradient("Orange to Pink Gradient", Color(255, 140, 0), Color(255, 0, 128))
+```
+
 
 
 
