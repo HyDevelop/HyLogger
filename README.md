@@ -143,9 +143,10 @@ Here is a list of **partially compatible** programs:
 
 - Windows: Xshell 5 / Cmder 1.3.6 / CmdEmu 180626
 
-How to add support for Eclipse terminal:
+How to add support for **Eclipse terminal**:
 
-- ~~Just use IntelliJ!~~ Install `ANSI Escape in Console` plugin in Eclipse Marketplace.
+- Just use IntelliJ! It's 100% better.
+- Or install `ANSI Escape in Console` plugin in Eclipse Marketplace.
 
 
 
