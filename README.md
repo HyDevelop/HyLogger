@@ -16,7 +16,7 @@
 <br>
 
 <p align="center">
-  <img src="https://i.imgur.com/TqgyUJt.png">
+  <img src="./docs/HyLoggerTerminal.jpg">
 </p>
 
 <br>
