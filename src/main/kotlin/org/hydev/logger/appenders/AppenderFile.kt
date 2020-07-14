@@ -23,6 +23,7 @@ open class AppenderFile(file: File) : Appender()
         }
 
         // File
+        file.parentFile.mkdirs()
         if (!file.exists()) file.createNewFile()
         fileWriter = file.printWriter()
 
