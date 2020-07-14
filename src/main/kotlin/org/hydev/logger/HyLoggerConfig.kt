@@ -1,7 +1,7 @@
 package org.hydev.logger
 
 import org.hydev.logger.appenders.Appender
-import org.hydev.logger.appenders.AppenderConsole
+import org.hydev.logger.appenders.ConsoleAppender
 import org.hydev.logger.appenders.ColorCompatibility
 import org.hydev.logger.coloring.AnsiColorMode
 
@@ -20,7 +20,7 @@ object HyLoggerConfig
 
     var timePattern = "yyyy-MM-dd HH:mm:ss".toDatePattern()
 
-    val appenders: MutableList<Appender> = mutableListOf(AppenderConsole())
+    val appenders: MutableList<Appender> = mutableListOf(ConsoleAppender())
 
     var debug = false
 

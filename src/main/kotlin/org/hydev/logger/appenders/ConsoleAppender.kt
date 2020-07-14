@@ -7,7 +7,7 @@ import org.hydev.logger.format.AnsiColor.*
 import org.hydev.logger.now
 import org.hydev.logger.parseFormats
 
-class AppenderConsole() : Appender()
+class ConsoleAppender() : Appender()
 {
     init
     {

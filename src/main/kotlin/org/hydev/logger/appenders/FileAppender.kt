@@ -7,7 +7,7 @@ import org.hydev.logger.withoutFormat
 import java.io.File
 import java.io.PrintWriter
 
-open class AppenderFile(file: File) : Appender()
+open class FileAppender(file: File) : Appender()
 {
     var fileWriter: PrintWriter
 
