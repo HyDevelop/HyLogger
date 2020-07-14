@@ -1,8 +1,9 @@
-<h1 align="center">
+<br><br>
+<h4 align="center">
   <a href="#!">
-    <img src="https://i.imgur.com/4dkZaN1.png" height="200">
+    <img src="./docs/HyLogger.jpg" height="100">
   </a>
-</h1>
+</h4>
 <h4 align="center">
   RGB, even in the console outputs!
 </h4>
@@ -15,7 +16,7 @@
 <br>
 
 <p align="center">
-  <img src="https://i.imgur.com/TqgyUJt.png">
+  <img src="./docs/HyLoggerTerminal.jpg">
 </p>
 
 <br>
