@@ -39,7 +39,7 @@ open class AppenderFile(file: File) : Appender()
 
     override fun logRaw(message: String)
     {
-        fileWriter.write(message.withoutFormat())
+        fileWriter.write(message.withoutFormat() + "\n")
         fileWriter.flush()
     }
 }
