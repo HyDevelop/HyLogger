@@ -44,5 +44,5 @@ class HyPrintStream(val original: PrintStream, val log: (Any) -> Unit)
     override fun println(x: Double) = log(x)
     override fun println(x: CharArray) = log(x)
     override fun println(x: String?) = log(x ?: "null")
-    override fun println(x: Any) = log(x)
+    override fun println(x: Any?) = log(x ?: "null")
 }
