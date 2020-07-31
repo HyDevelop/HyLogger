@@ -1,8 +1,8 @@
 package org.hydev.logger
 
 import org.hydev.logger.appenders.Appender
-import org.hydev.logger.appenders.ConsoleAppender
 import org.hydev.logger.appenders.ColorCompatibility
+import org.hydev.logger.appenders.ConsoleAppender
 import org.hydev.logger.coloring.AnsiColorMode
 
 /**
@@ -26,4 +26,6 @@ object HyLoggerConfig
 
     var fileTimePattern = "yy-MM-dd_HH-mm".toDatePattern()
     var fileFormat = "log-{name}@{time}.csv"
+
+    val out = System.out
 }
