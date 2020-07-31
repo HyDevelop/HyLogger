@@ -1,20 +1,17 @@
 package org.hydev.logger.appenders
 
-import org.fusesource.jansi.AnsiConsole
+import org.hydev.logger.HyLoggerConfig
 import org.hydev.logger.withoutFormat
 import org.hydev.logger.withoutRGB
 
 enum class ColorCompatibility(val log: (String) -> Unit)
 {
-    // Default support (let Jansi decide)
-    DEFAULT({ AnsiConsole.out.println(it) }),
-
     // Only output preset colors and remove xterm-256 colors
-    PRESET_ONLY({ AnsiConsole.out.println(it.withoutRGB()) }),
+    PRESET_ONLY({ HyLoggerConfig.out.println(it.withoutRGB()) }),
 
     // Always output color
-    FORCED({ println(it) }),
+    FORCED({ HyLoggerConfig.out.println(it) }),
 
     // Remove all colors
-    DISABLED({ println(it.withoutFormat()) }),
+    DISABLED({ HyLoggerConfig.out.println(it.withoutFormat()) }),
 }
