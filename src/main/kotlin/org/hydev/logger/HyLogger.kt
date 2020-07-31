@@ -65,6 +65,6 @@ class HyLogger(val prefix: String)
 
     companion object
     {
-        val general = HyLogger("General")
+        var general = HyLogger("General")
     }
 }
