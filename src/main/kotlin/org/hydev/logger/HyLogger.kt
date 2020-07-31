@@ -57,4 +57,9 @@ class HyLogger(val prefix: String)
     fun debugf(format: String, vararg args: Any) = logf(DEBUG, format, *args)
     fun errorf(format: String, vararg args: Any) = logf(ERROR, format, *args)
     fun warningf(format: String, vararg args: Any) = logf(WARNING, format, *args)
+
+    companion object
+    {
+        val general = HyLogger("General")
+    }
 }
