@@ -19,10 +19,14 @@ class HyLogger(val prefix: String)
         if (level == DEBUG && !debug) return
 
         // Find stack trace
-        val stOrig = Thread.currentThread().stackTrace
-        val st = stOrig.filter { !it.className.startsWith("org.hydev.logger") }
-        val stack = st.firstOrNull { s -> !s.className.startsWith("java.") } ?: st.getOrNull(0) ?: stOrig[0]
-        val fqcn = "${stack.className}.${stack.methodName}:${stack.lineNumber}"
+        val stOrig = Thread.currentThread().stackTrace.toMutableList().apply { removeAt(0); removeAt(0) }
+        val fqcn = if (level == ERROR && stOrig.last().toString().startsWith("java.lang.Thread.dispatchUncaughtException(")) "Uncaught" else
+        {
+            val st = stOrig.filter { !it.className.startsWith("org.hydev.logger") }
+            val stack = st.firstOrNull { !it.className.startsWith("java.") } ?: st.getOrNull(0) ?: stOrig[0]
+            "${stack.className}.${stack.methodName}:${stack.lineNumber}"
+        }
+
 
         message.lines().forEach { line ->
             appenders.forEach { it.log(LogData(level, prefix, line, fqcn)) }
