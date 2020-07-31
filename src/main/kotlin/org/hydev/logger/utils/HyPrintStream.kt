@@ -23,4 +23,16 @@ class HyPrintStream(val original: PrintStream, val log: (Any) -> Unit = { HyLogg
     override fun flush() = run { super.flush(); original.flush() }
     private fun write(s: String?) = original.print(s)
     private fun write(buf: CharArray) = original.print(buf)
+
+    /* Methods that do not terminate lines */
+
+    override fun print(b: Boolean) = original.print(b)
+    override fun print(c: Char) = original.print(c)
+    override fun print(i: Int) = original.print(i)
+    override fun print(l: Long) = original.print(l)
+    override fun print(f: Float) = original.print(f)
+    override fun print(d: Double) = original.print(d)
+    override fun print(s: CharArray) = original.print(s)
+    override fun print(s: String?) = original.print(s)
+    override fun print(obj: Any) = original.print(obj)
 }
