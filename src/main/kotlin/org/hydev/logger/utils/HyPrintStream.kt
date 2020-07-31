@@ -35,4 +35,17 @@ class HyPrintStream(val original: PrintStream, val log: (Any) -> Unit = { HyLogg
     override fun print(s: CharArray) = original.print(s)
     override fun print(s: String?) = original.print(s)
     override fun print(obj: Any) = original.print(obj)
+
+    /* Methods that do terminate lines */
+
+    override fun println() = log("")
+    override fun println(x: Boolean) = log(x)
+    override fun println(x: Char) = log(x)
+    override fun println(x: Int) = log(x)
+    override fun println(x: Long) = log(x)
+    override fun println(x: Float) = log(x)
+    override fun println(x: Double) = log(x)
+    override fun println(x: CharArray) = log(x)
+    override fun println(x: String?) = log(x ?: "null")
+    override fun println(x: Any) = log(x)
 }
