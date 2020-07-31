@@ -1,9 +1,14 @@
 package org.hydev.logger
 
+import org.fusesource.jansi.AnsiConsole
+import org.hydev.logger.HyLogger.Companion.general
 import org.hydev.logger.appenders.Appender
 import org.hydev.logger.appenders.ColorCompatibility
+import org.hydev.logger.appenders.ColorCompatibility.PRESET_ONLY
 import org.hydev.logger.appenders.ConsoleAppender
 import org.hydev.logger.coloring.AnsiColorMode
+import org.hydev.logger.utils.HyPrintStream
+import java.io.PrintStream
 
 /**
  * Global configuration for the logger
@@ -27,5 +32,17 @@ object HyLoggerConfig
     var fileTimePattern = "yy-MM-dd_HH-mm".toDatePattern()
     var fileFormat = "log-{name}@{time}.csv"
 
-    val out = System.out
+    var out: PrintStream = System.out
+
+    val _originalOut: PrintStream = System.out
+    val _originalErr: PrintStream = System.err
+
+    /**
+     * Make System.out.println() go through HyLogger.general.log()
+     */
+    fun installSysOut()
+    {
+        System.setOut(HyPrintStream(_originalOut) { general.log(it) })
+        System.setErr(HyPrintStream(_originalErr) { general.error(it) })
+    }
 }
