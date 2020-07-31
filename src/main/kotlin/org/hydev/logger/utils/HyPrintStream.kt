@@ -15,14 +15,12 @@ import java.io.PrintStream
 class HyPrintStream(val original: PrintStream, val log: (Any) -> Unit = { HyLogger.general.log(it) })
     : PrintStream(object: OutputStream() { override fun write(b: Int) {}})
 {
-    override fun write(b: ByteArray) = original.write(b)
-    override fun write(b: Int) = original.write(b)
-    override fun write(buf: ByteArray, off: Int, len: Int) = original.write(buf, off, len)
     override fun checkError() = super.checkError() || original.checkError()
     override fun close() = run { super.close(); original.close() }
     override fun flush() = run { super.flush(); original.flush() }
-    private fun write(s: String?) = original.print(s)
-    private fun write(buf: CharArray) = original.print(buf)
+    override fun write(b: Int) = original.write(b)
+    override fun write(buf: ByteArray, off: Int, len: Int) = original.write(buf, off, len)
+    override fun write(b: ByteArray) = original.write(b)
 
     /* Methods that do not terminate lines */
 
