@@ -9,7 +9,7 @@ plugins {
 
 group 'org.hydev'
 archivesBaseName = "HyLogger"
-version '2.0.0.325'
+version '2.1.0.378'
 
 repositories {
     mavenCentral()

@@ -34,14 +34,20 @@ TODO: Add support for universal System.err override
 <a name="development"></a>
 ## Getting Started
 
-### 1. Import using Gradle / Maven:
+### 0. Import using Gradle / Maven:
 
 ```xml
+<!-- https://mvnrepository.com/artifact/org.hydev/HyLogger -->
 <dependency>
     <groupId>org.hydev</groupId>
     <artifactId>HyLogger</artifactId>
-    <version>2.0.0.325</version>
+    <version>2.1.0.378</version>
 </dependency>
+```
+
+```groovy
+// https://mvnrepository.com/artifact/org.hydev/HyLogger
+compile group: 'org.hydev', name: 'HyLogger', version: '2.1.0.378'
 ```
 
 It'll be available after clicking the reload button in IDEA!
