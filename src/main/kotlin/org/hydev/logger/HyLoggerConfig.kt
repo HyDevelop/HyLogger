@@ -45,4 +45,13 @@ object HyLoggerConfig
         System.setOut(HyPrintStream(_originalOut) { general.log(it) })
         System.setErr(HyPrintStream(_originalErr) { general.error(it) })
     }
+
+    /**
+     * Enable windows cmd color compatibility
+     */
+    fun enableWindowsCmdCompatibility()
+    {
+        out = AnsiConsole.out
+        colorCompatibility = PRESET_ONLY
+    }
 }
