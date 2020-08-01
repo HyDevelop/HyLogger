@@ -43,6 +43,13 @@ object HyLoggerConfig
     fun installSysOut()
     {
         System.setOut(HyPrintStream(_originalOut) { general.log(it) })
+    }
+
+    /**
+     * Make System.err.println() go through HyLogger.general.error()
+     */
+    fun installSysErr()
+    {
         System.setErr(HyPrintStream(_originalErr) { general.error(it) })
     }
 
