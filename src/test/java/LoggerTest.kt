@@ -3,6 +3,8 @@ import org.hydev.logger.HyLogger
 import org.hydev.logger.HyLoggerConfig
 import org.hydev.logger.appenders.FileAppender
 import org.hydev.logger.coloring.GradientPresets.BPR
+import org.hydev.logger.coloring.GradientPresets.RAINBOW
+import java.awt.Color
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/04 创建!
@@ -25,9 +27,22 @@ object LoggerTest
         logger.debug("This is not logged if HyLoggerConfig.debug is off.")
         logger.error("This could never happen in theory, right?")
         logger.warning("Nerf this!")
-
         logger.log("")
 
+        logger.fancy.gradient("=========== Linear Gradient ===========", Color.BLUE, Color.CYAN)
+        logger.fancy.gradient("=========== Linear Gradient ===========", Color.ORANGE, Color.CYAN)
+        logger.fancy.gradient("=========== Linear Gradient ===========", Color(0, 242, 96), Color(80, 161, 230))
+        logger.fancy.gradient("=========== Linear Gradient ===========", Color(255, 140, 0), Color(255, 0, 128))
+
+        logger.log("")
+        logger.log("Gradient with more than 2 color positions:")
+        logger.fancy.gradient("""
+            |########################################
+            |##########  Ｇｒａｄｉｅｎｔ  ##########
+            |########################################""".trimMargin(), RAINBOW)
+
+        logger.log("")
+        logger.log("Angled gradient on ascii art:")
         logger.fancy.gradient("""
             ┬ ┬┬ ┬┬  ┌─┐┌─┐┌─┐┌─┐┬─┐
             ├─┤└┬┘│  │ ││ ┬│ ┬├┤ ├┬┘
