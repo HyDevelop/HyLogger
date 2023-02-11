@@ -22,8 +22,8 @@ class ConsoleAppender() : Appender()
             when (it.level)
             {
                 LOG -> defaultFormat.format(time, it.prefix, "${GREEN}INFO", "$RESET${it.msg}")
-                DEBUG -> fqcnFormat.format(time, it.prefix, "${CYAN}DEBUG", it.fqcn, "$CYAN${it.msg}")
                 WARNING -> defaultFormat.format(time, it.prefix, "${YELLOW}WARNING", "$YELLOW${it.msg}")
+                DEBUG -> fqcnFormat.format(time, it.prefix, "${YELLOW}DEBUG", it.fqcn, "$CYAN${it.msg}")
                 ERROR -> fqcnFormat.format(time, it.prefix, "${RED}ERROR", it.fqcn, "$RED${it.msg}")
             }
         }
